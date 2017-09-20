@@ -2,10 +2,10 @@
   display: table;
 }
 .divRow {
-  border: 1px #CCC solid;
   display: table-row;
 }
 .divCell {
+  border: 1px #CCC solid;
   display: table-cell;
 }
 /*
