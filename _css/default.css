@@ -9,6 +9,7 @@
   vertical-align: top;
   border: 1px #CCC solid;
   display: table-cell;
+  padding: 5px;
 }
 .divRight {
   text-align: right;

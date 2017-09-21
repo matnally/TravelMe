@@ -37,6 +37,28 @@
 
       <div class="divCell">
         <div id="jvectormap" style="width:600px; height: 350px;"></div>
+
+
+        <div class="divTable">
+          <div class="divRow">
+            <div class="divCell divRight">Destination</div><!-- divCell -->
+            <div id="locationDestinationName" class="divCell">???</div><!-- divCell -->
+          </div><!-- divRow -->
+          <div class="divRow">
+            <div class="divCell divRight">Distance</div><!-- divCell -->
+            <div id="locationDestinationDistance" class="divCell">???</div><!-- divCell -->
+          </div><!-- divRow -->
+          <div class="divRow">
+            <div class="divCell divRight">Travel time</div><!-- divCell -->
+            <div id="locationDestinationTimeTaken" class="divCell">???</div><!-- divCell -->
+          </div><!-- divRow -->
+          <div class="divRow">
+            <div class="divCell divRight">Travel Cost</div><!-- divCell -->
+            <div id="locationDestinationCost" class="divCell">???</div><!-- divCell -->
+          </div><!-- divRow -->
+        </div><!-- divTable -->
+
+
       </div><!-- divCell -->
 
       <div class="divCell">
@@ -57,10 +79,6 @@
             <div id="meMoney" class="divCell">???</div><!-- divCell -->
           </div><!-- divRow -->
           <div class="divRow">
-            <div class="divCell divRight">Holidays Left</div><!-- divCell -->
-            <div id="meHolidaysLeft" class="divCell">???</div><!-- divCell -->
-          </div><!-- divRow -->
-          <div class="divRow">
             <div class="divCell divRight">Days Left</div><!-- divCell -->
             <div id="meDaysLeft" class="divCell">???</div><!-- divCell -->
           </div><!-- divRow -->
@@ -79,29 +97,7 @@
         </div><!-- divTable -->
 
         <br>
-
-        <h2>Destination Details</h2>
-        <div class="divTable">
-          <div class="divRow">
-            <div class="divCell divRight">Destination</div><!-- divCell -->
-            <div id="locationDestinationName" class="divCell">???</div><!-- divCell -->
-          </div><!-- divRow -->
-          <div class="divRow">
-            <div class="divCell divRight">Distance</div><!-- divCell -->
-            <div id="locationDestinationDistance" class="divCell">???</div><!-- divCell -->
-          </div><!-- divRow -->
-          <div class="divRow">
-            <div class="divCell divRight">Travel time</div><!-- divCell -->
-            <div id="locationDestinationTimeTaken" class="divCell">???</div><!-- divCell -->
-          </div><!-- divRow -->
-          <div class="divRow">
-            <div class="divCell divRight">Travel Cost</div><!-- divCell -->
-            <div id="locationDestinationCost" class="divCell">???</div><!-- divCell -->
-          </div><!-- divRow -->
-
-
-
-        </div><!-- divTable -->
+        <button type="button" onClick="travel(1)">Travel</button>
 
 
       </div><!-- divCell -->
@@ -109,7 +105,6 @@
     </div><!-- divRow -->
   </div><!-- divTable -->
 
-  <button type="button" onClick="travel(1)">Travel</button>
 
   <script>
     travel(0); //init

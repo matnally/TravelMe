@@ -1,46 +1,36 @@
 
-function displayDestination(objCurrent, objDestination) {
-  //updates the display of the chosen destination
+function displayCurrent() {
+  //updates the display of the user's details
 
-  var strTemp = "";
-
-  strTemp = objDestination.name;
-  updateElement("locationDestinationName", strTemp);
-
-  //calc distance and days to destination
-  var strDistance = calcDistance(objCurrent.latLng[0], objCurrent.latLng[1], objDestination.latLng[0], objDestination.latLng[1], JSONconfig["config"][0].units);
-      strTemp =  displayNumbersWithCommas(strDistance) + " " + JSONconfig["config"][0].units;
-      updateElement("locationDestinationDistance", strTemp);
-      strTemp = displayNumbersWithCommas(calcTimeTakenToTravel(calcDistance(objCurrent.latLng[0], objCurrent.latLng[1], objDestination.latLng[0], objDestination.latLng[1]), JSONconfig["config"][0].units)) + " days";
-      updateElement("locationDestinationTimeTaken", strTemp);
-
-      strTemp = calcDistanceCost(calcDistance(objCurrent.latLng[0], objCurrent.latLng[1], objDestination.latLng[0], objDestination.latLng[1], JSONconfig["config"][0].units), JSONconfig["config"][0].units);
-      updateElement("locationDestinationCost", displayNumbersWithCommas(strTemp));
+  updateElement("locationCurrentName", JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].name);
+  updateElement("meHappiness", JSONme["me"][0].happiness);
+  updateElement("meMoney", JSONconfig["config"][0].currency + displayNumbersWithCommas(JSONme["me"][0].money));
+  updateElement("meDaysLeft", JSONme["me"][0].daysLeft);
+  updateElement("meTravelledDistance", displayNumbersWithCommas(JSONme["me"][0].travelledDistance) + " " + JSONconfig["config"][0].units);
+  updateElement("meLocationPrevious", JSONdestinations["destinations"][JSONme["me"][0].locationPrevious].name);
+  updateElement("meTravelledDays", JSONme["me"][0].travelledDays);
 
 }
 
-function displayCurrent(objMeObject) {
-  //updates the display of the user's details
+function displayDestination(index) {
+  //updates the display of the chosen destination
 
-  var strTemp = "";
+  JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].locationDestination = index; //temp store potential destination
+  JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].locationDestinationTravelDays = calcTimeTakenToTravel(calcDistance(JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].latLng[0], JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].latLng[1], JSONdestinations["destinations"][index].latLng[0], JSONdestinations["destinations"][index].latLng[1]), JSONconfig["config"][0].units);
+  JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].locationDestinationTravelCosts = calcDistanceCost(calcDistance(JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].latLng[0], JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].latLng[1], JSONdestinations["destinations"][index].latLng[0], JSONdestinations["destinations"][index].latLng[1], JSONconfig["config"][0].units), JSONconfig["config"][0].units);
+  JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].locationDestinationTravelDistance = calcDistance(JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].latLng[0], JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].latLng[1], JSONdestinations["destinations"][index].latLng[0], JSONdestinations["destinations"][index].latLng[1], JSONconfig["config"][0].units);
 
-  strTemp = JSONdestinations["destinations"][objMeObject.locationCurrent].name;
-  updateElement("locationCurrentName", strTemp);
-  strTemp = objMeObject.happiness;
-  updateElement("meHappiness", strTemp);
-  strTemp = objMeObject.money;
-  updateElement("meMoney", displayNumbersWithCommas(strTemp));
-  strTemp = objMeObject.holidaysLeft;
-  updateElement("meHolidaysLeft", strTemp);
-  strTemp = objMeObject.daysLeft;
-  updateElement("meDaysLeft", strTemp);
-  strTemp = objMeObject.travelledDistance;
-  updateElement("meTravelledDistance", displayNumbersWithCommas(strTemp));
-  strTemp = objMeObject.locationPrevious;
-  updateElement("meLocationPrevious", strTemp);
-  strTemp = objMeObject.travelledDays;
-  updateElement("meTravelledDays", strTemp);
+  updateElement("locationDestinationName", JSONdestinations["destinations"][index].name);
+  updateElement("locationDestinationTimeTaken", JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].locationDestinationTravelDays);
+  updateElement("locationDestinationCost", JSONconfig["config"][0].currency + displayNumbersWithCommas(JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].locationDestinationTravelCosts));
+  updateElement("locationDestinationDistance", displayNumbersWithCommas(JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].locationDestinationTravelDistance) + " " + JSONconfig["config"][0].units);
 
+}
+function resetDestination() {
+  updateElement("locationDestinationName", "");
+  updateElement("locationDestinationTimeTaken", "");
+  updateElement("locationDestinationCost", "");
+  updateElement("locationDestinationDistance", "");
 }
 
 

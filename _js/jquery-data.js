@@ -28,6 +28,8 @@ $(function(){
 
       var mapObject = $("#jvectormap").vectorMap("get", "mapObject");
           mapObject.clearSelectedRegions();
+          //$('#jvectormap').vectorMap('get','mapObject').setFocus({region: index, animate: true}); //zoom in
+          mapObject.setFocus({ region: index, animate: true }); //zoom in
 
     } //onRegionClick
     // END regions
@@ -75,14 +77,7 @@ $(function(){
       var locationCurrent = JSONdestinations["destinations"][JSONme["me"][0].locationCurrent];
       var locationDestination = JSONdestinations["destinations"][index];
 
-
-JSONme["me"][0].locationDestination = index; //temp store potential destination
-
-      //console.log(JSONme["me"][0].locationCurrent);
-
-      displayDestination(locationCurrent, locationDestination); //display destination details
-
-//      console.log("Distance from " + JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].name + " to " + JSONdestinations["destinations"][index].name + " : " + calcDistance(locationCurrent[0], locationCurrent[1], locationDestination.latLng[0], locationDestination.latLng[1], "KM") + " Kilometres");
+      displayDestination(index); //display destination details
 
     } //onMarkerClick
     // END markers

@@ -24,7 +24,7 @@ function calcDistance(currentLat, currentLong, destinationLat, destinationLong, 
 
 function calcTimeTakenToTravel(intDistance, strUnit) {
   //Calculate days taken to travel determined from distance
-//alert(strUnit);
+
   /**************************
     Days taken = (D / F) O
                   D  = Distance (KM or Miles)

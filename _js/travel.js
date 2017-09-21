@@ -8,37 +8,23 @@ function travel(intStartFlag) {
 
   } else {
 
-    //update distance
-    var intTotalDistance = JSONme["me"][0].travelledDistance;
-    var intDistance = calcDistance(JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].latLng[0]
-                                            ,JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].latLng[1]
-                                            ,JSONdestinations["destinations"][JSONme["me"][0].locationDestination].latLng[0]
-                                            ,JSONdestinations["destinations"][JSONme["me"][0].locationDestination].latLng[1]
-                                            ,JSONconfig["config"][0].units);
-        intTotalDistance = parseInt(intTotalDistance) + parseInt(intDistance);
-        JSONme["me"][0].travelledDistance = intTotalDistance;
+    var index = JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].locationDestination;
 
-    //update travel days
-    var intTimeTaken = JSONme["me"][0].travelledDays;
-        intTimeTaken = parseInt(intTimeTaken) + parseInt(calcTimeTakenToTravel(calcDistance(JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].latLng[0],JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].latLng[1],JSONdestinations["destinations"][JSONme["me"][0].locationDestination].latLng[0],JSONdestinations["destinations"][JSONme["me"][0].locationDestination].latLng[1],JSONconfig["config"][0].units), JSONconfig["config"][0].units));
-        JSONme["me"][0].travelledDays = intTimeTaken;
+    JSONme["me"][0].money = parseInt(JSONme["me"][0].money) - parseInt(calcDistanceCost(calcDistance(JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].latLng[0], JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].latLng[1], JSONdestinations["destinations"][index].latLng[0], JSONdestinations["destinations"][index].latLng[1], JSONconfig["config"][0].units), JSONconfig["config"][0].units));
+    JSONme["me"][0].daysLeft = parseInt(JSONme["me"][0].daysLeft) - parseInt(calcTimeTakenToTravel(calcDistance(JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].latLng[0], JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].latLng[1], JSONdestinations["destinations"][index].latLng[0], JSONdestinations["destinations"][index].latLng[1]), JSONconfig["config"][0].units));
+    JSONme["me"][0].travelledDistance = parseInt(JSONme["me"][0].travelledDistance) + parseInt(calcDistance(JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].latLng[0], JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].latLng[1], JSONdestinations["destinations"][index].latLng[0], JSONdestinations["destinations"][index].latLng[1], JSONconfig["config"][0].units));
+    JSONme["me"][0].travelledDays = parseInt(JSONme["me"][0].travelledDays) + parseInt(calcTimeTakenToTravel(calcDistance(JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].latLng[0], JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].latLng[1], JSONdestinations["destinations"][index].latLng[0], JSONdestinations["destinations"][index].latLng[1]), JSONconfig["config"][0].units));
 
-    //update days left
-    var intDaysLeft = JSONme["me"][0].daysLeft;
-        intDaysLeft = parseInt(intDaysLeft) - parseInt(calcTimeTakenToTravel(calcDistance(JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].latLng[0],JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].latLng[1],JSONdestinations["destinations"][JSONme["me"][0].locationDestination].latLng[0],JSONdestinations["destinations"][JSONme["me"][0].locationDestination].latLng[1],JSONconfig["config"][0].units), JSONconfig["config"][0].units));
-        JSONme["me"][0].daysLeft = intDaysLeft;
-
-    //update cost
-    var intCost = JSONme["me"][0].money;
-        intCost = intCost - parseInt(calcDistanceCost(calcDistance(JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].latLng[0],JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].latLng[1],JSONdestinations["destinations"][JSONme["me"][0].locationDestination].latLng[0],JSONdestinations["destinations"][JSONme["me"][0].locationDestination].latLng[1],JSONconfig["config"][0].units), JSONconfig["config"][0].units));
-        JSONme["me"][0].money = intCost;
-
-    //update destination location to current location
-    JSONme["me"][0].locationCurrent = JSONme["me"][0].locationDestination;
+    var mapObject = $("#jvectormap").vectorMap("get", "mapObject");
+        mapObject.clearSelectedMarkers();
+        mapObject.markers[JSONme["me"][0].locationCurrent].element.setStyle("fill", "#CCC"); //clear previous location
+        JSONme["me"][0].locationPrevious = JSONme["me"][0].locationCurrent;
+        JSONme["me"][0].locationCurrent = index; //update current location
+        mapObject.markers[JSONme["me"][0].locationCurrent].element.setStyle("fill", "green"); //display current location
 
   }
 
-  //displays the user's details
-  displayCurrent(JSONme["me"][0]);
+  resetDestination();
+  displayCurrent(); //displays the user's details
 
 }
