@@ -1,3 +1,4 @@
+
 .divTable {
   display: table;
 }
@@ -5,8 +6,12 @@
   display: table-row;
 }
 .divCell {
+  vertical-align: top;
   border: 1px #CCC solid;
   display: table-cell;
+}
+.divRight {
+  text-align: right;
 }
 /*
 <div class="divTable">

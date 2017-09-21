@@ -20,6 +20,10 @@ $(function(){
           fill: "red"
       }
     } //regionStyle
+    ,onRegionTipShow: function(event, element, index){
+//      element.html(strTemp);
+        //console.log(index);
+    }
     ,onRegionClick: function(event, index) {
 
       var mapObject = $("#jvectormap").vectorMap("get", "mapObject");
@@ -52,15 +56,10 @@ $(function(){
           strTemp += JSONdestinations["destinations"][index].name;
 
           if (JSONme["me"][0].locationCurrent == index) {
+            //Same location
             strTemp += "<br>";
             strTemp += "You are here!";
           } else {
-            strTemp += "<br>";
-            strTemp += calcDistance(JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].latLng[0]
-                                    ,JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].latLng[1]
-                                    ,JSONdestinations["destinations"][index].latLng[0]
-                                    ,JSONdestinations["destinations"][index].latLng[1]
-                                    ,JSONconfig["config"][0].units) + " " + JSONconfig["config"][0].units + " away";
           }
 
       element.html(strTemp);
@@ -76,10 +75,12 @@ $(function(){
       var locationCurrent = JSONdestinations["destinations"][JSONme["me"][0].locationCurrent];
       var locationDestination = JSONdestinations["destinations"][index];
 
+
+JSONme["me"][0].locationDestination = index; //temp store potential destination
+
       //console.log(JSONme["me"][0].locationCurrent);
 
-
-displayDestination(locationCurrent, locationDestination); //display destination details
+      displayDestination(locationCurrent, locationDestination); //display destination details
 
 //      console.log("Distance from " + JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].name + " to " + JSONdestinations["destinations"][index].name + " : " + calcDistance(locationCurrent[0], locationCurrent[1], locationDestination.latLng[0], locationDestination.latLng[1], "KM") + " Kilometres");
 
@@ -89,9 +90,9 @@ displayDestination(locationCurrent, locationDestination); //display destination 
   }); //$("#jvectormap").vectorMap({
 
     //Set starting colours
+    //ONLY HAPPENS ONCE?
     var mapObject = $("#jvectormap").vectorMap("get", "mapObject");
         mapObject.markers[JSONme["me"][0].locationCurrent].element.setStyle("fill", "green");
-
-    displayCurrent(JSONme["me"][0]);
+    //displayCurrent(JSONme["me"][0]);
 
 }); //$(function(){

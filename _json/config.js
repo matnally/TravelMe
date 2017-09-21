@@ -1,6 +1,7 @@
 
 var JSONconfig = { "config" : [
   {
-    "units"      : "Miles"
+    "units"      : "KM"
+    ,"currency"  : "£"
   }
 ]};

@@ -5,56 +5,115 @@
   <title>TravelMe</title>
   <meta charset="utf-8">
 
-  <!-- START defaults -->
+  <!-- defaults -->
   <link rel="stylesheet" href="_css/default.css">
   <script src="_js/default.js"></script>
 
   <script src="_js/jquery.js"></script>
 
-  <!-- START JSON -->
+  <!-- JSON -->
   <script src="_json/config.js"></script>
   <script src="_json/me.js"></script>
   <script src="_json/destinations.js"></script>
   <script src="_json/json.js"></script>
 
+  <!-- modules -->
   <script src="_js/calc.js"></script>
   <script src="_js/display.js"></script>
   <script src="_js/travel.js"></script>
 
-  <!-- START jvectormap -->
+  <!-- jvectormap -->
   <link rel="stylesheet" href="_js/jquery-jvectormap-2.0.3.css">
   <script src="_js/jquery-jvectormap-2.0.3.min.js"></script>
   <script src="_js/jquery-mousewheel.js"></script>
   <script src="_js/jquery-jvectormap-world-mill-en.js"></script>
   <script src="_js/jquery-data.js"></script><!-- CORE -->
-  <!-- END jvectormap -->
 
 </head>
 <body>
 
-  <div id="jvectormap" style="width:600px; height: 350px;"></div>
-
   <div class="divTable">
     <div class="divRow">
-      <div class="divCell">Curent Location</div><!-- divCell -->
-      <div id="currentName" class="divCell">???</div><!-- divCell -->
+
+      <div class="divCell">
+        <div id="jvectormap" style="width:600px; height: 350px;"></div>
+      </div><!-- divCell -->
+
+      <div class="divCell">
+
+
+        <h2>Details</h2>
+        <div class="divTable">
+          <div class="divRow">
+            <div class="divCell divRight">Curent Location</div><!-- divCell -->
+            <div id="locationCurrentName" class="divCell">???</div><!-- divCell -->
+          </div><!-- divRow -->
+          <div class="divRow">
+            <div class="divCell divRight">Happiness</div><!-- divCell -->
+            <div id="meHappiness" class="divCell">???</div><!-- divCell -->
+          </div><!-- divRow -->
+          <div class="divRow">
+            <div class="divCell divRight">Money</div><!-- divCell -->
+            <div id="meMoney" class="divCell">???</div><!-- divCell -->
+          </div><!-- divRow -->
+          <div class="divRow">
+            <div class="divCell divRight">Holidays Left</div><!-- divCell -->
+            <div id="meHolidaysLeft" class="divCell">???</div><!-- divCell -->
+          </div><!-- divRow -->
+          <div class="divRow">
+            <div class="divCell divRight">Days Left</div><!-- divCell -->
+            <div id="meDaysLeft" class="divCell">???</div><!-- divCell -->
+          </div><!-- divRow -->
+          <div class="divRow">
+            <div class="divCell divRight">Distance Travelled</div><!-- divCell -->
+            <div id="meTravelledDistance" class="divCell">???</div><!-- divCell -->
+          </div><!-- divRow -->
+          <div class="divRow">
+            <div class="divCell divRight">Days Travelled</div><!-- divCell -->
+            <div id="meTravelledDays" class="divCell">???</div><!-- divCell -->
+          </div><!-- divRow -->
+          <div class="divRow">
+            <div class="divCell divRight">Previous Location</div><!-- divCell -->
+            <div id="meLocationPrevious" class="divCell">???</div><!-- divCell -->
+          </div><!-- divRow -->
+        </div><!-- divTable -->
+
+        <br>
+
+        <h2>Destination Details</h2>
+        <div class="divTable">
+          <div class="divRow">
+            <div class="divCell divRight">Destination</div><!-- divCell -->
+            <div id="locationDestinationName" class="divCell">???</div><!-- divCell -->
+          </div><!-- divRow -->
+          <div class="divRow">
+            <div class="divCell divRight">Distance</div><!-- divCell -->
+            <div id="locationDestinationDistance" class="divCell">???</div><!-- divCell -->
+          </div><!-- divRow -->
+          <div class="divRow">
+            <div class="divCell divRight">Travel time</div><!-- divCell -->
+            <div id="locationDestinationTimeTaken" class="divCell">???</div><!-- divCell -->
+          </div><!-- divRow -->
+          <div class="divRow">
+            <div class="divCell divRight">Travel Cost</div><!-- divCell -->
+            <div id="locationDestinationCost" class="divCell">???</div><!-- divCell -->
+          </div><!-- divRow -->
+
+
+
+        </div><!-- divTable -->
+
+
+      </div><!-- divCell -->
+
     </div><!-- divRow -->
   </div><!-- divTable -->
 
-  <br>
+  <button type="button" onClick="travel(1)">Travel</button>
 
-  <div class="divTable">
-    <div class="divRow">
-      <div class="divCell">Destination</div><!-- divCell -->
-      <div id="destinationName" class="divCell">???</div><!-- divCell -->
-    </div><!-- divRow -->
-    <div class="divRow">
-      <div class="divCell">Distance</div><!-- divCell -->
-      <div id="destinationDistance" class="divCell">???</div><!-- divCell -->
-    </div><!-- divRow -->
-  </div><!-- divTable -->
-
-  <button type="button" onClick="travel()">Travel</button>
+  <script>
+    travel(0); //init
+  </script>
 
 </body>
 </html>

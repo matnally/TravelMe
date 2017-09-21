@@ -1,6 +1,7 @@
 
+
 function calcDistance(currentLat, currentLong, destinationLat, destinationLong, strUnit) {
-  //Calculate distance from lat and longs
+  //Calculate distance from lat and long
 
   var intResult = 0 //Value to return
 
@@ -17,6 +18,58 @@ function calcDistance(currentLat, currentLong, destinationLat, destinationLong, 
   if (strUnit == "KM") intResult = intKilometres;
   else intResult = intMiles;
 
-  return intResult
+  return intResult;
+
+}
+
+function calcTimeTakenToTravel(intDistance, strUnit) {
+  //Calculate days taken to travel determined from distance
+//alert(strUnit);
+  /**************************
+    Days taken = (D / F) O
+                  D  = Distance (KM or Miles)
+                  F  = Factor (Chosen by me 3500)
+                  O  = For KM / Miles discrepancy (KM = 0.62137 / Miles = 1)
+  **************************/
+
+  var intResult = 0 //Value to return
+
+  var d = parseInt(intDistance);
+  var f = 3500;
+  var o = 0;
+      if (strUnit == "KM") { //offsets for Kilometres
+         o = 0.62137;
+         f = f * o;
+      } else o = 1;
+
+  intResult = Math.ceil((d / f) * o).toFixed(0);
+
+  return intResult;
+
+}
+
+function calcDistanceCost(intDistance, strUnit) {
+  //Calculate cost determined from distance
+
+  /**************************
+    Cost = D (0.1 * F)
+    D  = Distance (KM or Miles)
+    F  = Factor (Chosen by me 0.1)
+    O  = For KM / Miles discrepancy (KM = 0.62137 / Miles = 1)
+  **************************/
+
+  var intResult = 0 //Value to return
+
+  var d = parseInt(intDistance);
+  var f = 0.1;
+  var o = 0;
+
+  if (strUnit == "KM") { //offsets for Kilometres
+     o = 0.62137;
+  } else o = 1;
+
+  intResult = Math.ceil(d * ( f * o)).toFixed(0);
+
+  return intResult;
 
 }

@@ -2,10 +2,13 @@
 var JSONme = { "me" : [
   {
     "name"      : "Me"
-    ,"holidays" : 50
-    ,"daysLeft" : 50
-    ,"distanceTravelled" : 50
+    ,"happiness": 100
+    ,"money"    : 25000
+    ,"daysLeft" : 28
+    ,"travelledDistance" : 0
+    ,"travelledDays" : 0
     ,"locationPrevious" : 0
-    ,"locationCurrent" : 0 //index of JSONdestinations
+    ,"locationCurrent" : 0 //index of JSONdestination
+    ,"locationDestination" : 0 //temp store index of JSONdestination
   }
 ]};
