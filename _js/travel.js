@@ -4,7 +4,10 @@ function travel(intStartFlag) {
   if (intStartFlag == 0) {
     //START init
 
-//Maybe show SETTINGS box?
+    //defaults
+    JSONme["me"][0].locationCurrent = JSONconfig["config"][0].home; //make the destination the config default
+
+    displayWork();
 
   } else {
 

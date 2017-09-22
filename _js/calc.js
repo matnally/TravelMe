@@ -35,7 +35,7 @@ function calcTimeTakenToTravel(intDistance, strUnit) {
   var intResult = 0 //Value to return
 
   var d = parseInt(intDistance);
-  var f = 3500;
+  var f = JSONconfig["config"][0].factorTimeTakenToTravel;
   var o = 0;
       if (strUnit == "KM") { //offsets for Kilometres
          o = 0.62137;
@@ -61,7 +61,7 @@ function calcDistanceCost(intDistance, strUnit) {
   var intResult = 0 //Value to return
 
   var d = parseInt(intDistance);
-  var f = 0.1;
+  var f = JSONconfig["config"][0].factorDistanceCost;
   var o = 0;
 
   if (strUnit == "KM") { //offsets for Kilometres

@@ -8,7 +8,7 @@ $(function(){
     ,regionsSelectable: true
     ,regionStyle : {
       initial : {
-        fill  : "#000"
+        fill  : "#CCC"
         ,stroke: "#FFF"
       } //initial
       ,hover: {
@@ -69,15 +69,23 @@ $(function(){
     ,onMarkerClick: function(event, index) {
       //alert(JSONdestinations["destinations"][index].latLng[0]);
 
-      var mapObject = $("#jvectormap").vectorMap("get", "mapObject");
-          mapObject.clearSelectedMarkers();
-          mapObject.markers[JSONme["me"][0].locationCurrent].element.setStyle("fill", "green");
+      if (JSONme["me"][0].locationCurrent == index) {
+        //click on current destination
 
-      //getlocations
-      var locationCurrent = JSONdestinations["destinations"][JSONme["me"][0].locationCurrent];
-      var locationDestination = JSONdestinations["destinations"][index];
+      } else {
 
-      displayDestination(index); //display destination details
+        var mapObject = $("#jvectormap").vectorMap("get", "mapObject");
+            mapObject.clearSelectedMarkers();
+            mapObject.markers[JSONme["me"][0].locationCurrent].element.setStyle("fill", "green");
+
+        //getlocations
+        var locationCurrent = JSONdestinations["destinations"][JSONme["me"][0].locationCurrent];
+        var locationDestination = JSONdestinations["destinations"][index];
+
+        displayDestination(index); //display destination details
+
+      }
+
 
     } //onMarkerClick
     // END markers
