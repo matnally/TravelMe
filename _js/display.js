@@ -5,13 +5,14 @@ function displayCurrent() {
   updateElement("locationCurrentName", JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].name);
   updateElement("meHappiness", JSONme["me"][0].happiness);
   updateElement("meMoney", JSONconfig["config"][0].currency + displayNumbersWithCommas(JSONme["me"][0].money));
+  updateElement("meSalary", JSONme["me"][0].salary);
   updateElement("meDaysLeft", JSONme["me"][0].daysLeft);
   updateElement("meDaysWorked", JSONme["me"][0].daysWorked);
   updateElement("meTravelledDistance", displayNumbersWithCommas(JSONme["me"][0].travelledDistance) + " " + JSONconfig["config"][0].units);
-  updateElement("meLocationPrevious", JSONdestinations["destinations"][JSONme["me"][0].locationPrevious].name);
+  updateElement("meLocationPrevious", JSONdestinations["destinations"][JSONlocation["location"][0].locationPrevious].name);
   updateElement("meTravelledDays", JSONme["me"][0].travelledDays);
 
-  if (JSONme["me"][0].locationCurrent == JSONconfig["config"][0].home) { //Current location and CONFIG home is the same
+  if (JSONlocation["location"][0].locationCurrent == JSONconfig["config"][0].home) { //Current location and CONFIG home is the same
     //Back at your HOME destination
     elemHideShow("workTable", "Show");
   } else {
@@ -20,7 +21,7 @@ function displayCurrent() {
   }
 
   //if not clicked on a destination or just travelled, hide details
-  if (!JSONme["me"][0].locationDestination) elemHideShow("destinationTable", "Hide");
+  if (!JSONlocation["location"][0].locationDestination) elemHideShow("destinationTable", "Hide");
 
 } //function
 
@@ -38,22 +39,25 @@ function displayDestination(index) {
 
   elemHideShow("destinationTable", "Show"); //click on a destination so show the details
 
-  JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].locationDestination = index; //temp store potential destination
-  JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].locationDestinationTravelDays = calcTimeTakenToTravel(calcDistance(JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].latLng[0], JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].latLng[1], JSONdestinations["destinations"][index].latLng[0], JSONdestinations["destinations"][index].latLng[1]), JSONconfig["config"][0].units);
-  JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].locationDestinationTravelCosts = calcDistanceCost(calcDistance(JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].latLng[0], JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].latLng[1], JSONdestinations["destinations"][index].latLng[0], JSONdestinations["destinations"][index].latLng[1], JSONconfig["config"][0].units), JSONconfig["config"][0].units);
-  JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].locationDestinationTravelDistance = calcDistance(JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].latLng[0], JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].latLng[1], JSONdestinations["destinations"][index].latLng[0], JSONdestinations["destinations"][index].latLng[1], JSONconfig["config"][0].units);
+  JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].locationDestination = index; //temp store potential destination
+  JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].locationDestinationTravelDays = calcTimeTakenToTravel(calcDistance(JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].latLng[0], JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].latLng[1], JSONdestinations["destinations"][index].latLng[0], JSONdestinations["destinations"][index].latLng[1]), JSONconfig["config"][0].units);
+  JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].locationDestinationTravelCosts = calcDistanceCost(calcDistance(JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].latLng[0], JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].latLng[1], JSONdestinations["destinations"][index].latLng[0], JSONdestinations["destinations"][index].latLng[1], JSONconfig["config"][0].units), JSONconfig["config"][0].units);
+  JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].locationDestinationTravelDistance = calcDistance(JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].latLng[0], JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].latLng[1], JSONdestinations["destinations"][index].latLng[0], JSONdestinations["destinations"][index].latLng[1], JSONconfig["config"][0].units);
 
   updateElement("locationDestinationName", JSONdestinations["destinations"][index].name);
-  updateElement("locationDestinationTimeTaken", JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].locationDestinationTravelDays);
-  updateElement("locationDestinationCost", JSONconfig["config"][0].currency + displayNumbersWithCommas(JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].locationDestinationTravelCosts));
-  updateElement("locationDestinationDistance", displayNumbersWithCommas(JSONdestinations["destinations"][JSONme["me"][0].locationCurrent].locationDestinationTravelDistance) + " " + JSONconfig["config"][0].units);
+  updateElement("locationDestinationTimeTaken", JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].locationDestinationTravelDays);
+  updateElement("locationDestinationCost", JSONconfig["config"][0].currency + displayNumbersWithCommas(JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].locationDestinationTravelCosts));
+  updateElement("locationDestinationDistance", displayNumbersWithCommas(JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].locationDestinationTravelDistance) + " " + JSONconfig["config"][0].units);
+  updateElement("locationHappiness", calHappiness(JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].locationDestinationTravelDays,JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].locationDestinationTravelCosts,JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].locationDestinationTravelDistance, JSONconfig["config"][0].units));
 
 } //function
+
 function resetDestination() {
   updateElement("locationDestinationName", "");
   updateElement("locationDestinationTimeTaken", "");
   updateElement("locationDestinationCost", "");
   updateElement("locationDestinationDistance", "");
+  updateElement("locationHappiness", "");
 } //function
 
 

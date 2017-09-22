@@ -1,5 +1,4 @@
 
-
 function calcDistance(currentLat, currentLong, destinationLat, destinationLong, strUnit) {
   //Calculate distance from lat and long
 
@@ -27,9 +26,9 @@ function calcTimeTakenToTravel(intDistance, strUnit) {
 
   /**************************
     Days taken = (D / F) O
-                  D  = Distance (KM or Miles)
-                  F  = Factor (Chosen by me 3500)
-                  O  = For KM / Miles discrepancy (KM = 0.62137 / Miles = 1)
+                  D = Distance (KM or Miles)
+                  F = Factor (Chosen by me 3500)
+                  O = For KM / Miles discrepancy (KM = 0.62137 / Miles = 1)
   **************************/
 
   var intResult = 0 //Value to return
@@ -52,10 +51,10 @@ function calcDistanceCost(intDistance, strUnit) {
   //Calculate cost determined from distance
 
   /**************************
-    Cost = D (0.1 * F)
-    D  = Distance (KM or Miles)
-    F  = Factor (Chosen by me 0.1)
-    O  = For KM / Miles discrepancy (KM = 0.62137 / Miles = 1)
+    Cost =  D (0.1 * F)
+            D = Distance (KM or Miles)
+            F = Factor (Chosen by me 0.1)
+            O = For KM / Miles discrepancy (KM = 0.62137 / Miles = 1)
   **************************/
 
   var intResult = 0 //Value to return
@@ -69,6 +68,36 @@ function calcDistanceCost(intDistance, strUnit) {
   } else o = 1;
 
   intResult = Math.ceil(d * ( f * o)).toFixed(0);
+
+  return intResult;
+
+}
+
+function calHappiness(intDays, intCost, intDistance, strUnit) {
+  //Calculate potential happiness from travel
+
+  /**************************
+    Cost =  (((D - C) * Z) * O) / F
+            Z = Days
+            C = Cost
+            D = Distance (KM or Miles)
+            F = Factor (Chosen by me 1000)
+            O = For KM / Miles discrepancy (KM = 0.62137 / Miles = 1)
+  **************************/
+
+  var intResult = 0 //Value to return
+
+  var z = parseInt(intDays);
+  var c = parseInt(intCost);
+  var d = parseInt(intDistance);
+  var f = JSONconfig["config"][0].factorHappiness;
+  var o = 0;
+
+  if (strUnit == "KM") { //offsets for Kilometres
+     o = 0.62137;
+  } else o = 1;
+
+  intResult = Math.ceil((((d - c) * z) * o) / f).toFixed(0);
 
   return intResult;
 

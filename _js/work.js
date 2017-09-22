@@ -5,7 +5,7 @@ function calcWork() {
   var intWorkDays = elem.options[elem.selectedIndex].value;
 
   JSONwork["work"][0].money = calcWorkMoney(intWorkDays);
-  JSONwork["work"][0].happiness = calcWorkHappiness(intWorkDays);
+  JSONwork["work"][0].happiness = calHappiness(intWorkDays, calcWorkMoney(intWorkDays), 0, JSONconfig["config"][0].units)
   JSONwork["work"][0].holidays = calcWorkHolidays(intWorkDays);
 
   updateElement("divWorkDays", intWorkDays);
@@ -21,13 +21,6 @@ function calcWorkMoney(intWorkDays) {
   var intSalary = JSONme["me"][0].salary;
 
   intResult = intSalary * intWorkDays;
-  return intResult;
-
-}
-
-function calcWorkHappiness(intWorkDays) {
-
-  var intResult = 0;
   return intResult;
 
 }
