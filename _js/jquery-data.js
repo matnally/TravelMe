@@ -1,7 +1,7 @@
 $(function(){
   $("#jvectormap").vectorMap({
     map: "world_mill"
-    ,backgroundColor: "#CCC"
+    ,backgroundColor: "#fff"
 
     //******************************
     // START regions
@@ -57,7 +57,7 @@ $(function(){
       var strTemp = "";
           strTemp += JSONdestinations["destinations"][index].name;
 
-          if (JSONme["me"][0].locationCurrent == index) {
+          if (JSONlocation["location"][0].locationCurrent == index) {
             //Same location
             strTemp += "<br>";
             strTemp += "You are here!";
@@ -69,17 +69,17 @@ $(function(){
     ,onMarkerClick: function(event, index) {
       //alert(JSONdestinations["destinations"][index].latLng[0]);
 
-      if (JSONme["me"][0].locationCurrent == index) {
+      if (JSONlocation["location"][0].locationCurrent == index) {
         //click on current destination
 
       } else {
 
         var mapObject = $("#jvectormap").vectorMap("get", "mapObject");
             mapObject.clearSelectedMarkers();
-            mapObject.markers[JSONme["me"][0].locationCurrent].element.setStyle("fill", "green");
+            mapObject.markers[JSONlocation["location"][0].locationCurrent].element.setStyle("fill", "green");
 
         //getlocations
-        var locationCurrent = JSONdestinations["destinations"][JSONme["me"][0].locationCurrent];
+        var locationCurrent = JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent];
         var locationDestination = JSONdestinations["destinations"][index];
 
         displayDestination(index); //display destination details
@@ -95,7 +95,7 @@ $(function(){
     //Set starting colours
     //ONLY HAPPENS ONCE?
     var mapObject = $("#jvectormap").vectorMap("get", "mapObject");
-        mapObject.markers[JSONme["me"][0].locationCurrent].element.setStyle("fill", "green");
+        mapObject.markers[JSONlocation["location"][0].locationCurrent].element.setStyle("fill", "green");
     //displayCurrent(JSONme["me"][0]);
 
 }); //$(function(){

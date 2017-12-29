@@ -13,6 +13,17 @@ function calcWork() {
   updateElement("divWorkHappiness", JSONwork["work"][0].happiness);
   updateElement("divWorkHolidays", JSONwork["work"][0].holidays);
 
+
+  //calcAfford(total, value, "locationDestinationCost");
+
+  if (calcAfford(JSONme["me"][0].happiness, Math.abs(JSONwork["work"][0].happiness), "divWorkHappiness") < 1) {
+    alert("If you work for this long, you'll be too unhappy!");
+    document.getElementById("butWork").disabled = true;
+  } else {
+    document.getElementById("butWork").disabled = false;
+  }
+
+
 }
 
 function calcWorkMoney(intWorkDays) {
@@ -28,6 +39,7 @@ function calcWorkMoney(intWorkDays) {
 function calcWorkHolidays(intWorkDays) {
 
   var intResult = 0;
+      intResult = intWorkDays / 14;
   return intResult;
 
 }

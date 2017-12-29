@@ -102,3 +102,20 @@ function calHappiness(intDays, intCost, intDistance, strUnit) {
   return intResult;
 
 }
+
+
+
+///////////////////////////////////
+//TODO: This!
+function calcAfford (intCurrentValue, intCost, elemName) {
+
+  var intResult = (parseInt(intCurrentValue) - parseInt(intCost));
+  if (intResult < 0) {
+    document.getElementById(elemName).style.color = "red";
+  } else {
+    document.getElementById(elemName).style.color = "black";
+  }
+
+  return intResult;
+
+}
