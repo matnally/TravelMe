@@ -7,6 +7,7 @@ function calcWork() {
   JSONwork["work"][0].money = calcWorkMoney(intWorkDays);
   JSONwork["work"][0].happiness = calHappiness(intWorkDays, calcWorkMoney(intWorkDays), 0, JSONconfig["config"][0].units)
   JSONwork["work"][0].holidays = calcWorkHolidays(intWorkDays);
+  JSONwork["work"][0].days = intWorkDays;
 
   updateElement("divWorkDays", intWorkDays);
   updateElement("divWorkMoney", JSONconfig["config"][0].currency + JSONwork["work"][0].money);
@@ -17,7 +18,7 @@ function calcWork() {
   //calcAfford(total, value, "locationDestinationCost");
 
   if (calcAfford(JSONme["me"][0].happiness, Math.abs(JSONwork["work"][0].happiness), "divWorkHappiness") < 1) {
-    alert("If you work for this long, you'll be too unhappy!");
+//    alert("If you work for this long, you'll be too unhappy!");
     document.getElementById("butWork").disabled = true;
   } else {
     document.getElementById("butWork").disabled = false;

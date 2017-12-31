@@ -9,7 +9,14 @@ function displayCurrent() {
   updateElement("meDaysLeft", JSONme["me"][0].daysLeft);
   updateElement("meDaysWorked", JSONme["me"][0].daysWorked);
   updateElement("meTravelledDistance", displayNumbersWithCommas(JSONme["me"][0].travelledDistance) + " " + JSONconfig["config"][0].units);
+
+if (JSONlocation["location"][0].locationCurrent == JSONlocation["location"][0].locationPrevious) {
+  //current location equals previous.. must be at the START.. or bugged!
+  updateElement("meLocationPrevious", "");
+} else {
   updateElement("meLocationPrevious", JSONdestinations["destinations"][JSONlocation["location"][0].locationPrevious].name);
+}
+
   updateElement("meTravelledDays", JSONme["me"][0].travelledDays);
 
   if (JSONlocation["location"][0].locationCurrent == JSONconfig["config"][0].home) { //Current location and CONFIG home is the same
@@ -39,21 +46,24 @@ function displayDestination(index) {
 
   elemHideShow("destinationTable", "Show"); //click on a destination so show the details
 
-  JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].locationDestination = index; //temp store potential destination
-  JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].locationDestinationTravelDays = calcTimeTakenToTravel(calcDistance(JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].latLng[0], JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].latLng[1], JSONdestinations["destinations"][index].latLng[0], JSONdestinations["destinations"][index].latLng[1]), JSONconfig["config"][0].units);
-  JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].locationDestinationTravelCosts = calcDistanceCost(calcDistance(JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].latLng[0], JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].latLng[1], JSONdestinations["destinations"][index].latLng[0], JSONdestinations["destinations"][index].latLng[1], JSONconfig["config"][0].units), JSONconfig["config"][0].units);
-  JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].locationDestinationTravelDistance = calcDistance(JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].latLng[0], JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].latLng[1], JSONdestinations["destinations"][index].latLng[0], JSONdestinations["destinations"][index].latLng[1], JSONconfig["config"][0].units);
+  JSONlocation["location"][0].locationDestination = index; //temp store potential destination
+  JSONlocation["location"][0].locationDestinationTravelDays = calcTimeTakenToTravel(calcDistance(JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].latLng[0], JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].latLng[1], JSONdestinations["destinations"][index].latLng[0], JSONdestinations["destinations"][index].latLng[1]), JSONconfig["config"][0].units);
+  JSONlocation["location"][0].locationDestinationTravelCosts = calcDistanceCost(calcDistance(JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].latLng[0], JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].latLng[1], JSONdestinations["destinations"][index].latLng[0], JSONdestinations["destinations"][index].latLng[1], JSONconfig["config"][0].units), JSONconfig["config"][0].units);
+  JSONlocation["location"][0].locationDestinationTravelDistance = calcDistance(JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].latLng[0], JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].latLng[1], JSONdestinations["destinations"][index].latLng[0], JSONdestinations["destinations"][index].latLng[1], JSONconfig["config"][0].units);
 
   updateElement("locationDestinationName", JSONdestinations["destinations"][index].name);
-  updateElement("locationDestinationTimeTaken", JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].locationDestinationTravelDays);
-  updateElement("locationDestinationCost", JSONconfig["config"][0].currency + displayNumbersWithCommas(JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].locationDestinationTravelCosts));
-  updateElement("locationDestinationDistance", displayNumbersWithCommas(JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].locationDestinationTravelDistance) + " " + JSONconfig["config"][0].units);
-  updateElement("locationHappiness", calHappiness(JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].locationDestinationTravelDays,JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].locationDestinationTravelCosts,JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].locationDestinationTravelDistance, JSONconfig["config"][0].units));
+  updateElement("locationDestinationTimeTaken", JSONlocation["location"][0].locationDestinationTravelDays);
+  updateElement("locationDestinationCost", JSONconfig["config"][0].currency + displayNumbersWithCommas(JSONlocation["location"][0].locationDestinationTravelCosts));
+  updateElement("locationDestinationDistance", displayNumbersWithCommas(JSONlocation["location"][0].locationDestinationTravelDistance) + " " + JSONconfig["config"][0].units);
+  updateElement("locationHappiness", calHappiness(JSONlocation["location"][0].locationDestinationTravelDays, JSONlocation["location"][0].locationDestinationTravelCosts, JSONlocation["location"][0].locationDestinationTravelDistance, JSONconfig["config"][0].units));
 
-  //TODO: check can afford price, days off!
-  //Check if can afford o travel
-  if ((calcAfford(JSONme["me"][0].money, JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].locationDestinationTravelCosts, "locationDestinationCost") < 0) ||
-      (calcAfford(JSONme["me"][0].daysLeft, calcTimeTakenToTravel(calcDistance(JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].latLng[0], JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].latLng[1], JSONdestinations["destinations"][index].latLng[0], JSONdestinations["destinations"][index].latLng[1]), JSONconfig["config"][0].units), "locationDestinationTimeTaken") < 0)) {
+  var mapObject = $("#jvectormap").vectorMap("get", "mapObject");
+      updateElement("locationRegion", mapObject.getRegionName(JSONdestinations["destinations"][index].region));
+      updateElement("locationRegionDetails", getRegionDetails(JSONdestinations["destinations"][index].region));
+
+  var x = calcAfford(JSONme["me"][0].money, JSONlocation["location"][0].locationDestinationTravelCosts, "locationDestinationCost");
+  var y = calcAfford(JSONme["me"][0].daysLeft, calcTimeTakenToTravel(calcDistance(JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].latLng[0], JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].latLng[1], JSONdestinations["destinations"][index].latLng[0], JSONdestinations["destinations"][index].latLng[1]), JSONconfig["config"][0].units), "locationDestinationTimeTaken");
+  if ((x < 0) || (y <  0)) {
     document.getElementById("butTravel").disabled = true;
   } else {
     document.getElementById("butTravel").disabled = false;
@@ -70,9 +80,41 @@ function resetDestination() {
   updateElement("locationDestinationCost", "");
   updateElement("locationDestinationDistance", "");
   updateElement("locationHappiness", "");
+  updateElement("locationRegion", "");
+  updateElement("locationRegionDetails", "");
+
+  document.getElementById("butTravel").disabled = true;
+
 } //function
 
 
+
+
+
+
+
+
+function getRegionDetails(strRegion) {
+
+var strTemp = "";
+
+  //get array
+  var arrTemp = JSONdestinations["destinations"];
+  //loop through
+  for (var i = 0; i < arrTemp.length; i++) {
+
+    if (arrTemp[i].region == strRegion) {
+// show details of the region
+      strTemp += arrTemp[i].name;
+      strTemp += "<br>";
+
+    } //if
+
+  }//for
+
+return strTemp;
+
+}
 
 
 

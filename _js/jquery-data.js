@@ -5,7 +5,7 @@ $(function(){
 
     //******************************
     // START regions
-    ,regionsSelectable: true
+    ,regionsSelectable: false
     ,regionStyle : {
       initial : {
         fill  : "#CCC"
@@ -31,28 +31,75 @@ $(function(){
           //$('#jvectormap').vectorMap('get','mapObject').setFocus({region: index, animate: true}); //zoom in
           mapObject.setFocus({ region: index, animate: true }); //zoom in
 
+          var config = {
+              animate: true
+              ,region: index
+              ,stroke: "yellow"
+              ,"stroke-width": 2
+          };
+          mapObject.setFocus(config);
+
+//TODO:
+// display info about the country?
+//displayRegionDetails(index);
+
+
     } //onRegionClick
     // END regions
     //******************************
+
+
     //******************************
     // START markers
     ,markersSelectable: true
     ,markers : JSONdestinations["destinations"] //Assign value from the JSON array
     ,markerStyle : {
       initial : {
-        fill  : "#CCC"
-        ,stroke: "red"
+        "name":"namMarkers",
+        "fill"  : "#CCC"
+        ,"stroke": "#000"
+        ,"fill-opacity": 1
+        ,"stroke-width": 1
+        ,"stroke-opacity": 1
+        ,r: 5
       } //initial
       ,hover: {
-          stroke: "#FFC107"
-          ,"stroke-width": 2
-          ,cursor: "pointer"
+        "fill"  : "yellow"
+        ,"stroke": "#000"
+        ,"fill-opacity": 1
+        ,"stroke-width": 1
+        ,"stroke-opacity": 1
+        ,r: 10
+        ,cursor: "pointer"
       }
       ,selected: {
-          stroke: "#FFC107"
-          ,fill: "red"
+        "fill"  : "yellow"
+        ,"stroke": "#000"
+        ,"fill-opacity": 1
+        ,"stroke-width": 1
+        ,"stroke-opacity": 1
+        ,r: 10
       }
     } //markerStyle
+
+    ,onMarkerOver: function (event, index) {
+      chooseSomething(index);
+    } //onMarkerOver
+    ,onMarkerOut: function (event, index) {
+      chooseSomethingOut();
+    } //onMarkerOut
+    ,onMarkerClick: function(event, index) {
+
+      //***************************** accordion panel go to
+      $('#accordion').accordion({active: 1});
+
+      var mapObject = $("#jvectormap").vectorMap("get", "mapObject");
+          mapObject.clearSelectedMarkers();
+
+      chooseSomething(index);
+
+    } //onMarkerClick
+
     ,onMarkerTipShow: function(event, element, index){
       var strTemp = "";
           strTemp += JSONdestinations["destinations"][index].name;
@@ -66,36 +113,12 @@ $(function(){
 
       element.html(strTemp);
     }
-    ,onMarkerClick: function(event, index) {
-      //alert(JSONdestinations["destinations"][index].latLng[0]);
-
-      if (JSONlocation["location"][0].locationCurrent == index) {
-        //click on current destination
-
-      } else {
-
-        var mapObject = $("#jvectormap").vectorMap("get", "mapObject");
-            mapObject.clearSelectedMarkers();
-            mapObject.markers[JSONlocation["location"][0].locationCurrent].element.setStyle("fill", "green");
-
-        //getlocations
-        var locationCurrent = JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent];
-        var locationDestination = JSONdestinations["destinations"][index];
-
-        displayDestination(index); //display destination details
-
-      }
-
-
-    } //onMarkerClick
     // END markers
     //******************************
   }); //$("#jvectormap").vectorMap({
 
-    //Set starting colours
-    //ONLY HAPPENS ONCE?
-    var mapObject = $("#jvectormap").vectorMap("get", "mapObject");
-        mapObject.markers[JSONlocation["location"][0].locationCurrent].element.setStyle("fill", "green");
-    //displayCurrent(JSONme["me"][0]);
 
-}); //$(function(){
+    updateMap();
+
+
+  }); //$(function(){

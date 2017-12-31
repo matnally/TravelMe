@@ -7,5 +7,11 @@ var JSONconfig = { "config" : [
     ,"factorTimeTakenToTravel"  : 3500
     ,"factorDistanceCost"       : 0.1
     ,"factorHappiness"          : 1000
+
+    ,"eventType" : {
+        "common" : 5  /* 100 to nth chance of event happening*/
+        ,"rare"   : 50
+    }
+
   }
 ]};
