@@ -28,6 +28,7 @@
   <script src="_js/history.js"></script>
   <script src="_js/map.js"></script>
   <script src="_js/trek.js"></script>
+  <script src="_js/walkAbout.js"></script>
 
   <!-- jvectormap -->
   <link rel="stylesheet" href="_js/jquery-jvectormap-2.0.3.css">
@@ -41,8 +42,6 @@
 
 </head>
 <body>
-
-
 
 
   <div class="divTable">
@@ -214,41 +213,48 @@
           <div id="trekTable" class="divTable">
             <div class="divRow">
               <div class="divCell divRight">
+
+
+<select id="walkAboutChoice" onChange="walkAboutSelect()">
+  <option value="7">1 Week</option>
+  <option value="14">2 Weeks</option>
+  <option value="21">3 Weeks</option>
+  <option value="28">1 Month</option>
+  <option value="35">2 Months</option>
+  <option value="42">3 Months</option>
+  <option value="49">4 Months</option>
+  <option value="56">5 Months</option>
+  <option value="63">6 Months</option>
+</select>
+<button id="butWalkAbout" type="button" onClick="walkAboutStart()">Travel</button>
+<br>
+
                 <select id="trekChoice" onChange="trekSelect(JSONlocation['location'][0].locationCurrent)">
-                  <option value="7">1 Week</option>
-                  <option value="14">2 Weeks</option>
-                  <option value="21">3 Weeks</option>
-                  <option value="28">1 Month</option>
-                  <option value="35">2 Months</option>
-                  <option value="42">3 Months</option>
-                  <option value="49">4 Months</option>
-                  <option value="56">5 Months</option>
-                  <option value="63">6 Months</option>
+                  <!-- will populate dynamically with Treks for Region -->
+                  <option value="" selected>Please choose a trek</option>
                 </select>
-                <button id="butTrek" type="button" onClick="trekStart()">Trek around</button>
+                <button id="butTrek" type="button" onClick="trekStart()">Trek</button>
 
               </div><!-- divCell -->
               <div class="divCell">
 
-                <div id="travel2ErrorMessage" class="errorMessage"></div>
+                <div id="trekErrorMessage" class="errorMessage"></div>
 
               </div><!-- divCell -->
             </div><!-- divRow -->
             <div class="divRow">
               <div class="divCell divRight">Days travelled</div><!-- divCell -->
-              <div id="divTravelDays" class="divCell">????</div><!-- divCell -->
+              <div id="divTrekDays" class="divCell">????</div><!-- divCell -->
             </div><!-- divRow -->
             <div class="divRow">
               <div class="divCell divRight">Cost</div><!-- divCell -->
-              <div id="divTravelMoney" class="divCell">????</div><!-- divCell -->
+              <div id="divTrekMoney" class="divCell">????</div><!-- divCell -->
             </div><!-- divRow -->
             <div class="divRow">
               <div class="divCell divRight">Happiness</div><!-- divCell -->
-              <div id="divTravelHappiness" class="divCell">????</div><!-- divCell -->
+              <div id="divTrekHappiness" class="divCell">????</div><!-- divCell -->
             </div><!-- divRow -->
-
           </div><!-- divTable travelTable -->
-
 
         </div><!-- divCell -->
 

@@ -28,8 +28,9 @@ function initStart() {
   JSONlocation["location"][0].locationCurrent = JSONconfig["config"][0].home; //make the destination the config default
 
   meObjectDisplay(); //displays UPDATE? the user's details
-  travelSelect(JSONlocation["location"][0].locationCurrent); //inti travel
-  workSelect(); //inti Work
+  travelSelect(JSONlocation["location"][0].locationCurrent); //init travel
+  workSelect(); //init Work
+  trekPopulateLocationChoices();//init Treks for Location
 
   updateHistory("Started in " + JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].name);
   updateTurnDetails(""); //???
