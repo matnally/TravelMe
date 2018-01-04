@@ -103,9 +103,10 @@ function calHappiness(intDays, intCost, intDistance, strUnit) {
 
 }
 
+
 ///////////////////////////////////
 //TODO: This!
-function calcAfford (intCurrentValue, intCost, elemName) {
+function calcAfford(intCurrentValue, intCost, elemName) {
 
   var intResult = (parseInt(intCurrentValue) - parseInt(intCost));
   if (intResult < 0) {

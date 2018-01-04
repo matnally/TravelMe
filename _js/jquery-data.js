@@ -25,19 +25,20 @@ $(function(){
         //console.log(index);
     }
     ,onRegionClick: function(event, index) {
+/*
+var mapObject = $("#jvectormap").vectorMap("get", "mapObject");
+    mapObject.clearSelectedRegions();
+    //$('#jvectormap').vectorMap('get','mapObject').setFocus({region: index, animate: true}); //zoom in
+    mapObject.setFocus({ region: index, animate: true }); //zoom in
 
-      var mapObject = $("#jvectormap").vectorMap("get", "mapObject");
-          mapObject.clearSelectedRegions();
-          //$('#jvectormap').vectorMap('get','mapObject').setFocus({region: index, animate: true}); //zoom in
-          mapObject.setFocus({ region: index, animate: true }); //zoom in
-
-          var config = {
-              animate: true
-              ,region: index
-              ,stroke: "yellow"
-              ,"stroke-width": 2
-          };
-          mapObject.setFocus(config);
+var config = {
+    animate: true
+    ,region: index
+    ,stroke: "yellow"
+    ,"stroke-width": 2
+};
+mapObject.setFocus(config);
+*/
 
 //TODO:
 // display info about the country?
@@ -83,10 +84,10 @@ $(function(){
     } //markerStyle
 
     ,onMarkerOver: function (event, index) {
-      travelSelect(index);
+      //travelSelect(index);
     } //onMarkerOver
     ,onMarkerOut: function (event, index) {
-      onMarkerOutUpdateMap();
+      //onMarkerOutUpdateMap();
     } //onMarkerOut
     ,onMarkerClick: function(event, index) {
 

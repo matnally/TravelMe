@@ -14,32 +14,45 @@ function walkAboutGetNoOfDaysToWalkAbout() {
   return elem.options[elem.selectedIndex].value;
 } //function
 function walkAboutObjectUpdate() {
+
+  //JSONlocation["location"][0].locationCurrent = JSONme["me"][0].locationCurrent;
+
   JSONlocation["location"][0].days = walkAboutGetNoOfDaysToWalkAbout(); //DO FIRST AS REFERENCED LATER
   JSONlocation["location"][0].money = calcWalkAboutMoney(JSONlocation["location"][0].days);
-  JSONlocation["location"][0].happiness = calHappiness(JSONlocation["location"][0].days, calcWalkAboutMoney(JSONlocation["location"][0].days), 0, JSONconfig["config"][0].units)
-  JSONlocation["location"][0].holidays = calcWalkAboutHolidays(JSONlocation["location"][0].days);
+  //put before happiness as needs the value
+  JSONlocation["location"][0].travelledDistance = JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].travelledDistance;
+  //adding the - to calHappiness below forces a positive
+  JSONlocation["location"][0].happiness = -calHappiness(parseInt(JSONlocation["location"][0].days), parseInt(calcWalkAboutMoney(JSONlocation["location"][0].days)), parseInt(JSONlocation["location"][0].travelledDistance), JSONconfig["config"][0].units)
+
+//alert(JSONlocation["location"][0].happiness);
+//alert(walkAboutGetNoOfDaysToWalkAbout());
+//alert(calcWalkAboutMoney(JSONlocation["location"][0].days), JSONlocation["location"][0].travelledDistance, JSONconfig["config"][0].units);
+
+//  ,"travelledDistance"  : 0
+  //,"travelledDays"      : 0
+
+
 } //function
 function walkAboutObjectDisplay() {
   updateElement("divTrekDays", JSONlocation["location"][0].days);
   updateElement("divTrekMoney", JSONconfig["config"][0].currency + JSONlocation["location"][0].money);
+  updateElement("divTrekTravelledDistance", JSONlocation["location"][0].travelledDistance);
   updateElement("divTrekHappiness", JSONlocation["location"][0].happiness);
-//  updateElement("divTrekHolidays", JSONlocation["location"][0].holidays);
 } //function
 function walkAboutButtonShowHide() {
-  if (calcAfford(JSONme["me"][0].happiness, Math.abs(JSONlocation["location"][0].happiness), "divTrekHappiness") < 1) {
-    updateElement("trekErrorMessage", "You'll be too unhappy");
+  if (calcAfford(JSONme["me"][0].daysLeft, Math.abs(JSONlocation["location"][0].days), "divTrekDays") < 1) {
+    updateElement("trekErrorMessage", "You don't have any days left");
     document.getElementById("butWalkAbout").disabled = true;
   } else {
     updateElement("trekErrorMessage", "");
     document.getElementById("butWalkAbout").disabled = false;
-  }
-  if (JSONlocation["location"][0].locationCurrent == JSONconfig["config"][0].home) {
-    //clicked on current destination
-//    updateElement("walkAboutErrorMessage", "2");
-    document.getElementById("butWalkAbout").disabled = false;
-  } else {
-    updateElement("trekErrorMessage", "You need to go to your home country of " +JSONdestinations["destinations"][JSONconfig["config"][0].home].name);
+  } //if
+  if (calcAfford(JSONme["me"][0].money, Math.abs(calcWalkAboutMoney(JSONlocation["location"][0].days)), "divTrekMoney") < 1) {
+    updateElement("trekErrorMessage", "You can't afford this. Maybe can't afford it in days too... TODO");
     document.getElementById("butWalkAbout").disabled = true;
+  } else {
+    updateElement("trekErrorMessage", "");
+    document.getElementById("butWalkAbout").disabled = false;
   } //if
 } //function
 /*** END walkAboutSelect ***/
@@ -47,13 +60,17 @@ function walkAboutButtonShowHide() {
 /*** START walkAboutStart ***/
 function walkAboutStart() {
 
-  alert(walkAboutGetWalkAboutDetails()); //B4 resetWalkAbout!
+  walkAboutObjectUpdate();//??
+  walkAboutObjectDisplay();//??
+
 
   meObjectUpdateWalkAbout();
   meObjectDisplay(); //displays the user's details
   //walkAboutButtonShowHide(); //???
 
   updateHistory("Walked About " + JSONlocation["location"][0].days + " days");
+
+  alert(walkAboutGetWalkAboutDetails()); //B4 resetWalkAbout!
 
   callEvent(JSONlocation["location"][0].locationCurrent, "walkAbout");
 
@@ -62,17 +79,22 @@ function walkAboutStart() {
 
 } //function
 function meObjectUpdateWalkAbout() {
-  JSONme["me"][0].daysLeft = parseFloat(JSONme["me"][0].daysLeft) + parseFloat(JSONlocation["location"][0].holidays);
-  JSONme["me"][0].daysWalkAbouted = parseInt(JSONme["me"][0].daysWalkAbouted) + parseInt(JSONlocation["location"][0].days);
-  JSONme["me"][0].money = parseInt(JSONme["me"][0].money) + parseInt(JSONlocation["location"][0].money);
+  JSONme["me"][0].daysLeft = parseFloat(JSONme["me"][0].daysLeft) - parseFloat(JSONlocation["location"][0].days);
+  //JSONme["me"][0].daysWalkAbouted = parseInt(JSONme["me"][0].daysWalkAbouted) + parseInt(JSONlocation["location"][0].days);
+  JSONme["me"][0].money = parseInt(JSONme["me"][0].money) - parseInt(JSONlocation["location"][0].money);
   JSONme["me"][0].happiness = parseInt(JSONme["me"][0].happiness) + parseInt(JSONlocation["location"][0].happiness);
+  JSONme["me"][0].travelledDistance = JSONme["me"][0].travelledDistance + parseInt(JSONlocation["location"][0].travelledDistance);
+  JSONme["me"][0].travelledDays = JSONme["me"][0].travelledDays + parseInt(JSONlocation["location"][0].days);
 } //function
 function walkAboutGetWalkAboutDetails() {
-  var strTemp = "";
-      strTemp += "You will gain " + JSONlocation["location"][0].holidays + " day's hoilday";
+  var strTemp = "-Deductions and additions already displayed and updated-";
+      strTemp += "You will loose " + JSONlocation["location"][0].days + " day's hoilday";
       strTemp += "You will walkAbout " + JSONlocation["location"][0].days + " days";
-      strTemp += "You will earn " + JSONconfig["config"][0].currency + JSONlocation["location"][0].money;
-      strTemp += "Your happiness will be decreased by " + JSONlocation["location"][0].happiness;
+      strTemp += "You will loose " + JSONconfig["config"][0].currency + JSONlocation["location"][0].money;
+      strTemp += "Your happiness will be increased by " + JSONlocation["location"][0].happiness;
+      strTemp += "You will travel " + JSONlocation["location"][0].travelledDistance + " " + JSONconfig["config"][0].units;
+      strTemp += "You will travel " + JSONlocation["location"][0].days + " days";
+
   return strTemp;
 } //function
 function resetTurnWalkAbout() {
@@ -90,14 +112,6 @@ function calcWalkAboutMoney(intWorkDays) {
   var intSalary = JSONme["me"][0].salary;
 
   intResult = intSalary * intWorkDays;
-  return intResult;
-
-}
-
-function calcWalkAboutHolidays(intWorkDays) {
-
-  var intResult = 0;
-      intResult = intWorkDays;
   return intResult;
 
 }

@@ -40,9 +40,9 @@ function meObjectDisplay() {
 
 function resetDestination() {
   updateElement("locationDestinationName", "");
-  updateElement("locationDestinationTimeTaken", "");
+  updateElement("locationDays", "");
   updateElement("locationDestinationCost", "");
-  updateElement("locationDestinationDistance", "");
+  updateElement("travelledDistance", "");
   updateElement("locationHappiness", "");
   updateElement("locationRegion", "");
   updateElement("locationRegionDetails", "");

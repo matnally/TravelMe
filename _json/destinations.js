@@ -6,6 +6,7 @@ var JSONdestinations = { "destinations" : [
     ,latLng: [54.97328, -1.61396]
     ,costOfLiving: 50
     ,destinationType: "airport"
+    ,travelledDistance: 50
   }
   ,{
     name: "Darwin, Australia"
@@ -13,6 +14,7 @@ var JSONdestinations = { "destinations" : [
     ,latLng: [-12.463440, 130.845642]
     ,costOfLiving: 50
     ,destinationType: "airport"
+    ,travelledDistance: 50
   }
   ,{
     name: "Sydney, Australia"
@@ -20,6 +22,7 @@ var JSONdestinations = { "destinations" : [
     ,latLng: [-33.8688, 151.2093]
     ,costOfLiving: 50
     ,destinationType: "airport"
+    ,travelledDistance: 50
   }
   ,{
     name: "Auckland, New Zealand"
@@ -27,6 +30,7 @@ var JSONdestinations = { "destinations" : [
     ,latLng: [-36.848460, 174.763332]
     ,costOfLiving: 50
     ,destinationType: "airport"
+    ,travelledDistance: 50
   }
   ,{
     name: "Queenstown, New Zealand"
@@ -34,6 +38,7 @@ var JSONdestinations = { "destinations" : [
     ,latLng: [-45.031162, 168.662644]
     ,costOfLiving: 50
     ,destinationType: "airport"
+    ,travelledDistance: 50
   }
   ,{
     name: "Christchurch, New Zealand"
@@ -41,6 +46,7 @@ var JSONdestinations = { "destinations" : [
     ,latLng: [-43.532054, 172.636225]
     ,costOfLiving: 50
     ,destinationType: "airport"
+    ,travelledDistance: 50
   }
 
   /* START ASIA */
@@ -50,6 +56,7 @@ var JSONdestinations = { "destinations" : [
     ,latLng: [39.904200, 116.407396]
     ,costOfLiving: 50
     ,destinationType: "airport"
+    ,travelledDistance: 50
   }
   ,{
     name: "Hong Kong"
@@ -57,6 +64,7 @@ var JSONdestinations = { "destinations" : [
     ,latLng: [22.396428, 114.109497]
     ,costOfLiving: 50
     ,destinationType: "airport"
+    ,travelledDistance: 50
   }
   ,{
     name: "Seoul, South Korea"
@@ -64,6 +72,7 @@ var JSONdestinations = { "destinations" : [
     ,latLng: [37.566535, 126.977969]
     ,costOfLiving: 50
     ,destinationType: "airport"
+    ,travelledDistance: 50
   }
   ,{
     name: "Tokyo, Japan"
@@ -71,6 +80,7 @@ var JSONdestinations = { "destinations" : [
     ,latLng: [35.689487, 139.691706]
     ,costOfLiving: 50
     ,destinationType: "airport"
+    ,travelledDistance: 50
   }
   ,{
     name: "Taipei, Taiwan"
@@ -78,6 +88,7 @@ var JSONdestinations = { "destinations" : [
     ,latLng: [25.032969, 121.565418]
     ,costOfLiving: 50
     ,destinationType: "airport"
+    ,travelledDistance: 50
   }
   ,{
     name: "Bangkok"
@@ -85,6 +96,7 @@ var JSONdestinations = { "destinations" : [
     ,latLng: [13.7563, 100.5018]
     ,costOfLiving: 50
     ,destinationType: "airport"
+    ,travelledDistance: 50
   }
   ,{
     name: "Hanoi, Vietnam"
@@ -92,6 +104,7 @@ var JSONdestinations = { "destinations" : [
     ,latLng: [21.027764, 105.834160]
     ,costOfLiving: 50
     ,destinationType: "airport"
+    ,travelledDistance: 50
   }
   ,{
     name: "Phnom Penh, Cambodia"
@@ -99,6 +112,7 @@ var JSONdestinations = { "destinations" : [
     ,latLng: [11.544873, 104.892167]
     ,costOfLiving: 50
     ,destinationType: "airport"
+    ,travelledDistance: 50
   }
   ,{
     name: "Siem Reap, Cambodia"
@@ -106,6 +120,7 @@ var JSONdestinations = { "destinations" : [
     ,latLng: [13.367097, 103.844813]
     ,costOfLiving: 50
     ,destinationType: "airport"
+    ,travelledDistance: 50
   }
   ,{
     name: "Vientiane, Laos"
@@ -113,6 +128,7 @@ var JSONdestinations = { "destinations" : [
     ,latLng: [17.975706, 102.633104]
     ,costOfLiving: 50
     ,destinationType: "airport"
+    ,travelledDistance: 50
   }
   ,{
     name: "Yangon, Myanmar"
@@ -120,6 +136,7 @@ var JSONdestinations = { "destinations" : [
     ,latLng: [16.866069, 96.195132]
     ,costOfLiving: 50
     ,destinationType: "airport"
+    ,travelledDistance: 50
   }
   ,{
     name: "Kuala Lumpur, Malaysia"
@@ -127,6 +144,7 @@ var JSONdestinations = { "destinations" : [
     ,latLng: [3.139003, 101.686855]
     ,costOfLiving: 50
     ,destinationType: "airport"
+    ,travelledDistance: 50
   }
   ,{
     name: "Singapore"
@@ -134,6 +152,7 @@ var JSONdestinations = { "destinations" : [
     ,latLng: [1.352083, 103.819836]
     ,costOfLiving: 50
     ,destinationType: "airport"
+    ,travelledDistance: 50
   }
   ,{
     name: "Delhi, India"
@@ -141,6 +160,7 @@ var JSONdestinations = { "destinations" : [
     ,latLng: [28.704059, 77.102490]
     ,costOfLiving: 50
     ,destinationType: "airport"
+    ,travelledDistance: 50
   }
   ,{
     name: "Mumbai, India"
@@ -148,6 +168,7 @@ var JSONdestinations = { "destinations" : [
     ,latLng: [19.075984, 72.877656]
     ,costOfLiving: 50
     ,destinationType: "airport"
+    ,travelledDistance: 50
   }
   /* END ASIA */
 
@@ -158,6 +179,7 @@ var JSONdestinations = { "destinations" : [
     ,latLng: [59.913869, 10.752245]
     ,costOfLiving: 50
     ,destinationType: "airport"
+    ,travelledDistance: 50
   }
   ,{
     name: "Amsterdam, Netherlands"
@@ -165,6 +187,7 @@ var JSONdestinations = { "destinations" : [
     ,latLng: [52.370216, 4.895168]
     ,costOfLiving: 50
     ,destinationType: "airport"
+    ,travelledDistance: 50
   }
   ,{
     name: "Prague, Czech Republic"
@@ -172,6 +195,7 @@ var JSONdestinations = { "destinations" : [
     ,latLng: [50.075538, 14.437800]
     ,costOfLiving: 50
     ,destinationType: "airport"
+    ,travelledDistance: 50
   }
   ,{
     name: "Munich, Germany"
@@ -179,6 +203,7 @@ var JSONdestinations = { "destinations" : [
     ,latLng: [48.135125, 11.581980]
     ,costOfLiving: 50
     ,destinationType: "airport"
+    ,travelledDistance: 50
   }
   ,{
     name: "Paris, France"
@@ -186,6 +211,7 @@ var JSONdestinations = { "destinations" : [
     ,latLng: [48.856614, 2.352222]
     ,costOfLiving: 50
     ,destinationType: "airport"
+    ,travelledDistance: 50
   }
   ,{
     name: "Barcelona, Spain"
@@ -193,6 +219,7 @@ var JSONdestinations = { "destinations" : [
     ,latLng: [41.385064, 2.173403]
     ,costOfLiving: 50
     ,destinationType: "airport"
+    ,travelledDistance: 50
   }
   /* END EUROPE */
 
@@ -202,7 +229,7 @@ var JSONdestinations = { "destinations" : [
     ,latLng: [30.044420, 31.235712]
     ,costOfLiving: 50
     ,destinationType: "airport"
-
+    ,travelledDistance: 50
   }
 
 
@@ -212,6 +239,7 @@ var JSONdestinations = { "destinations" : [
     ,latLng: [40.712775, -74.005973]
     ,costOfLiving: 50
     ,destinationType: "airport"
+    ,travelledDistance: 50
   }
   ,{
     name: "Los Angeles"
@@ -219,6 +247,7 @@ var JSONdestinations = { "destinations" : [
     ,latLng: [34.052234, -118.243685]
     ,costOfLiving: 50
     ,destinationType: "airport"
+    ,travelledDistance: 50
   }
   ,{
     name: "Denver, Colorado"
@@ -226,6 +255,7 @@ var JSONdestinations = { "destinations" : [
     ,latLng: [39.739236, -104.990251]
     ,costOfLiving: 50
     ,destinationType: "airport"
+    ,travelledDistance: 50
   }
   ,{
     name: "Mexico city"
@@ -233,6 +263,7 @@ var JSONdestinations = { "destinations" : [
     ,latLng: [19.432608, -99.133208]
     ,costOfLiving: 50
     ,destinationType: "airport"
+    ,travelledDistance: 50
   }
   ,{
     name: "Cancun, Mexico"
@@ -240,6 +271,7 @@ var JSONdestinations = { "destinations" : [
     ,latLng: [21.161908, -86.851528]
     ,costOfLiving: 50
     ,destinationType: "airport"
+    ,travelledDistance: 50
   }
   ,{
     name: "Quito, Ecuador"
@@ -247,6 +279,7 @@ var JSONdestinations = { "destinations" : [
     ,latLng: [-0.180653, -78.467838]
     ,costOfLiving: 50
     ,destinationType: "airport"
+    ,travelledDistance: 50
   }
   ,{
     name: "La Paz, Bolivia"
@@ -254,24 +287,67 @@ var JSONdestinations = { "destinations" : [
     ,latLng: [-16.489689, -68.119294]
     ,costOfLiving: 50
     ,destinationType: "airport"
+    ,travelledDistance: 50
   }
 
 
 /* TREKS */
+,{
+  name: "Fishing in Wales"
+  ,region: "GB"
+  ,latLng: [52.1307, 3.7837]
+  ,costOfLiving: 50
+  ,destinationType: "trek"
+  ,days: 4
+  ,travelledDistance: 69
+}
+,{
+  name: "Isle of Wight"
+  ,region: "GB"
+  ,latLng: [50.6938, 1.3047]
+  ,costOfLiving: 50
+  ,destinationType: "trek"
+  ,days: 4
+  ,travelledDistance: 200
+}
+,{
+  name: "Isle of Skye"
+  ,region: "GB"
+  ,latLng: [57.5359, 6.2263]
+  ,costOfLiving: 50
+  ,destinationType: "trek"
+  ,days: 5
+  ,travelledDistance: 170
+}
+
+
+
+
+
   ,{
     name: "Las Vegas"
     ,region: "US"
     ,latLng: [36.1699, 115.1398]
-    ,costOfLiving: 50
+    ,costOfLiving: 110
     ,destinationType: "trek"
+    ,travelledDistance: 65
   }
   ,{
-    name: "Fishing in Wales"
-    ,region: "GB"
-    ,latLng: [38.4097, 144.1825]
-    ,costOfLiving: 50
+    name: "Monument valley"
+    ,region: "US"
+    ,latLng: [37.0042, 110.1735]
+    ,costOfLiving: 100
     ,destinationType: "trek"
-    ,days: 4
+    ,travelledDistance: 90
   }
+  ,{
+    name: "New York"
+    ,region: "US"
+    ,latLng: [40.7128, 74.0060]
+    ,costOfLiving: 120
+    ,destinationType: "trek"
+    ,travelledDistance: 196
+  }
+
 
 ]};
