@@ -17,6 +17,7 @@
   <script src="_json/location.js"></script>
   <script src="_json/work.js"></script>
   <script src="_json/events.js"></script>
+  <script src="_json/treks.js"></script>
 
   <!-- modules -->
   <script src="_js/calc.js"></script>
@@ -24,6 +25,9 @@
   <script src="_js/travel.js"></script>
   <script src="_js/work.js"></script>
   <script src="_js/event.js"></script>
+  <script src="_js/history.js"></script>
+  <script src="_js/map.js"></script>
+  <script src="_js/trek.js"></script>
 
   <!-- jvectormap -->
   <link rel="stylesheet" href="_js/jquery-jvectormap-2.0.3.css">
@@ -35,15 +39,6 @@
   <!-- chance cheat -->
   <script src="http://chancejs.com/chance.min.js"></script>
 
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script>
-  $( function() {
-    $( "#accordion" ).accordion();
-  } );
-  </script>
-
-
 </head>
 <body>
 
@@ -52,68 +47,69 @@
 
   <div class="divTable">
     <div class="divRow">
-      <div class="divCell" style="width:50%;">
+      <div class="divCell" style="width:33%;">
+
+        <h2>Stats</h2>
+          <div class="divTable">
+            <div class="divRow">
+              <div class="divCell divRight">Curent Location</div><!-- divCell -->
+              <div id="locationCurrentName" class="divCell">???</div><!-- divCell -->
+            </div><!-- divRow -->
+            <div class="divRow">
+              <div class="divCell divRight">Happiness</div><!-- divCell -->
+              <div id="meHappiness" class="divCell">???</div><!-- divCell -->
+            </div><!-- divRow -->
+            <div class="divRow">
+              <div class="divCell divRight">Money</div><!-- divCell -->
+              <div id="meMoney" class="divCell">???</div><!-- divCell -->
+            </div><!-- divRow -->
+            <div class="divRow">
+              <div class="divCell divRight">Salary (per day)</div><!-- divCell -->
+              <div id="meSalary" class="divCell">???</div><!-- divCell -->
+            </div><!-- divRow -->
+            <div class="divRow">
+              <div class="divCell divRight">Days Left</div><!-- divCell -->
+              <div id="meDaysLeft" class="divCell">???</div><!-- divCell -->
+            </div><!-- divRow -->
+            <div class="divRow">
+              <div class="divCell divRight">Days worked</div><!-- divCell -->
+              <div id="meDaysWorked" class="divCell">????</div><!-- divCell -->
+            </div><!-- divRow -->
+            <div class="divRow">
+              <div class="divCell divRight">Distance Travelled</div><!-- divCell -->
+              <div id="meTravelledDistance" class="divCell">???</div><!-- divCell -->
+            </div><!-- divRow -->
+            <div class="divRow">
+              <div class="divCell divRight">Days Travelled</div><!-- divCell -->
+              <div id="meTravelledDays" class="divCell">???</div><!-- divCell -->
+            </div><!-- divRow -->
+            <div class="divRow">
+              <div class="divCell divRight">Previous Location</div><!-- divCell -->
+              <div id="meLocationPrevious" class="divCell">???</div><!-- divCell -->
+            </div><!-- divRow -->
+          </div><!-- divTable -->
+
+
+
+      </div><!-- divCell -->
+      <div class="divCell" style="width:33%;">
 
         <div id="jvectormap" style="width:600px; height: 350px;"></div>
 
       </div><!-- divCell -->
-      <div class="divCell" style="width:50%;">
+      <div class="divCell" style="width:33%;">
 
-        <div id="accordion">
-          <h3>Details</h3>
-          <div>
-
-            <div class="divTable">
-              <div class="divRow">
-                <div class="divCell divRight">Curent Location</div><!-- divCell -->
-                <div id="locationCurrentName" class="divCell">???</div><!-- divCell -->
-              </div><!-- divRow -->
-              <div class="divRow">
-                <div class="divCell divRight">Happiness</div><!-- divCell -->
-                <div id="meHappiness" class="divCell">???</div><!-- divCell -->
-              </div><!-- divRow -->
-              <div class="divRow">
-                <div class="divCell divRight">Money</div><!-- divCell -->
-                <div id="meMoney" class="divCell">???</div><!-- divCell -->
-              </div><!-- divRow -->
-              <div class="divRow">
-                <div class="divCell divRight">Salary (per day)</div><!-- divCell -->
-                <div id="meSalary" class="divCell">???</div><!-- divCell -->
-              </div><!-- divRow -->
-              <div class="divRow">
-                <div class="divCell divRight">Days Left</div><!-- divCell -->
-                <div id="meDaysLeft" class="divCell">???</div><!-- divCell -->
-              </div><!-- divRow -->
-              <div class="divRow">
-                <div class="divCell divRight">Days worked</div><!-- divCell -->
-                <div id="meDaysWorked" class="divCell">????</div><!-- divCell -->
-              </div><!-- divRow -->
-              <div class="divRow">
-                <div class="divCell divRight">Distance Travelled</div><!-- divCell -->
-                <div id="meTravelledDistance" class="divCell">???</div><!-- divCell -->
-              </div><!-- divRow -->
-              <div class="divRow">
-                <div class="divCell divRight">Days Travelled</div><!-- divCell -->
-                <div id="meTravelledDays" class="divCell">???</div><!-- divCell -->
-              </div><!-- divRow -->
-              <div class="divRow">
-                <div class="divCell divRight">Previous Location</div><!-- divCell -->
-                <div id="meLocationPrevious" class="divCell">???</div><!-- divCell -->
-              </div><!-- divRow -->
-            </div><!-- divTable -->
-
-          </div>
-          <h3>Destination</h3>
-          <div>
-
+        <h2>Destination</h2>
             <div id="destinationTable" class="divTable">
               <div class="divRow">
                 <div class="divCell">
 
-                  <button id="butTravel" type="button" onClick="travel(1)">Travel</button>
+                  <button id="butTravel" type="button" onClick="travelStart()">Travel</button>
 
                 </div><!-- divCell -->
-                <div class="divCell"></div><!-- divCell -->
+                <div class="divCell">
+                  <div id="travelErrorMessage" class="errorMessage"></div>
+                </div><!-- divCell -->
               </div><!-- divRow -->
               <div class="divRow">
                 <div class="divCell divRight">Destination</div><!-- divCell -->
@@ -147,74 +143,128 @@
             </div><!-- divTable -->
 
 
-          </div>
-          <h3>Work</h3>
-          <div>
 
-            <div id="workTable" class="divTable">
-              <div class="divRow">
-                <div class="divCell divRight">Days</div><!-- divCell -->
-                <div class="divCell">
 
-                  <select id="workChoice" onChange="calcWork()">
-                    <option value="7">1 Week</option>
-                    <option value="14">2 Weeks</option>
-                    <option value="21">3 Weeks</option>
-                    <option value="28">1 Month</option>
-                    <option value="35">2 Months</option>
-                    <option value="42">3 Months</option>
-                    <option value="49">4 Months</option>
-                    <option value="56">5 Months</option>
-                    <option value="63">6 Months</option>
-                  </select>
-                  <button id="butWork" type="button" onClick="work()">Work</button>
+          </div><!-- divCell -->
+        </div><!-- divRow -->
 
-                </div><!-- divCell -->
-              </div><!-- divRow -->
-              <div class="divRow">
-                <div class="divCell divRight">Days worked</div><!-- divCell -->
-                <div id="divWorkDays" class="divCell">????</div><!-- divCell -->
-              </div><!-- divRow -->
-              <div class="divRow">
-                <div class="divCell divRight">Money</div><!-- divCell -->
-                <div id="divWorkMoney" class="divCell">????</div><!-- divCell -->
-              </div><!-- divRow -->
-              <div class="divRow">
-                <div class="divCell divRight">Happiness</div><!-- divCell -->
-                <div id="divWorkHappiness" class="divCell">????</div><!-- divCell -->
-              </div><!-- divRow -->
-              <div class="divRow">
-                <div class="divCell divRight">Holidays Gained</div><!-- divCell -->
-                <div id="divWorkHolidays" class="divCell">????</div><!-- divCell -->
-              </div><!-- divRow -->
+        <div class="divRow">
 
-            </div><!-- divTable workTable -->
+        <div class="divCell" style="width:33%;">
 
-          </div>
 
-          <h3>Region</h3>
-          <div>
-            <p>Region</p>
-          </div>
+          <h2>Work</h2>
+          <div id="workTable" class="divTable">
+            <div class="divRow">
+              <div class="divCell divRight">
+                <select id="workChoice" onChange="workSelect()">
+                  <option value="7">1 Week</option>
+                  <option value="14">2 Weeks</option>
+                  <option value="21">3 Weeks</option>
+                  <option value="28">1 Month</option>
+                  <option value="35">2 Months</option>
+                  <option value="42">3 Months</option>
+                  <option value="49">4 Months</option>
+                  <option value="56">5 Months</option>
+                  <option value="63">6 Months</option>
+                </select>
+                <button id="butWork" type="button" onClick="workStart()">Work</button>
 
-          <h3>Turn details</h3>
-          <div>
-            <textarea id="elemTurnDetails"></textarea>
-          </div>
+              </div><!-- divCell -->
+              <div class="divCell">
 
-          <h3>History</h3>
-          <div>
-            <textarea id="elemHistory"></textarea>
-          </div>
+                <div id="workErrorMessage" class="errorMessage"></div>
 
-      </div><!-- divCell -->
+              </div><!-- divCell -->
+            </div><!-- divRow -->
+            <div class="divRow">
+              <div class="divCell divRight">Days worked</div><!-- divCell -->
+              <div id="divWorkDays" class="divCell">????</div><!-- divCell -->
+            </div><!-- divRow -->
+            <div class="divRow">
+              <div class="divCell divRight">Money</div><!-- divCell -->
+              <div id="divWorkMoney" class="divCell">????</div><!-- divCell -->
+            </div><!-- divRow -->
+            <div class="divRow">
+              <div class="divCell divRight">Happiness</div><!-- divCell -->
+              <div id="divWorkHappiness" class="divCell">????</div><!-- divCell -->
+            </div><!-- divRow -->
+            <div class="divRow">
+              <div class="divCell divRight">Holidays Gained</div><!-- divCell -->
+              <div id="divWorkHolidays" class="divCell">????</div><!-- divCell -->
+            </div><!-- divRow -->
+
+          </div><!-- divTable workTable -->
+
+
+        </div><!-- divCell -->
+        <div class="divCell" style="width:33%;">
+
+          <h2>Potential Turn</h2>
+          <textarea id="elemTurnDetails"></textarea>
+
+          <h2>History</h2>
+          <textarea id="elemHistory"></textarea>
+
+        </div><!-- divCell -->
+        <div class="divCell" style="width:33%;">
+
+
+          <h2>Trek</h2>
+          <div id="trekTable" class="divTable">
+            <div class="divRow">
+              <div class="divCell divRight">
+                <select id="trekChoice" onChange="trekSelect(JSONlocation['location'][0].locationCurrent)">
+                  <option value="7">1 Week</option>
+                  <option value="14">2 Weeks</option>
+                  <option value="21">3 Weeks</option>
+                  <option value="28">1 Month</option>
+                  <option value="35">2 Months</option>
+                  <option value="42">3 Months</option>
+                  <option value="49">4 Months</option>
+                  <option value="56">5 Months</option>
+                  <option value="63">6 Months</option>
+                </select>
+                <button id="butTrek" type="button" onClick="trekStart()">Trek around</button>
+
+              </div><!-- divCell -->
+              <div class="divCell">
+
+                <div id="travel2ErrorMessage" class="errorMessage"></div>
+
+              </div><!-- divCell -->
+            </div><!-- divRow -->
+            <div class="divRow">
+              <div class="divCell divRight">Days travelled</div><!-- divCell -->
+              <div id="divTravelDays" class="divCell">????</div><!-- divCell -->
+            </div><!-- divRow -->
+            <div class="divRow">
+              <div class="divCell divRight">Cost</div><!-- divCell -->
+              <div id="divTravelMoney" class="divCell">????</div><!-- divCell -->
+            </div><!-- divRow -->
+            <div class="divRow">
+              <div class="divCell divRight">Happiness</div><!-- divCell -->
+              <div id="divTravelHappiness" class="divCell">????</div><!-- divCell -->
+            </div><!-- divRow -->
+
+          </div><!-- divTable travelTable -->
+
+
+        </div><!-- divCell -->
+
     </div><!-- divRow -->
+
+
   </div><!-- divTable -->
 
 
 
   <script>
-    travel(0); //init
+
+    $(document).ready(function() {
+      initStart(); //init
+    });
+
   </script>
 
 </body>

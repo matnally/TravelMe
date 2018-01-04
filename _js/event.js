@@ -1,15 +1,15 @@
-function callEvent(index) {
+function callEvent(index, strType) {
   // calls events
+//  alert(JSONevent["event"][index].eventType.toString());
 
   //get array of events
-  var arrTemp = JSONdestinations["destinations"][index].events;
+  var arrTemp = JSONevent["event"];
   //loop through events
   for (var i = 0; i < arrTemp.length; i++) {
-
-    if (calcEventChance(arrTemp[i]) == true) {
-      //event happened!
-      executeEvent(arrTemp[i]);
-    } //if
+    if ((calcEventChance(i) == true) && (JSONevent["event"][i].eventTypeWorkTravel.toString() == strType.toString())) {
+      //event chance happened and TYPE is correct
+      executeEvent(i);
+    } //if (calcEventChance(arrTemp[i]) == true) {
 
   }//for
 
@@ -24,11 +24,17 @@ function calcEventChance(index) {
 
   switch (strTemp) {
     case "rare":
-      intChance = 10;
-      break;
-    case "common":
+      intChance = 1;
+    break;
+    case "high":
       intChance = 50;
-      break;
+    break;
+    case "medium":
+      intChance = 25;
+    break;
+    case "low":
+      intChance = 10;
+    break;
     default:
       intChance = 1;
   } //switch
@@ -43,7 +49,7 @@ function executeEvent(index) {
 
   alert(displayEventFactors(index)); //display
   executeEventFactors(index); //take away
-  displayCurrent(); //displays the user's details
+  meObjectDisplay(); //displays the user's details
 
 }
 

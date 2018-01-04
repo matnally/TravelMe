@@ -103,8 +103,6 @@ function calHappiness(intDays, intCost, intDistance, strUnit) {
 
 }
 
-
-
 ///////////////////////////////////
 //TODO: This!
 function calcAfford (intCurrentValue, intCost, elemName) {
@@ -116,6 +114,27 @@ function calcAfford (intCurrentValue, intCost, elemName) {
     document.getElementById(elemName).style.color = "black";
   }
 
+  return intResult;
+
+}
+
+
+
+
+function calcWorkMoney(intWorkDays) {
+
+  var intResult = 0;
+  var intSalary = JSONme["me"][0].salary;
+
+  intResult = intSalary * intWorkDays;
+  return intResult;
+
+}
+
+function calcWorkHolidays(intWorkDays) {
+
+  var intResult = 0;
+      intResult = intWorkDays / 14;
   return intResult;
 
 }

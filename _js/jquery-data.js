@@ -83,20 +83,17 @@ $(function(){
     } //markerStyle
 
     ,onMarkerOver: function (event, index) {
-      chooseSomething(index);
+      travelSelect(index);
     } //onMarkerOver
     ,onMarkerOut: function (event, index) {
-      chooseSomethingOut();
+      onMarkerOutUpdateMap();
     } //onMarkerOut
     ,onMarkerClick: function(event, index) {
-
-      //***************************** accordion panel go to
-      $('#accordion').accordion({active: 1});
 
       var mapObject = $("#jvectormap").vectorMap("get", "mapObject");
           mapObject.clearSelectedMarkers();
 
-      chooseSomething(index);
+      travelSelect(index);
 
     } //onMarkerClick
 
@@ -117,7 +114,7 @@ $(function(){
     //******************************
   }); //$("#jvectormap").vectorMap({
 
-
+    //?????
     updateMap();
 
 
