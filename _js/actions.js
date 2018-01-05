@@ -7,6 +7,7 @@ function actionSelect(strAction, index) {
 
   switch (strAction) {
     case "work":
+      updateLocationObject(strAction, JSONlocation["location"][0].locationPrevious, JSONlocation["location"][0].locationCurrent, "");
       intDays = workGetNoOfDaysToWork(); //DO FIRST AS REFERENCED LATER
       intMoney = calcMoney(workGetNoOfDaysToWork(), JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].costOfLiving);
       intTravelledDistance = 0; //as working NOT travelling
@@ -14,23 +15,23 @@ function actionSelect(strAction, index) {
       //holidays gained?!?!?!
     break;
     case "flight":
-      JSONlocation["location"][0].locationDestination = index; //click on flight map so Destination is passed index parameter
-
+      updateLocationObject(strAction, JSONlocation["location"][0].locationPrevious, JSONlocation["location"][0].locationCurrent, index);
       intDays = calcTimeTakenToTravel(calcDistance(JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].latLng[0], JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].latLng[1], JSONdestinations["destinations"][JSONlocation["location"][0].locationDestination].latLng[0], JSONdestinations["destinations"][JSONlocation["location"][0].locationDestination].latLng[1]), JSONconfig["config"][0].units);
       intMoney = calcDistanceCost(calcDistance(JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].latLng[0], JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].latLng[1], JSONdestinations["destinations"][JSONlocation["location"][0].locationDestination].latLng[0], JSONdestinations["destinations"][JSONlocation["location"][0].locationDestination].latLng[1], JSONconfig["config"][0].units), JSONconfig["config"][0].units);
       intTravelledDistance = calcDistance(JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].latLng[0], JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].latLng[1], JSONdestinations["destinations"][JSONlocation["location"][0].locationDestination].latLng[0], JSONdestinations["destinations"][JSONlocation["location"][0].locationDestination].latLng[1], JSONconfig["config"][0].units);
       intHappiness = calHappiness(intDays, intMoney, intTravelledDistance, JSONconfig["config"][0].units);
     break;
     case "trek":
+      updateLocationObject(strAction, JSONlocation["location"][0].locationPrevious, JSONlocation["location"][0].locationCurrent, index);
       var elem = document.getElementById("trekChoice");
       var actionSelectIndex = elem.options[elem.selectedIndex].value;
-
       intDays = calcTimeTakenToTravel(calcDistance(JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].latLng[0], JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].latLng[1], JSONdestinations["destinations"][actionSelectIndex].latLng[0], JSONdestinations["destinations"][actionSelectIndex].latLng[1]), JSONconfig["config"][0].units);
       intMoney = calcDistanceCost(calcDistance(JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].latLng[0], JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].latLng[1], JSONdestinations["destinations"][actionSelectIndex].latLng[0], JSONdestinations["destinations"][actionSelectIndex].latLng[1], JSONconfig["config"][0].units), JSONconfig["config"][0].units);
       intTravelledDistance = JSONdestinations["destinations"][actionSelectIndex].travelledDistance;
       intHappiness = calHappiness(intDays, intMoney, intTravelledDistance, JSONconfig["config"][0].units);
     break;
     case "walkAbout":
+      updateLocationObject(strAction, JSONlocation["location"][0].locationPrevious, JSONlocation["location"][0].locationCurrent, JSONlocation["location"][0].locationDestination);
       intDays = walkAboutGetNoOfDaysToWalkAbout(); //DO FIRST AS REFERENCED LATER
       intMoney = calcWalkAboutMoney(JSONlocation["location"][0].days);
       intTravelledDistance = JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].travelledDistance; //put before happiness as needs the value
@@ -40,20 +41,50 @@ function actionSelect(strAction, index) {
       alert("ERROR: actionSelect - Not an recognised action choice! How did you get here?");
   } //switch
 
+  //update and diplay action object
   JSONaction["action"][0].days = intDays;
   JSONaction["action"][0].money = intMoney;
   JSONaction["action"][0].travelledDistance = intTravelledDistance;
   JSONaction["action"][0].happiness = intHappiness;
-} //function
-
-function actionSelectDisplay() {
   updateElement("divActionDays", JSONaction["action"][0].days);
   updateElement("divActionMoney", JSONconfig["config"][0].currency + JSONaction["action"][0].money);
   updateElement("divActionTravelledDistance", JSONaction["action"][0].travelledDistance);
   updateElement("divActionHappiness", JSONaction["action"][0].happiness);
 } //function
 
-function actionSelectExecute(strAction) {
+function updateLocationObject(strAction, intPrevious, intCurrent, intDestination) {
+  if (intPrevious != "")
+    JSONlocation["location"][0].locationPrevious = intPrevious;
+  if (intCurrent != "")
+  JSONlocation["location"][0].locationCurrent = intCurrent;
+  if (intDestination != "")
+    JSONlocation["location"][0].locationDestination = intDestination;
+  updateElement("meLocationPrevious", JSONdestinations["destinations"][JSONlocation["location"][0].locationPrevious].name);
+  updateElement("locationCurrentName", JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].name);
+  updateElement("locationDestinationName", JSONdestinations["destinations"][JSONlocation["location"][0].locationDestination].name);
+
+  switch (strAction) {
+    case "work":
+      updateElement("meLocationPrevious", "");
+      updateElement("locationDestinationName", "");
+    break;
+    case "flight":
+    break;
+    case "trek":
+    break;
+    case "walkAbout":
+    break;
+    case "start":
+    //start
+    updateElement("meLocationPrevious", "");
+    updateElement("locationDestinationName", "");
+    break;
+    default:
+      alert("ERROR: actionSelectExecute - Not an recognised action choice! How did you get here?");
+  } //switch
+
+} //function
+function actionSelectExecute(strAction, index) {
   var intDays = 0;
   var intMoney = 0;
   var intTravelledDistance = 0;
@@ -69,8 +100,10 @@ function actionSelectExecute(strAction) {
 
   turnStart(); //before anything, do something
 
+  //do calculations
   switch (strAction) {
     case "work":
+      updateLocationObject(strAction, "", "", "");
       intMoney = JSONme["me"][0].money + intMoney;
       intTravelledDistance = JSONme["me"][0].travelledDistance + intTravelledDistance;
       intHappiness = JSONme["me"][0].happiness - intHappiness;
@@ -79,6 +112,7 @@ function actionSelectExecute(strAction) {
       intTravelledDays = JSONme["me"][0].travelledDays + 0;
     break;
     case "flight":
+      updateLocationObject(strAction, JSONlocation["location"][0].locationCurrent, JSONlocation["location"][0].locationDestination, "");
       intMoney = JSONme["me"][0].money - intMoney;
       intTravelledDistance = JSONme["me"][0].travelledDistance + intTravelledDistance;
       intHappiness = JSONme["me"][0].happiness + intHappiness;
@@ -87,6 +121,7 @@ function actionSelectExecute(strAction) {
       intTravelledDays = JSONme["me"][0].travelledDays + intDays;
     break;
     case "trek":
+      updateLocationObject(strAction, JSONlocation["location"][0].locationCurrent, JSONlocation["location"][0].locationDestination, "");
       intMoney = JSONme["me"][0].money - intMoney;
       intTravelledDistance = JSONme["me"][0].travelledDistance + intTravelledDistance;
       intHappiness = JSONme["me"][0].happiness + intHappiness;
@@ -95,6 +130,7 @@ function actionSelectExecute(strAction) {
       intTravelledDays = JSONme["me"][0].travelledDays + intDays;
     break;
     case "walkAbout":
+      updateLocationObject(strAction, "", "", "");
       intMoney = JSONme["me"][0].money - intMoney;
       intTravelledDistance = JSONme["me"][0].travelledDistance + intTravelledDistance;
       intHappiness = JSONme["me"][0].happiness + intHappiness;
@@ -106,12 +142,23 @@ function actionSelectExecute(strAction) {
       alert("ERROR: actionSelectExecute - Not an recognised action choice! How did you get here?");
   } //switch
 
+
   JSONme["me"][0].money = intMoney;
   JSONme["me"][0].happiness = intHappiness;
   JSONme["me"][0].daysLeft = intDaysLeft; //rename to days?
   JSONme["me"][0].daysWorked = intDaysWorked;
   JSONme["me"][0].travelledDays = intTravelledDays;
   JSONme["me"][0].travelledDistance = intTravelledDistance;
+  updateElement("meMoney", JSONme["me"][0].money);
+  updateElement("meHappiness", JSONme["me"][0].happiness);
+  updateElement("meDaysLeft", JSONme["me"][0].daysLeft);
+  updateElement("meDaysWorked", JSONme["me"][0].daysWorked);
+  updateElement("meTravelledDays", JSONme["me"][0].travelledDays);
+  updateElement("meTravelledDistance", JSONme["me"][0].travelledDistance);
+
+  //update where you are! important!
+//  updateLocationObject(strAction, JSONlocation["location"][0].locationCurrent, JSONlocation["location"][0].locationDestination, "");
+
 
   turnEnd(); //finally do something
 
@@ -125,28 +172,25 @@ function actionSelectExecute(strAction) {
 
 
 
-
-
-
 function initStart() {
 
+updateLocationObject("start", 0, JSONconfig["config"][0].home, 0);
+
   //defaults from config
-  JSONlocation["location"][0].locationCurrent = JSONconfig["config"][0].home; //make the destination the config default
+  //JSONlocation["location"][0].locationCurrent = JSONconfig["config"][0].home; //make the destination the config default
 
-
   /* GUI GUI GUI */
   /* GUI GUI GUI */
-  elemHideShow("destinationTable", "Hide");
-  elemHideShow("workTable", "Show");
-  elemHideShow("trekTable", "Hide");
+//  elemHideShow("destinationTable", "Hide");
+  //elemHideShow("workTable", "Show");
+  //elemHideShow("trekTable", "Hide");
   /* GUI GUI GUI */
   /* GUI GUI GUI */
-
 
   meObjectDisplay(); //displays UPDATE? the user's details
 
 //travelSelect(JSONlocation["location"][0].locationCurrent); //init travel
-workSelect(); //init Work
+//workSelect(); //init Work
 //trekPopulateLocationChoices();//init Treks for Location
 
   updateHistory("Started in " + JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].name);

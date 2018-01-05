@@ -91,6 +91,16 @@
               <div id="locationCurrentName" class="divCell">???</div><!-- divCell -->
             </div><!-- divRow -->
             <div class="divRow">
+              <div class="divCell divRight">Destination</div><!-- divCell -->
+              <div id="locationDestinationName" class="divCell">???</div><!-- divCell -->
+            </div><!-- divRow -->
+            <div class="divRow">
+              <div class="divCell divRight">Previous Location</div><!-- divCell -->
+              <div id="meLocationPrevious" class="divCell">???</div><!-- divCell -->
+            </div><!-- divRow -->
+
+
+            <div class="divRow">
               <div class="divCell divRight">Happiness</div><!-- divCell -->
               <div id="meHappiness" class="divCell">???</div><!-- divCell -->
             </div><!-- divRow -->
@@ -118,10 +128,6 @@
               <div class="divCell divRight">Days Travelled</div><!-- divCell -->
               <div id="meTravelledDays" class="divCell">???</div><!-- divCell -->
             </div><!-- divRow -->
-            <div class="divRow">
-              <div class="divCell divRight">Previous Location</div><!-- divCell -->
-              <div id="meLocationPrevious" class="divCell">???</div><!-- divCell -->
-            </div><!-- divRow -->
           </div><!-- divTable -->
 
 
@@ -134,16 +140,12 @@
                 <div class="divRow">
                   <div class="divCell">
 
-                    <button id="butTravel" type="button" onClick="travelStart()">Travel</button>
+                    <button id="butTravel" type="button" onClick="actionSelectExecute('flight', '')">Travel</button>
 
                   </div><!-- divCell -->
                   <div class="divCell">
                     <div id="travelErrorMessage" class="errorMessage"></div>
                   </div><!-- divCell -->
-                </div><!-- divRow -->
-                <div class="divRow">
-                  <div class="divCell divRight">Destination</div><!-- divCell -->
-                  <div id="locationDestinationName" class="divCell">???</div><!-- divCell -->
                 </div><!-- divRow -->
                 <div class="divRow">
                   <div class="divCell divRight">Distance</div><!-- divCell -->
@@ -187,7 +189,7 @@
                       <option value="56">5 Months</option>
                       <option value="63">6 Months</option>
                     </select>
-                    <button id="butWork" type="button" onClick="workStart()">Work</button>
+                    <button id="butWork" type="button" onClick="actionSelectExecute('work', this.value)">Work</button>
 
                   </div><!-- divCell -->
                   <div class="divCell">
@@ -238,14 +240,14 @@
       <option value="56">5 Months</option>
       <option value="63">6 Months</option>
     </select>
-    <button id="butWalkAbout" type="button" onClick="walkAboutStart()">Travel</button>
+    <button id="butWalkAbout" type="button" onClick="actionSelectExecute('walkAbout', this.value)">Travel around</button>
     <br>
 
-                    <select id="trekChoice" onChange="trekSelect(JSONlocation['location'][0].locationCurrent)">
+                    <select id="trekChoice" onChange="actionSelect('trek', this.value)">
                       <!-- will populate dynamically with Treks for Region -->
                       <option value="" selected>Please choose a trek</option>
                     </select>
-                    <button id="butTrek" type="button" onClick="trekStart()">Trek</button>
+                    <button id="butTrek" type="button" onClick="actionSelectExecute('trek', this.value)">Trek</button>
 
                   </div><!-- divCell -->
                   <div class="divCell">

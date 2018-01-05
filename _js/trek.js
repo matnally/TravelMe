@@ -65,6 +65,7 @@ function trekButtonShowHide() {
 /*** START trekStart ***/
 function trekStart() {
 
+
   alert(trekGetTrekDetails()); //B4 resetTrek!
 
   meObjectUpdateTrek();

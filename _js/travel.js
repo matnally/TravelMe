@@ -2,8 +2,6 @@
 /*** START travelSelect ***/
 function travelSelect(index) {
 
-  actionSelect("flight", index);
-  actionSelectDisplay();
 
 
 

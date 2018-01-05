@@ -94,8 +94,7 @@ mapObject.setFocus(config);
       var mapObject = $("#jvectormap").vectorMap("get", "mapObject");
           mapObject.clearSelectedMarkers();
 
-      travelSelect(index);
-
+actionSelect("flight", index);
 
 
     } //onMarkerClick
