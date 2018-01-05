@@ -96,6 +96,8 @@ mapObject.setFocus(config);
 
       travelSelect(index);
 
+
+
     } //onMarkerClick
 
     ,onMarkerTipShow: function(event, element, index){

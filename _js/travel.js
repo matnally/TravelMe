@@ -2,6 +2,12 @@
 /*** START travelSelect ***/
 function travelSelect(index) {
 
+  actionSelect("flight", index);
+  actionSelectDisplay();
+
+
+
+/*
   travelObjectUpdate(index);
   travelObjectDisplay(index);
   travelButtonShowHide(index); //if can afford
@@ -15,7 +21,7 @@ function travelSelect(index) {
     updateTurnDetails(travelGetTravelDetails()); //???
 
   } //if
-
+*/
 
   /* GUI GUI GUI */
   /* GUI GUI GUI */
@@ -78,6 +84,11 @@ function travelButtonShowHide(index) {
 /*** START travelStart ***/
 function travelStart() {
 
+  actionSelectExecute("flight")
+
+/*
+
+
   alert(travelGetTravelDetails()); //B4 resetWork!
 
   meObjectUpdateTravel();
@@ -90,7 +101,7 @@ function travelStart() {
 
   //finally do anything
   turnEnd();
-
+*/
 } //function
 function meObjectUpdateTravel() {
   JSONme["me"][0].money = parseInt(JSONme["me"][0].money) - parseInt(calcDistanceCost(calcDistance(JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].latLng[0], JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].latLng[1], JSONdestinations["destinations"][JSONlocation["location"][0].locationDestination].latLng[0], JSONdestinations["destinations"][JSONlocation["location"][0].locationDestination].latLng[1], JSONconfig["config"][0].units), JSONconfig["config"][0].units));

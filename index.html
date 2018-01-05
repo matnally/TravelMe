@@ -17,6 +17,7 @@
   <script src="_json/location.js"></script>
   <script src="_json/work.js"></script>
   <script src="_json/events.js"></script>
+  <script src="_json/action.js"></script>
 
   <!-- modules -->
   <script src="_js/calc.js"></script>
@@ -28,6 +29,7 @@
   <script src="_js/map.js"></script>
   <script src="_js/trek.js"></script>
   <script src="_js/walkAbout.js"></script>
+  <script src="_js/actions.js"></script>
 
   <!-- jvectormap -->
   <link rel="stylesheet" href="_js/jquery-jvectormap-2.0.3.css">
@@ -41,6 +43,33 @@
 
 </head>
 <body>
+
+
+  <div id="actionTable" class="divTable">
+    <div class="divRow">
+      <div class="divCell divRight">Days travelled</div><!-- divCell -->
+      <div id="divActionDays" class="divCell">????</div><!-- divCell -->
+    </div><!-- divRow -->
+    <div class="divRow">
+      <div class="divCell divRight">Cost</div><!-- divCell -->
+      <div id="divActionMoney" class="divCell">????</div><!-- divCell -->
+    </div><!-- divRow -->
+    <div class="divRow">
+      <div class="divCell divRight">Happiness</div><!-- divCell -->
+      <div id="divActionHappiness" class="divCell">????</div><!-- divCell -->
+    </div><!-- divRow -->
+    <div class="divRow">
+      <div class="divCell divRight">Travelled Distance</div><!-- divCell -->
+      <div id="divActionTravelledDistance" class="divCell">????</div><!-- divCell -->
+    </div><!-- divRow -->
+  </div><!-- divTable -->
+
+
+
+
+
+
+
 
 
   <div class="divTable">
@@ -225,22 +254,9 @@
 
                   </div><!-- divCell -->
                 </div><!-- divRow -->
-                <div class="divRow">
-                  <div class="divCell divRight">Days travelled</div><!-- divCell -->
-                  <div id="divTrekDays" class="divCell">????</div><!-- divCell -->
-                </div><!-- divRow -->
-                <div class="divRow">
-                  <div class="divCell divRight">Cost</div><!-- divCell -->
-                  <div id="divTrekMoney" class="divCell">????</div><!-- divCell -->
-                </div><!-- divRow -->
-                <div class="divRow">
-                  <div class="divCell divRight">Happiness</div><!-- divCell -->
-                  <div id="divTrekHappiness" class="divCell">????</div><!-- divCell -->
-                </div><!-- divRow -->
-                <div class="divRow">
-                  <div class="divCell divRight">Travelled Distance</div><!-- divCell -->
-                  <div id="divTrekTravelledDistance" class="divCell">????</div><!-- divCell -->
-                </div><!-- divRow -->
+
+
+
 
               </div><!-- divTable trekTable -->
             </div><!-- divCell -->

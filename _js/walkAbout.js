@@ -2,6 +2,11 @@
 /*** START walkAboutSelect ***/
 function walkAboutSelect() {
 
+
+actionSelect("walkAbout", index);
+actionSelectDisplay();
+
+
   walkAboutObjectUpdate();
   walkAboutObjectDisplay();
   walkAboutButtonShowHide(); //if can afford
@@ -34,20 +39,20 @@ function walkAboutObjectUpdate() {
 
 } //function
 function walkAboutObjectDisplay() {
-  updateElement("divTrekDays", JSONlocation["location"][0].days);
-  updateElement("divTrekMoney", JSONconfig["config"][0].currency + JSONlocation["location"][0].money);
-  updateElement("divTrekTravelledDistance", JSONlocation["location"][0].travelledDistance);
-  updateElement("divTrekHappiness", JSONlocation["location"][0].happiness);
+  updateElement("divActionDays", JSONlocation["location"][0].days);
+  updateElement("divActionMoney", JSONconfig["config"][0].currency + JSONlocation["location"][0].money);
+  updateElement("divActionTravelledDistance", JSONlocation["location"][0].travelledDistance);
+  updateElement("divActionHappiness", JSONlocation["location"][0].happiness);
 } //function
 function walkAboutButtonShowHide() {
-  if (calcAfford(JSONme["me"][0].daysLeft, Math.abs(JSONlocation["location"][0].days), "divTrekDays") < 1) {
+  if (calcAfford(JSONme["me"][0].daysLeft, Math.abs(JSONlocation["location"][0].days), "divActionDays") < 1) {
     updateElement("trekErrorMessage", "You don't have any days left");
     document.getElementById("butWalkAbout").disabled = true;
   } else {
     updateElement("trekErrorMessage", "");
     document.getElementById("butWalkAbout").disabled = false;
   } //if
-  if (calcAfford(JSONme["me"][0].money, Math.abs(calcWalkAboutMoney(JSONlocation["location"][0].days)), "divTrekMoney") < 1) {
+  if (calcAfford(JSONme["me"][0].money, Math.abs(calcWalkAboutMoney(JSONlocation["location"][0].days)), "divActionMoney") < 1) {
     updateElement("trekErrorMessage", "You can't afford this. Maybe can't afford it in days too... TODO");
     document.getElementById("butWalkAbout").disabled = true;
   } else {

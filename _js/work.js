@@ -2,12 +2,16 @@
 /*** START workSelect ***/
 function workSelect() {
 
+  actionSelect("work", JSONconfig["config"][0].home);
+  actionSelectDisplay();
+
+/*
   workObjectUpdate();
   workObjectDisplay();
   workButtonShowHide(); //if can afford
 
   updateTurnDetails(workGetWorkDetails()); //???
-
+*/
 } //function
 function workGetNoOfDaysToWork() {
   var elem = document.getElementById("workChoice");

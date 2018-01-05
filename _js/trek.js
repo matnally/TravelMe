@@ -1,11 +1,19 @@
 
 /*** START trekSelect ***/
 function trekSelect() {
+
+
+actionSelect("trek", index);
+actionSelectDisplay();
+
+/*
   trekObjectUpdate();
   trekObjectDisplay();
   trekButtonShowHide(); //if can afford
 
   updateTurnDetails(trekGetTrekDetails()); //???
+*/
+
 } //function
 function trekGetNoOfDaysToTrek() {
   var elem = document.getElementById("trekChoice");
@@ -14,8 +22,13 @@ function trekGetNoOfDaysToTrek() {
 function trekObjectUpdate() {
 
   var elem = document.getElementById("trekChoice");
+//alert(document.getElementById("trekChoice").value);
+  //JSONlocation["location"][0].days = JSONdestinations["destinations"][parseInt(elem.options[elem.selectedIndex].value)].days;
+  //alert(JSONlocation["location"][0].days);
 
-  JSONlocation["location"][0].days = JSONdestinations["destinations"][elem.options[elem.selectedIndex].value].days;
+
+  var index = elem.options[elem.selectedIndex].value;
+  JSONlocation["location"][0].days = calcTimeTakenToTravel(calcDistance(JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].latLng[0], JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].latLng[1], JSONdestinations["destinations"][index].latLng[0], JSONdestinations["destinations"][index].latLng[1]), JSONconfig["config"][0].units);
   JSONlocation["location"][0].money = calcTrekMoney(JSONdestinations["destinations"][elem.options[elem.selectedIndex].value].days);
   JSONlocation["location"][0].happiness = calHappiness(JSONdestinations["destinations"][elem.options[elem.selectedIndex].value].days, calcTrekMoney(JSONdestinations["destinations"][elem.options[elem.selectedIndex].value].days), 0, JSONconfig["config"][0].units)
   JSONlocation["location"][0].travelledDistance = JSONdestinations["destinations"][elem.options[elem.selectedIndex].value].travelledDistance;
@@ -24,13 +37,14 @@ function trekObjectUpdate() {
 //  JSONlocation["location"][0].holidays = JSONdestinations["destinations"][elem.options[elem.selectedIndex].value].days;
 } //function
 function trekObjectDisplay() {
-  updateElement("divTrekDays", JSONlocation["location"][0].days);
-  updateElement("divTrekMoney", JSONconfig["config"][0].currency + JSONlocation["location"][0].money);
-  updateElement("divTrekHappiness", JSONlocation["location"][0].happiness);
-  updateElement("divTrekTravelledDistance", JSONlocation["location"][0].travelledDistance);
+//  alert(JSONlocation["location"][0].days);
+  updateElement("divActionDays", JSONlocation["location"][0].days);
+  updateElement("divActionMoney", JSONconfig["config"][0].currency + JSONlocation["location"][0].money);
+  updateElement("divActionHappiness", JSONlocation["location"][0].happiness);
+  updateElement("divActionTravelledDistance", JSONlocation["location"][0].travelledDistance);
 } //function
 function trekButtonShowHide() {
-  if (calcAfford(JSONme["me"][0].happiness, Math.abs(JSONlocation["location"][0].happiness), "divTrekHappiness") < 1) {
+  if (calcAfford(JSONme["me"][0].happiness, Math.abs(JSONlocation["location"][0].happiness), "divActionHappiness") < 1) {
     updateElement("trekErrorMessage", "You'll be too unhappy");
     document.getElementById("butTrek").disabled = true;
   } else {

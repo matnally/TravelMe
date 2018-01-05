@@ -1,0 +1,9 @@
+
+var JSONaction = { "action" : [
+  {
+    "days" : 0 //????
+    ,"money" : 0 //????
+    ,"happiness" : 0 //????
+    ,"travelledDistance" : 0 //????
+  }
+]};
