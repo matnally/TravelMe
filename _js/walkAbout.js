@@ -70,7 +70,7 @@ function walkAboutStart() {
 
 
   meObjectUpdateWalkAbout();
-  meObjectDisplay(); //displays the user's details
+  displayMeObject(); //displays the user's details
   //walkAboutButtonShowHide(); //???
 
   updateHistory("Walked About " + JSONlocation["location"][0].days + " days");

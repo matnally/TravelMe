@@ -1,16 +1,19 @@
 
 var JSONdestinations = { "destinations" : [
   {
-    name: "Newcastle upon Tyne"
-    ,region: "GB"
-    ,latLng: [54.97328, -1.61396]
-    ,costOfLiving: 50
-    ,destinationType: "airport"
-    ,travelledDistance: 50
+    'name': 'Newcastle upon Tyne',
+    'country': 'GBR',
+    'latitude': 54.97328,
+    'longitude': -1.61396,
+    'costOfLiving': '50',
+    'destinationType': 'airport',
+    'travelledDistance': '50',
+    'radius': '10',
+    'fillKey': 'destination'
   }
   ,{
     name: "Darwin, Australia"
-    ,region: "AU"
+    ,region: "RUSS"
     ,latLng: [-12.463440, 130.845642]
     ,costOfLiving: 50
     ,destinationType: "airport"
@@ -18,7 +21,7 @@ var JSONdestinations = { "destinations" : [
   }
   ,{
     name: "Sydney, Australia"
-    ,region: "AU"
+    ,region: "RUSS"
     ,latLng: [-33.8688, 151.2093]
     ,costOfLiving: 50
     ,destinationType: "airport"

@@ -69,7 +69,7 @@ function trekStart() {
   alert(trekGetTrekDetails()); //B4 resetTrek!
 
   meObjectUpdateTrek();
-  meObjectDisplay(); //displays the user's details
+  displayMeObject(); //displays the user's details
   //trekButtonShowHide(); //???
 
   updateHistory("Treked " + JSONlocation["location"][0].days + " days");
@@ -110,19 +110,6 @@ function calcTrekTotalCost(intDays, intCostOfLiving) {
   return  (parseInt(intCostOfLiving) * parseInt(intDays))
 }
 
-function trekPopulateLocationChoices() {
-  //get all treks for region
-
-  $("#trekChoice").empty(); //remove options from previous populate
-  var elemTrekSelect = document.getElementById("trekChoice");
-  //loop through
-  for (var i = 0; i < JSONdestinations["destinations"].length; i++) {
-    if ((JSONdestinations["destinations"][i].region == JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].region)&&(JSONdestinations["destinations"][i].destinationType == "trek")) {
-      elemTrekSelect.options[elemTrekSelect.options.length] = new Option(JSONdestinations["destinations"][i].name, i);
-    } //if
-  }//for
-
-} //function
 
 
 

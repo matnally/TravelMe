@@ -103,9 +103,6 @@ function calHappiness(intDays, intCost, intDistance, strUnit) {
 
 }
 
-
-///////////////////////////////////
-//TODO: This!
 function calcAfford(intCurrentValue, intCost, elemName) {
 
   var intResult = (parseInt(intCurrentValue) - parseInt(intCost));
@@ -119,9 +116,15 @@ function calcAfford(intCurrentValue, intCost, elemName) {
 
 }
 
+function calcMoney(intWorkDays, intCostOfLiving) {
+  var intResult = 0;
+      intResult = intCostOfLiving * intWorkDays;
+  return intResult;
+}
 
 
 
+/*
 function calcWorkMoney(intWorkDays) {
 
   var intResult = 0;
@@ -131,7 +134,6 @@ function calcWorkMoney(intWorkDays) {
   return intResult;
 
 }
-
 function calcWorkHolidays(intWorkDays) {
 
   var intResult = 0;
@@ -139,3 +141,4 @@ function calcWorkHolidays(intWorkDays) {
   return intResult;
 
 }
+*/

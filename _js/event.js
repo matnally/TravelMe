@@ -49,7 +49,7 @@ function executeEvent(index) {
 
   alert(displayEventFactors(index)); //display
   executeEventFactors(index); //take away
-  meObjectDisplay(); //displays the user's details
+  displayMeObject(); //displays the user's details
 
 }
 

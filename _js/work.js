@@ -30,6 +30,8 @@ function workObjectDisplay() {
   updateElement("divWorkHolidays", JSONwork["work"][0].holidays);
 } //function
 function workButtonShowHide() {
+  alert();
+
   if (calcAfford(JSONme["me"][0].happiness, Math.abs(JSONwork["work"][0].happiness), "divWorkHappiness") < 1) {
     updateElement("workErrorMessage", "You'll be too unhappy");
     document.getElementById("butWork").disabled = true;
@@ -54,7 +56,7 @@ function workStart() {
   alert(workGetWorkDetails()); //B4 resetWork!
 
   meObjectUpdateWork();
-  meObjectDisplay(); //displays the user's details
+  displayMeObject(); //displays the user's details
   //workButtonShowHide(); //???
 
   updateHistory("Worked " + JSONwork["work"][0].days + " days");

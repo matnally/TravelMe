@@ -90,7 +90,7 @@ function travelStart() {
   alert(travelGetTravelDetails()); //B4 resetWork!
 
   meObjectUpdateTravel();
-  meObjectDisplay(); //displays the user's details
+  displayMeObject(); //displays the user's details
   //workButtonShowHide(); //???
 
   updateHistory("Travelled to " + JSONdestinations["destinations"][JSONlocation["location"][0].locationDestination].name + "");

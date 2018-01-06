@@ -31,53 +31,25 @@
   <script src="_js/walkAbout.js"></script>
   <script src="_js/actions.js"></script>
 
-  <!-- jvectormap -->
-  <link rel="stylesheet" href="_js/jquery-jvectormap-2.0.3.css">
-  <script src="_js/jquery-jvectormap-2.0.3.min.js"></script>
-  <script src="_js/jquery-mousewheel.js"></script>
-  <script src="_js/jquery-jvectormap-world-mill-en.js"></script>
-  <script src="_js/jquery-data.js"></script><!-- CORE -->
-
   <!-- chance cheat -->
   <script src="http://chancejs.com/chance.min.js"></script>
 
+
+  <script src="d3.min.js"></script>
+  <script src="topojson.js"></script>
+  <script src="datamaps.world.hires.min.js"></script>
+  <script src="_json/destinationsZAPPA.js"></script>
+
+
 </head>
 <body>
-
-
-  <div id="actionTable" class="divTable">
-    <div class="divRow">
-      <div class="divCell divRight">Days travelled</div><!-- divCell -->
-      <div id="divActionDays" class="divCell">????</div><!-- divCell -->
-    </div><!-- divRow -->
-    <div class="divRow">
-      <div class="divCell divRight">Cost</div><!-- divCell -->
-      <div id="divActionMoney" class="divCell">????</div><!-- divCell -->
-    </div><!-- divRow -->
-    <div class="divRow">
-      <div class="divCell divRight">Happiness</div><!-- divCell -->
-      <div id="divActionHappiness" class="divCell">????</div><!-- divCell -->
-    </div><!-- divRow -->
-    <div class="divRow">
-      <div class="divCell divRight">Travelled Distance</div><!-- divCell -->
-      <div id="divActionTravelledDistance" class="divCell">????</div><!-- divCell -->
-    </div><!-- divRow -->
-  </div><!-- divTable -->
-
-
-
-
-
-
-
-
 
   <div class="divTable">
     <div class="divRow">
 
       <div class="divCell" style="width:50%;">
 
-        <div id="jvectormap" style="width:600px; height: 350px;"></div>
+        <div id="divDatamaps" style="position: relative; width: 800px; height: 400px;"></div>
 
       </div><!-- divCell -->
       <div class="divCell" style="width:50%;">
@@ -87,11 +59,11 @@
 
           <div class="divTable">
             <div class="divRow">
-              <div class="divCell divRight">Curent Location</div><!-- divCell -->
+                <div class="divCell divRight">Curent Location</div><!-- divCell -->
               <div id="locationCurrentName" class="divCell">???</div><!-- divCell -->
             </div><!-- divRow -->
             <div class="divRow">
-              <div class="divCell divRight">Destination</div><!-- divCell -->
+              <div class="divCell divRight">Destination <button id="butTravel" type="button" onClick="actionSelectExecute('flight', '')">Travel</button></div><!-- divCell -->
               <div id="locationDestinationName" class="divCell">???</div><!-- divCell -->
             </div><!-- divRow -->
             <div class="divRow">
@@ -99,6 +71,10 @@
               <div id="meLocationPrevious" class="divCell">???</div><!-- divCell -->
             </div><!-- divRow -->
 
+            <div class="divRow">
+              <div class="divCell divRight"></div><!-- divCell -->
+              <div class="divCell"></div><!-- divCell -->
+            </div><!-- divRow -->
 
             <div class="divRow">
               <div class="divCell divRight">Happiness</div><!-- divCell -->
@@ -109,17 +85,70 @@
               <div id="meMoney" class="divCell">???</div><!-- divCell -->
             </div><!-- divRow -->
             <div class="divRow">
-              <div class="divCell divRight">Salary (per day)</div><!-- divCell -->
+              <div class="divCell divRight">Salary (per day)
+
+                <select id="workChoice" onChange="actionSelect('work', this.value)">
+                  <option value="0">Please choose</option>
+                  <option value="7">1 Week</option>
+                  <option value="14">2 Weeks</option>
+                  <option value="21">3 Weeks</option>
+                  <option value="28">1 Month</option>
+                  <option value="35">2 Months</option>
+                  <option value="42">3 Months</option>
+                  <option value="49">4 Months</option>
+                  <option value="56">5 Months</option>
+                  <option value="63">6 Months</option>
+                </select>
+                <button id="butWork" type="button" onClick="actionSelectExecute('work', this.value)">Work</button>
+
+              </div><!-- divCell -->
               <div id="meSalary" class="divCell">???</div><!-- divCell -->
-            </div><!-- divRow -->
-            <div class="divRow">
-              <div class="divCell divRight">Hoilday days</div><!-- divCell -->
-              <div id="meDaysLeft" class="divCell">???</div><!-- divCell -->
             </div><!-- divRow -->
             <div class="divRow">
               <div class="divCell divRight">Days worked</div><!-- divCell -->
               <div id="meDaysWorked" class="divCell">????</div><!-- divCell -->
             </div><!-- divRow -->
+            <div class="divRow">
+              <div class="divCell divRight">Hoilday days</div><!-- divCell -->
+              <div id="meDaysLeft" class="divCell">???</div><!-- divCell -->
+            </div><!-- divRow -->
+
+            <div class="divRow">
+              <div class="divCell divRight"></div><!-- divCell -->
+              <div class="divCell"></div><!-- divCell -->
+            </div><!-- divRow -->
+
+            <div class="divRow">
+              <div class="divCell divRight">
+                <select id="walkAboutChoice" onChange="actionSelect('walkAbout', this.value)">
+                  <option value="0">Please choose</option>
+                  <option value="1">1 day</option>
+                  <option value="2">2 days</option>
+                  <option value="3">3 days</option>
+                  <option value="4">4 days</option>
+                  <option value="5">5 days</option>
+                  <option value="6">6 days</option>
+                  <option value="7">1 Week</option>
+                  <option value="14">2 Weeks</option>
+                  <option value="21">3 Weeks</option>
+                  <option value="28">1 Month</option>
+                  <option value="35">2 Months</option>
+                  <option value="42">3 Months</option>
+                  <option value="49">4 Months</option>
+                  <option value="56">5 Months</option>
+                  <option value="63">6 Months</option>
+                </select>
+                <button id="butWalkAbout" type="button" onClick="actionSelectExecute('walkAbout', this.value)">Travel around</button>
+              </div><!-- divCell -->
+              <div class="divCell">
+                <select id="trekChoice" onChange="actionSelect('trek', this.value)">
+                  <!-- will populate dynamically with Treks for Region -->
+                </select>
+                <button id="butTrek" type="button" onClick="actionSelectExecute('trek', this.value)">Trek</button>
+              </div><!-- divCell -->
+            </div><!-- divRow -->
+
+
             <div class="divRow">
               <div class="divCell divRight">Distance Travelled</div><!-- divCell -->
               <div id="meTravelledDistance" class="divCell">???</div><!-- divCell -->
@@ -130,140 +159,20 @@
             </div><!-- divRow -->
           </div><!-- divTable -->
 
+<br>
 
-
-
-        <div class="divTable">
-          <div class="divRow">
-            <div class="divCell" style="width:33%;">
-              <div id="destinationTable" class="divTable">
-                <div class="divRow">
-                  <div class="divCell">
-
-                    <button id="butTravel" type="button" onClick="actionSelectExecute('flight', '')">Travel</button>
-
-                  </div><!-- divCell -->
-                  <div class="divCell">
-                    <div id="travelErrorMessage" class="errorMessage"></div>
-                  </div><!-- divCell -->
-                </div><!-- divRow -->
-                <div class="divRow">
-                  <div class="divCell divRight">Distance</div><!-- divCell -->
-                  <div id="travelledDistance" class="divCell">???</div><!-- divCell -->
-                </div><!-- divRow -->
-                <div class="divRow">
-                  <div class="divCell divRight">Travel time</div><!-- divCell -->
-                  <div id="locationDays" class="divCell">???</div><!-- divCell -->
-                </div><!-- divRow -->
-                <div class="divRow">
-                  <div class="divCell divRight">Travel Cost</div><!-- divCell -->
-                  <div id="locationDestinationCost" class="divCell">???</div><!-- divCell -->
-                </div><!-- divRow -->
-                <div class="divRow">
-                  <div class="divCell divRight">Happiness</div><!-- divCell -->
-                  <div id="locationHappiness" class="divCell">???</div><!-- divCell -->
-                </div><!-- divRow -->
-                <div class="divRow">
-                  <div class="divCell divRight">Region</div><!-- divCell -->
-                  <div id="locationRegion" class="divCell">???</div><!-- divCell -->
-                </div><!-- divRow -->
-                <div class="divRow">
-                  <div class="divCell divRight">Region Details</div><!-- divCell -->
-                  <div id="locationRegionDetails" class="divCell">???</div><!-- divCell -->
-                </div><!-- divRow -->
-
-              </div><!-- divTable destinationTable -->
-            </div><!-- divCell -->
-            <div class="divCell" style="width:33%;">
-              <div id="workTable" class="divTable">
-                <div class="divRow">
-                  <div class="divCell divRight">
-                    <select id="workChoice" onChange="workSelect()">
-                      <option value="7">1 Week</option>
-                      <option value="14">2 Weeks</option>
-                      <option value="21">3 Weeks</option>
-                      <option value="28">1 Month</option>
-                      <option value="35">2 Months</option>
-                      <option value="42">3 Months</option>
-                      <option value="49">4 Months</option>
-                      <option value="56">5 Months</option>
-                      <option value="63">6 Months</option>
-                    </select>
-                    <button id="butWork" type="button" onClick="actionSelectExecute('work', this.value)">Work</button>
-
-                  </div><!-- divCell -->
-                  <div class="divCell">
-
-                    <div id="workErrorMessage" class="errorMessage"></div>
-
-                  </div><!-- divCell -->
-                </div><!-- divRow -->
-                <div class="divRow">
-                  <div class="divCell divRight">Days worked</div><!-- divCell -->
-                  <div id="divWorkDays" class="divCell">????</div><!-- divCell -->
-                </div><!-- divRow -->
-                <div class="divRow">
-                  <div class="divCell divRight">Money</div><!-- divCell -->
-                  <div id="divWorkMoney" class="divCell">????</div><!-- divCell -->
-                </div><!-- divRow -->
-                <div class="divRow">
-                  <div class="divCell divRight">Happiness</div><!-- divCell -->
-                  <div id="divWorkHappiness" class="divCell">????</div><!-- divCell -->
-                </div><!-- divRow -->
-                <div class="divRow">
-                  <div class="divCell divRight">Holidays Gained</div><!-- divCell -->
-                  <div id="divWorkHolidays" class="divCell">????</div><!-- divCell -->
-                </div><!-- divRow -->
-
-              </div><!-- divTable workTable -->
-            </div><!-- divCell -->
-            <div class="divCell" style="width:33%;">
-              <div id="trekTable" class="divTable">
-                <div class="divRow">
-                  <div class="divCell divRight">
-
-
-    <select id="walkAboutChoice" onChange="walkAboutSelect()">
-      <option value="1">1 day</option>
-      <option value="2">2 days</option>
-      <option value="3">3 days</option>
-      <option value="4">4 days</option>
-      <option value="5">5 days</option>
-      <option value="6">6 days</option>
-      <option value="7">1 Week</option>
-      <option value="14">2 Weeks</option>
-      <option value="21">3 Weeks</option>
-      <option value="28">1 Month</option>
-      <option value="35">2 Months</option>
-      <option value="42">3 Months</option>
-      <option value="49">4 Months</option>
-      <option value="56">5 Months</option>
-      <option value="63">6 Months</option>
-    </select>
-    <button id="butWalkAbout" type="button" onClick="actionSelectExecute('walkAbout', this.value)">Travel around</button>
-    <br>
-
-                    <select id="trekChoice" onChange="actionSelect('trek', this.value)">
-                      <!-- will populate dynamically with Treks for Region -->
-                      <option value="" selected>Please choose a trek</option>
-                    </select>
-                    <button id="butTrek" type="button" onClick="actionSelectExecute('trek', this.value)">Trek</button>
-
-                  </div><!-- divCell -->
-                  <div class="divCell">
-
-                    <div id="trekErrorMessage" class="errorMessage"></div>
-
-                  </div><!-- divCell -->
-                </div><!-- divRow -->
-
-
-
-
-              </div><!-- divTable trekTable -->
-            </div><!-- divCell -->
-          </div><!-- divRow -->
-        </div><!-- divTable -->
+          <div id="actionTable" class="divTable">
+              <div class="divRow">
+              <div class="divCell divRight">Days</div><!-- divCell -->
+              <div id="divActionDays" class="divCell">????</div><!-- divCell -->
+              <div class="divCell divRight">Cost / Wages</div><!-- divCell -->
+              <div id="divActionMoney" class="divCell">????</div><!-- divCell -->
+              <div class="divCell divRight">Happiness</div><!-- divCell -->
+              <div id="divActionHappiness" class="divCell">????</div><!-- divCell -->
+              <div class="divCell divRight">Travelled Distance</div><!-- divCell -->
+              <div id="divActionTravelledDistance" class="divCell">????</div><!-- divCell -->
+            </div><!-- divRow -->
+          </div><!-- divTable -->
 
 
 
