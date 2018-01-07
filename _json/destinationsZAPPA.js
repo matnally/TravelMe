@@ -9,7 +9,7 @@ var destinationsZAPPA = {
 };
 
 
-var JSONbubbles = ([
+var JSONdestinations["destinations"] = ([
 
   {
       'name': 'Newcastle upon Tyne',

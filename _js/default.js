@@ -1,4 +1,5 @@
 
+
 function createJSON() {
 
   //loop through
@@ -16,13 +17,6 @@ function createJSON() {
         intTemp++;
 
         switch (key) {
-          case "latLng":
-            var strTemp = JSONdestinations["destinations"][x][key].toString().split(",");
-            strBubbleJSON += ("'latitude' : " + strTemp[0]);
-            strBubbleJSON += "\n";
-            strBubbleJSON += ("  ,'longitude' : " + strTemp[1]);
-            strBubbleJSON += "\n";
-          break;
           case "region":
             strBubbleJSON += ("'country' : '" + JSONdestinations["destinations"][x][key] + "'");
             strBubbleJSON += "\n";
@@ -36,10 +30,9 @@ function createJSON() {
     } //for
 
 
-    strBubbleJSON += ("  ,'radius' : '10'");
+    strBubbleJSON += ("  ,'daysInCountry' : '0'");
     strBubbleJSON += "\n";
-    strBubbleJSON += ("  ,'fillKey' : 'destination'");
-    strBubbleJSON += "\n";
+
 /*
     strBubbleJSON += ("  ,'country' : 'blank'");
     strBubbleJSON += "\n";
@@ -82,15 +75,15 @@ function turnEnd() {
   //START draws arc
   arcHistory.push({
       origin: {
-        latitude: JSONbubbles[JSONlocation["location"][0].locationPrevious].latitude
-        ,longitude: JSONbubbles[JSONlocation["location"][0].locationPrevious].longitude
+        latitude: JSONdestinations["destinations"][JSONlocation["location"][0].locationPrevious].latitude
+        ,longitude: JSONdestinations["destinations"][JSONlocation["location"][0].locationPrevious].longitude
       },
       destination: {
-        latitude: JSONbubbles[JSONlocation["location"][0].locationCurrent].latitude
-        ,longitude: JSONbubbles[JSONlocation["location"][0].locationCurrent].longitude
+        latitude: JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].latitude
+        ,longitude: JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].longitude
       }
-      ,strokeColor: 'green'
-      ,strokeWidth: 2
+//      ,strokeColor: 'green'
+//      ,strokeWidth: 2
   });
 //  $("#container").datamaps(options);
 //map.arc(arcCurrentToDestination);
@@ -100,10 +93,10 @@ map.arc(c);
 
 //START MAP COLOURS
 var m = {};//GLOBAL
-m[JSONbubbles[JSONlocation["location"][0].locationCurrent].country] = 'blue';
-//m[JSONbubbles[JSONlocation["location"][0].locationCurrent].fillKey] = 'visited';
-JSONbubbles[JSONlocation["location"][0].locationCurrent].fillKey = 'visited';
-//alert(JSONbubbles[JSONlocation["location"][0].locationCurrent].fillKey);
+m[JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].country] = 'blue';
+//m[JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].country] = 'green';
+JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].fillKey = 'visited';
+
   map.updateChoropleth(m);
 intIClickedOn="";
 //END MAP COLOURS

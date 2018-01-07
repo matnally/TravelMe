@@ -1,97 +1,163 @@
 
-//CreateJSON();
 
 var map=[];
 function createMap() {
 
    map = new Datamap({
     scope: 'world'
+    ,projection: 'mercator'
     ,element: document.getElementById('divDatamaps')
     ,fills: {
       country: 'yellow'
       ,destination:'black'
       ,defaultFill: '#ccc'
       ,chosenDestination: 'yellow'
-//      ,visited: 'green'  //HOW CAN I CALL THIS?
      } //fills
-//    ,data: destinationsZAPPA //country fills
     ,geographyConfig: {
+      highlightOnHover: true,
+      highlightFillColor: 'yellow',
+      highlightBorderColor: 'black',
+      highlightBorderWidth: 1,
+      highlightBorderOpacity: 1,
+/*
+hideAntarctica: true,
+borderWidth: 1,
+borderOpacity: 1,
+borderColor: '#FDFDFD',
+popupTemplate: function(geography, data) { //this function should just return a string
+  return '<div class="hoverinfo"><strong>' + geography.properties.name + '</strong></div>';
+},
+popupOnHover: true, //disable the popup while hovering
+*/
       popupOnHover: true
       ,highlightOnHover: true
       ,borderColor: '#000'
       ,borderWidth: 1
     }, //geographyConfig
+    bubblesConfig: {
+        borderWidth: 2,
+        borderOpacity: 1,
+        borderColor: '#FFFFFF',
+        popupOnHover: true,
+        radius: null,
+        popupTemplate: function(geography, data) {
+          return '<div class="hoverinfo">ZAPPA1: <strong>' + data.name + '</strong></div>';
+        },
+        fillOpacity: 0.75,
+        animate: true,
+        highlightOnHover: true,
+        highlightFillColor: 'yellow',
+        highlightBorderColor: 'black',
+        highlightBorderWidth: 2,
+        highlightBorderOpacity: 1,
+        highlightFillOpacity: 0.85,
+        exitDelay: 100,
+        //key: JSON.stringify
+    },
+    arcConfig: {
+      strokeColor: 'blue',
+      strokeWidth: 3,
+      arcSharpness: 2,
+      animationSpeed: 600
+    },
 
   }); //var map = new Datamap({
 
+  //load bubble data
   map.bubbles(JSONdestinations["destinations"]); //variable from JSON file
 
+  //START COUNTRY CLICK
+  map.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
+
+    //COUNTRY CLICK
+    //map.svg.call(d3.behavior.zoom().on("zoom", redraw));
+  });
+  //END COUNTRY CLICK
 
 
 
-//  done: function(datamap) {
-    map.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
-alert("delete this func?");
-    });
-//s  }
-
-
-//BUBBLE ONCLICK EVENT
+//START BUBBLE CLICK
 map.svg.selectAll('.datamaps-bubble').on('click', function(e,data) {
+//  alert("bubble click");
+  map.svg.call(d3.behavior.zoom().on("zoom", redraw));
   //console.log(e.name);
   //console.log(data);
   actionSelect('flight', data);
 
-if (JSONlocation["location"][0].locationCurrent != data) {
-  //not at current dest!
+  if (JSONlocation["location"][0].locationCurrent != data) {
+    //not at current dest!
 
-  //START draws arc
-  arcCurrentToDestination=[];
-  arcCurrentToDestination.push({
-    origin: {
-      latitude: JSONbubbles[JSONlocation["location"][0].locationCurrent].latitude
-      ,longitude: JSONbubbles[JSONlocation["location"][0].locationCurrent].longitude
-    },
-    destination: {
-      latitude: JSONbubbles[JSONlocation["location"][0].locationDestination].latitude
-      ,longitude: JSONbubbles[JSONlocation["location"][0].locationDestination].longitude
-    }
-    ,strokeColor: 'blue'
-    ,strokeWidth: 4
-  });
-  var c = Object.assign(arcHistory,arcCurrentToDestination); //ORDER OF PARAMS VERY IMPORTANT!
-  map.arc(c);
-  //END draws arc
+    //START draws arc
+    arcCurrentToDestination=[];
+    arcCurrentToDestination.push({
+      origin: {
+        latitude: JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].latitude
+        ,longitude: JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].longitude
+      },
+      destination: {
+        latitude: JSONdestinations["destinations"][JSONlocation["location"][0].locationDestination].latitude
+        ,longitude: JSONdestinations["destinations"][JSONlocation["location"][0].locationDestination].longitude
+      }
+      ,strokeColor: 'yellow'
+      ,strokeWidth: 4
+    });
+    var c = Object.assign(arcHistory,arcCurrentToDestination); //ORDER OF PARAMS VERY IMPORTANT!
+    map.arc(c);
+    //END draws arc
 
-} //if
+  } else {
+    alert("Current location");
+  } //if
 
 
   //START MAP COLOURS
   var m = {};//GLOBAL
-  if ((intIClickedOn!="")&&(JSONbubbles[intIClickedOn].fillKey != "visited"))  //or visited!
-    m[JSONbubbles[intIClickedOn].country] = "#ccc"; //reset
+  if ((intIClickedOn!="")&&(JSONdestinations["destinations"][intIClickedOn].fillKey != "visited"))  //or visited!
+    m[JSONdestinations["destinations"][intIClickedOn].country] = "#ccc"; //reset
 
-  if ((intIClickedOn!="")&&(JSONbubbles[intIClickedOn].fillKey == "visited"))  //or visited!
-   m[JSONbubbles[intIClickedOn].country] = 'blue';
+  if ((intIClickedOn!="")&&(JSONdestinations["destinations"][intIClickedOn].fillKey == "visited"))  //or visited!
+   m[JSONdestinations["destinations"][intIClickedOn].country] = 'blue';
 
   intIClickedOn = JSONlocation["location"][0].locationDestination;
-    m[JSONbubbles[JSONlocation["location"][0].locationDestination].country] = 'red';
-    map.updateChoropleth(m);
-    //END MAP COLOURS
+
+  m[JSONdestinations["destinations"][JSONlocation["location"][0].locationDestination].country] = 'yellow';
+  m[JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].country] = 'green';
+
+  map.updateChoropleth(m);
+  //END MAP COLOURS
+
+
+//highlightFillColor: 'yellow'
+//    var m = {};//GLOBAL
+//    m[JSONdestinations["destinations"][data].highlightFillColor] = 'white';
+//    map.updateChoropleth(m);
 
 
 }); //map.svg.selectAll('.datamaps-bubble').on('click', function(e,data) {
+//END BUBBLE CLICK
 
 
 
 
 } //createMap
 
+
+//  map.svg.call(d3.behavior.zoom().on("zoom", redraw));
+  function redraw() {
+  //  alert("redraw");
+       map.svg.selectAll("g").attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+  }
+
+
+
+
 //TODO GLOBALS!!!
 var arcCurrentToDestination = []; //init
 var arcHistory = []; //init
 
 var intIClickedOn=0;
+
+
 
 
 
