@@ -1,5 +1,5 @@
 
-var JSONevent = { "event" : [
+var JSONevent = [
   {
     "id"                  : 0
     ,"name"               : "Old traveller"
@@ -339,6 +339,4 @@ var JSONevent = { "event" : [
    ,"eventTypeWorkTravel"          : "work"
  }
 
-
-
-]};
+];

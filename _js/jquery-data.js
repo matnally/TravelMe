@@ -53,7 +53,7 @@ mapObject.setFocus(config);
     //******************************
     // START markers
     ,markersSelectable: true
-    ,markers : JSONdestinations["destinations"] //Assign value from the JSON array
+    ,markers : JSONdestinations //Assign value from the JSON array
     ,markerStyle : {
       initial : {
         "name":"namMarkers",
@@ -101,9 +101,9 @@ actionSelect("flight", index);
 
     ,onMarkerTipShow: function(event, element, index){
       var strTemp = "";
-          strTemp += JSONdestinations["destinations"][index].name;
+          strTemp += JSONdestinations[index].name;
 
-          if (JSONlocation["location"][0].locationCurrent == index) {
+          if (JSONlocation[0].locationCurrent == index) {
             //Same location
             strTemp += "<br>";
             strTemp += "You are here!";

@@ -74,7 +74,7 @@ function executeFactor(strProperty, intFactor) {
   //add or take away the factor
 
   if (intFactor != 0) {
-    JSONme["me"][0][strProperty] = parseInt(JSONme["me"][0][strProperty]) + parseInt(intFactor);
+    JSONme[0][strProperty] = parseInt(JSONme[0][strProperty]) + parseInt(intFactor);
     updateHistory("*" + strProperty + " " + intFactor);
   }
 

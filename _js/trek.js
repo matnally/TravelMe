@@ -23,40 +23,40 @@ function trekObjectUpdate() {
 
   var elem = document.getElementById("trekChoice");
 //alert(document.getElementById("trekChoice").value);
-  //JSONlocation["location"][0].days = JSONdestinations["destinations"][parseInt(elem.options[elem.selectedIndex].value)].days;
-  //alert(JSONlocation["location"][0].days);
+  //JSONlocation[0].days = JSONdestinations[parseInt(elem.options[elem.selectedIndex].value)].days;
+  //alert(JSONlocation[0].days);
 
 
   var index = elem.options[elem.selectedIndex].value;
-  JSONlocation["location"][0].days = calcTimeTakenToTravel(calcDistance(JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].latLng[0], JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].latLng[1], JSONdestinations["destinations"][index].latLng[0], JSONdestinations["destinations"][index].latLng[1]), JSONconfig["config"][0].units);
-  JSONlocation["location"][0].money = calcTrekMoney(JSONdestinations["destinations"][elem.options[elem.selectedIndex].value].days);
-  JSONlocation["location"][0].happiness = calHappiness(JSONdestinations["destinations"][elem.options[elem.selectedIndex].value].days, calcTrekMoney(JSONdestinations["destinations"][elem.options[elem.selectedIndex].value].days), 0, JSONconfig["config"][0].units)
-  JSONlocation["location"][0].travelledDistance = JSONdestinations["destinations"][elem.options[elem.selectedIndex].value].travelledDistance;
-//  JSONlocation["location"][0].travelledDays = JSONme["me"][0].travelledDays + parseInt(JSONlocation["location"][0].days);
+  JSONlocation[0].days = calcTimeTakenToTravel(calcDistance(JSONdestinations[JSONlocation[0].locationCurrent].latLng[0], JSONdestinations[JSONlocation[0].locationCurrent].latLng[1], JSONdestinations[index].latLng[0], JSONdestinations[index].latLng[1]), JSONconfig[0].units);
+  JSONlocation[0].money = calcTrekMoney(JSONdestinations[elem.options[elem.selectedIndex].value].days);
+  JSONlocation[0].happiness = calHappiness(JSONdestinations[elem.options[elem.selectedIndex].value].days, calcTrekMoney(JSONdestinations[elem.options[elem.selectedIndex].value].days), 0, JSONconfig[0].units)
+  JSONlocation[0].travelledDistance = JSONdestinations[elem.options[elem.selectedIndex].value].travelledDistance;
+//  JSONlocation[0].travelledDays = JSONme[0].travelledDays + parseInt(JSONlocation[0].days);
 
-//  JSONlocation["location"][0].holidays = JSONdestinations["destinations"][elem.options[elem.selectedIndex].value].days;
+//  JSONlocation[0].holidays = JSONdestinations[elem.options[elem.selectedIndex].value].days;
 } //function
 function trekObjectDisplay() {
-//  alert(JSONlocation["location"][0].days);
-  updateElement("divActionDays", JSONlocation["location"][0].days);
-  updateElement("divActionMoney", JSONconfig["config"][0].currency + JSONlocation["location"][0].money);
-  updateElement("divActionHappiness", JSONlocation["location"][0].happiness);
-  updateElement("divActionTravelledDistance", JSONlocation["location"][0].travelledDistance);
+//  alert(JSONlocation[0].days);
+  updateElement("divActionDays", JSONlocation[0].days);
+  updateElement("divActionMoney", JSONconfig[0].currency + JSONlocation[0].money);
+  updateElement("divActionHappiness", JSONlocation[0].happiness);
+  updateElement("divActionTravelledDistance", JSONlocation[0].travelledDistance);
 } //function
 function trekButtonShowHide() {
-  if (calcAfford(JSONme["me"][0].happiness, Math.abs(JSONlocation["location"][0].happiness), "divActionHappiness") < 1) {
+  if (calcAfford(JSONme[0].happiness, Math.abs(JSONlocation[0].happiness), "divActionHappiness") < 1) {
     updateElement("trekErrorMessage", "You'll be too unhappy");
     document.getElementById("butTrek").disabled = true;
   } else {
     updateElement("trekErrorMessage", "");
     document.getElementById("butTrek").disabled = false;
   }
-  if (JSONlocation["location"][0].locationCurrent == JSONconfig["config"][0].home) {
+  if (JSONlocation[0].locationCurrent == JSONconfig[0].home) {
     //clicked on current destination
 //    updateElement("trekErrorMessage", "2");
     document.getElementById("butTrek").disabled = false;
   } else {
-    updateElement("trekErrorMessage", "You need to go to your home country of " +JSONdestinations["destinations"][JSONconfig["config"][0].home].name);
+    updateElement("trekErrorMessage", "You need to go to your home country of " +JSONdestinations[JSONconfig[0].home].name);
     document.getElementById("butTrek").disabled = true;
   } //if
 } //function
@@ -72,31 +72,31 @@ function trekStart() {
   displayMeObject(); //displays the user's details
   //trekButtonShowHide(); //???
 
-  updateHistory("Treked " + JSONlocation["location"][0].days + " days");
+  updateHistory("Treked " + JSONlocation[0].days + " days");
 
-  callEvent(JSONlocation["location"][0].locationCurrent, "trek");
+  callEvent(JSONlocation[0].locationCurrent, "trek");
 
   //finally do anything
   turnEnd();
 
 } //function
 function meObjectUpdateTrek() {
-  JSONme["me"][0].daysLeft = parseFloat(JSONme["me"][0].daysLeft) - parseFloat(JSONlocation["location"][0].days);
-//  JSONme["me"][0].travelledDays = parseInt(JSONme["me"][0].travelledDays) + parseInt(JSONlocation["location"][0].days);
-  JSONme["me"][0].money = parseInt(JSONme["me"][0].money) - parseInt(JSONlocation["location"][0].money);
-  JSONme["me"][0].happiness = parseInt(JSONme["me"][0].happiness) + parseInt(JSONlocation["location"][0].happiness);
+  JSONme[0].daysLeft = parseFloat(JSONme[0].daysLeft) - parseFloat(JSONlocation[0].days);
+//  JSONme[0].travelledDays = parseInt(JSONme[0].travelledDays) + parseInt(JSONlocation[0].days);
+  JSONme[0].money = parseInt(JSONme[0].money) - parseInt(JSONlocation[0].money);
+  JSONme[0].happiness = parseInt(JSONme[0].happiness) + parseInt(JSONlocation[0].happiness);
 
-  JSONme["me"][0].travelledDistance = JSONme["me"][0].travelledDistance + parseInt(JSONlocation["location"][0].travelledDistance);
-  JSONme["me"][0].travelledDays = JSONme["me"][0].travelledDays + parseInt(JSONlocation["location"][0].days);
+  JSONme[0].travelledDistance = JSONme[0].travelledDistance + parseInt(JSONlocation[0].travelledDistance);
+  JSONme[0].travelledDays = JSONme[0].travelledDays + parseInt(JSONlocation[0].days);
   //TODO:
     //Distance Travelled???
 } //function
 function trekGetTrekDetails() {
   var strTemp = "";
-      strTemp += "You will loose " + JSONlocation["location"][0].days + " day's hoilday";
-      strTemp += "You will trek " + JSONlocation["location"][0].days + " days";
-      strTemp += "It will cost " + JSONconfig["config"][0].currency + JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].costOfLiving + " per day ("+JSONconfig["config"][0].currency+calcTrekTotalCost(JSONlocation["location"][0].days,JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].costOfLiving)+" in total)";
-      strTemp += "Your happiness will be increased by " + JSONlocation["location"][0].happiness;
+      strTemp += "You will loose " + JSONlocation[0].days + " day's hoilday";
+      strTemp += "You will trek " + JSONlocation[0].days + " days";
+      strTemp += "It will cost " + JSONconfig[0].currency + JSONdestinations[JSONlocation[0].locationCurrent].costOfLiving + " per day ("+JSONconfig[0].currency+calcTrekTotalCost(JSONlocation[0].days,JSONdestinations[JSONlocation[0].locationCurrent].costOfLiving)+" in total)";
+      strTemp += "Your happiness will be increased by " + JSONlocation[0].happiness;
   return strTemp;
 } //function
 function resetTurnTrek() {
@@ -115,11 +115,11 @@ function calcTrekTotalCost(intDays, intCostOfLiving) {
 
 
 //function trekGetNoOfDaysToTrek() {
-//  return JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].days;
+//  return JSONdestinations[JSONlocation[0].locationCurrent].days;
 //}
 function calcTrekMoney(intWorkDays) {
   var intResult = 0;
-  var intCostOfLiving = JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].costOfLiving;
+  var intCostOfLiving = JSONdestinations[JSONlocation[0].locationCurrent].costOfLiving;
 
   intResult = intCostOfLiving * intWorkDays;
   return intResult;

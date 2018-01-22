@@ -5,24 +5,24 @@ function createJSON() {
   //loop through
   var strBubbleJSON = "";
   var strTemp = "";
-  for (var x = 0; x < JSONdestinations["destinations"].length; x++) {
+  for (var x = 0; x < JSONdestinations.length; x++) {
     if (!x==0) strBubbleJSON += ",";
     strBubbleJSON += "{";
     strBubbleJSON += "\n";
     var intTemp = 0;
-    for (var key in JSONdestinations["destinations"][x]) {
-      if (JSONdestinations["destinations"][x].hasOwnProperty(key)) {
+    for (var key in JSONdestinations[x]) {
+      if (JSONdestinations[x].hasOwnProperty(key)) {
         //CASE???
         if (!intTemp==0) { strBubbleJSON += "  ," } else { strBubbleJSON += "  " };
         intTemp++;
 
         switch (key) {
           case "region":
-            strBubbleJSON += ("'country' : '" + JSONdestinations["destinations"][x][key] + "'");
+            strBubbleJSON += ("'country' : '" + JSONdestinations[x][key] + "'");
             strBubbleJSON += "\n";
           break;
           default:
-            strBubbleJSON += ("'" + key + "' : '" + JSONdestinations["destinations"][x][key] + "'");
+            strBubbleJSON += ("'" + key + "' : '" + JSONdestinations[x][key] + "'");
             strBubbleJSON += "\n";
         } //switch
 
@@ -56,10 +56,10 @@ document.write(strBubbleJSON);
 
 function initStart() {
   createMap();
-  updateAndDisplayLocationObject("start", 0, JSONconfig["config"][0].home, 0);
+  updateAndDisplayLocationObject("start", 0, JSONconfig[0].home, 0);
   displayMeObject(); //displays UPDATE? the user's details
   trekPopulateLocationChoices();
-  updateHistory("Started in " + JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].name);
+  updateHistory("Started in " + JSONdestinations[JSONlocation[0].locationCurrent].name);
   //updateTurnDetails(""); //???
 }
 function turnStart() {
@@ -70,17 +70,17 @@ function turnEnd() {
 //  updateMapCurrentLocation();
   trekPopulateLocationChoices();
   displayMeObject(); //displays the user's details
-  //  travelButtonShowHide(JSONlocation["location"][0].locationCurrent); //if can afford
+  //  travelButtonShowHide(JSONlocation[0].locationCurrent); //if can afford
 
   //START draws arc
   arcHistory.push({
       origin: {
-        latitude: JSONdestinations["destinations"][JSONlocation["location"][0].locationPrevious].latitude
-        ,longitude: JSONdestinations["destinations"][JSONlocation["location"][0].locationPrevious].longitude
+        latitude: JSONdestinations[JSONlocation[0].locationPrevious].latitude
+        ,longitude: JSONdestinations[JSONlocation[0].locationPrevious].longitude
       },
       destination: {
-        latitude: JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].latitude
-        ,longitude: JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].longitude
+        latitude: JSONdestinations[JSONlocation[0].locationCurrent].latitude
+        ,longitude: JSONdestinations[JSONlocation[0].locationCurrent].longitude
       }
 //      ,strokeColor: 'green'
 //      ,strokeWidth: 2
@@ -93,9 +93,9 @@ map.arc(c);
 
 //START MAP COLOURS
 var m = {};//GLOBAL
-m[JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].country] = 'blue';
-//m[JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].country] = 'green';
-JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].fillKey = 'visited';
+m[JSONdestinations[JSONlocation[0].locationCurrent].country] = 'blue';
+//m[JSONdestinations[JSONlocation[0].locationCurrent].country] = 'green';
+JSONdestinations[JSONlocation[0].locationCurrent].fillKey = 'visited';
 
   map.updateChoropleth(m);
 intIClickedOn="";

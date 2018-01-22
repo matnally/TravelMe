@@ -1,6 +1,5 @@
 
-var JSONdestinations = { "destinations" : [
-
+var JSONdestinations = [
     {
         'name': 'Newcastle upon Tyne',
         'country': 'GBR',
@@ -416,4 +415,4 @@ var JSONdestinations = { "destinations" : [
         'fillKey': 'destination'
     }
 
-]};
+];

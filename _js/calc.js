@@ -34,7 +34,7 @@ function calcTimeTakenToTravel(intDistance, strUnit) {
   var intResult = 0 //Value to return
 
   var d = parseInt(intDistance);
-  var f = JSONconfig["config"][0].factorTimeTakenToTravel;
+  var f = JSONconfig[0].factorTimeTakenToTravel;
   var o = 0;
       if (strUnit == "KM") { //offsets for Kilometres
          o = 0.62137;
@@ -60,7 +60,7 @@ function calcDistanceCost(intDistance, strUnit) {
   var intResult = 0 //Value to return
 
   var d = parseInt(intDistance);
-  var f = JSONconfig["config"][0].factorDistanceCost;
+  var f = JSONconfig[0].factorDistanceCost;
   var o = 0;
 
   if (strUnit == "KM") { //offsets for Kilometres
@@ -90,7 +90,7 @@ function calHappiness(intDays, intCost, intDistance, strUnit) {
   var z = parseInt(intDays);
   var c = parseInt(intCost);
   var d = parseInt(intDistance);
-  var f = JSONconfig["config"][0].factorHappiness;
+  var f = JSONconfig[0].factorHappiness;
   var o = 0;
 
   if (strUnit == "KM") { //offsets for Kilometres
@@ -128,7 +128,7 @@ function calcMoney(intWorkDays, intCostOfLiving) {
 function calcWorkMoney(intWorkDays) {
 
   var intResult = 0;
-  var intSalary = JSONme["me"][0].salary;
+  var intSalary = JSONme[0].salary;
 
   intResult = intSalary * intWorkDays;
   return intResult;

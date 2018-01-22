@@ -9,7 +9,7 @@ var destinationsZAPPA = {
 };
 
 
-var JSONdestinations["destinations"] = ([
+var JSONdestinationsDONTUSE = ([
 
   {
       'name': 'Newcastle upon Tyne',

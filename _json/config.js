@@ -1,6 +1,5 @@
 
-var JSONconfig = { "config" : [
-  {
+var JSONconfig = [{
     "units"      : "Miles"
     ,"currency"  : "£"
     ,"home"      : 0 //home destination
@@ -13,5 +12,4 @@ var JSONconfig = { "config" : [
         ,"rare"   : 50
     }
 
-  }
-]};
+  }];

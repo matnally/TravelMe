@@ -64,7 +64,7 @@ popupOnHover: true, //disable the popup while hovering
   }); //var map = new Datamap({
 
   //load bubble data
-  map.bubbles(JSONdestinations["destinations"]); //variable from JSON file
+  map.bubbles(JSONdestinations); //variable from JSON file
 
   //START COUNTRY CLICK
   map.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
@@ -84,19 +84,19 @@ map.svg.selectAll('.datamaps-bubble').on('click', function(e,data) {
   //console.log(data);
   actionSelect('flight', data);
 
-  if (JSONlocation["location"][0].locationCurrent != data) {
+  if (JSONlocation[0].locationCurrent != data) {
     //not at current dest!
 
     //START draws arc
     arcCurrentToDestination=[];
     arcCurrentToDestination.push({
       origin: {
-        latitude: JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].latitude
-        ,longitude: JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].longitude
+        latitude: JSONdestinations[JSONlocation[0].locationCurrent].latitude
+        ,longitude: JSONdestinations[JSONlocation[0].locationCurrent].longitude
       },
       destination: {
-        latitude: JSONdestinations["destinations"][JSONlocation["location"][0].locationDestination].latitude
-        ,longitude: JSONdestinations["destinations"][JSONlocation["location"][0].locationDestination].longitude
+        latitude: JSONdestinations[JSONlocation[0].locationDestination].latitude
+        ,longitude: JSONdestinations[JSONlocation[0].locationDestination].longitude
       }
       ,strokeColor: 'yellow'
       ,strokeWidth: 4
@@ -112,16 +112,16 @@ map.svg.selectAll('.datamaps-bubble').on('click', function(e,data) {
 
   //START MAP COLOURS
   var m = {};//GLOBAL
-  if ((intIClickedOn!="")&&(JSONdestinations["destinations"][intIClickedOn].fillKey != "visited"))  //or visited!
-    m[JSONdestinations["destinations"][intIClickedOn].country] = "#ccc"; //reset
+  if ((intIClickedOn!="")&&(JSONdestinations[intIClickedOn].fillKey != "visited"))  //or visited!
+    m[JSONdestinations[intIClickedOn].country] = "#ccc"; //reset
 
-  if ((intIClickedOn!="")&&(JSONdestinations["destinations"][intIClickedOn].fillKey == "visited"))  //or visited!
-   m[JSONdestinations["destinations"][intIClickedOn].country] = 'blue';
+  if ((intIClickedOn!="")&&(JSONdestinations[intIClickedOn].fillKey == "visited"))  //or visited!
+   m[JSONdestinations[intIClickedOn].country] = 'blue';
 
-  intIClickedOn = JSONlocation["location"][0].locationDestination;
+  intIClickedOn = JSONlocation[0].locationDestination;
 
-  m[JSONdestinations["destinations"][JSONlocation["location"][0].locationDestination].country] = 'yellow';
-  m[JSONdestinations["destinations"][JSONlocation["location"][0].locationCurrent].country] = 'green';
+  m[JSONdestinations[JSONlocation[0].locationDestination].country] = 'yellow';
+  m[JSONdestinations[JSONlocation[0].locationCurrent].country] = 'green';
 
   map.updateChoropleth(m);
   //END MAP COLOURS
@@ -129,7 +129,7 @@ map.svg.selectAll('.datamaps-bubble').on('click', function(e,data) {
 
 //highlightFillColor: 'yellow'
 //    var m = {};//GLOBAL
-//    m[JSONdestinations["destinations"][data].highlightFillColor] = 'white';
+//    m[JSONdestinations[data].highlightFillColor] = 'white';
 //    map.updateChoropleth(m);
 
 
@@ -168,12 +168,12 @@ function updateMap() {
 
   var mapObject = $("#jvectormap").vectorMap("get", "mapObject");
       mapObject.clearSelectedMarkers();
-      mapObject.markers[JSONlocation["location"][0].locationPrevious].element.setStyle("fill", "RED");
-      mapObject.markers[JSONlocation["location"][0].locationPrevious].element.setStyle("stroke", "RED");
-      mapObject.markers[JSONlocation["location"][0].locationPrevious].element.setStyle("r", 5);
-      mapObject.markers[JSONlocation["location"][0].locationCurrent].element.setStyle("fill", "blue");
-      mapObject.markers[JSONlocation["location"][0].locationCurrent].element.setStyle("stroke", "#000");
-      mapObject.markers[JSONlocation["location"][0].locationCurrent].element.setStyle("r", 10);
+      mapObject.markers[JSONlocation[0].locationPrevious].element.setStyle("fill", "RED");
+      mapObject.markers[JSONlocation[0].locationPrevious].element.setStyle("stroke", "RED");
+      mapObject.markers[JSONlocation[0].locationPrevious].element.setStyle("r", 5);
+      mapObject.markers[JSONlocation[0].locationCurrent].element.setStyle("fill", "blue");
+      mapObject.markers[JSONlocation[0].locationCurrent].element.setStyle("stroke", "#000");
+      mapObject.markers[JSONlocation[0].locationCurrent].element.setStyle("r", 10);
 
 }
 
@@ -182,12 +182,12 @@ function updateMapCurrentLocation() {
 
   var mapObject = $("#jvectormap").vectorMap("get", "mapObject");
       mapObject.clearSelectedMarkers();
-      mapObject.markers[JSONlocation["location"][0].locationPrevious].element.setStyle("fill", "RED");
-      mapObject.markers[JSONlocation["location"][0].locationPrevious].element.setStyle("stroke", "RED");
-      mapObject.markers[JSONlocation["location"][0].locationPrevious].element.setStyle("r", 5);
-      mapObject.markers[JSONlocation["location"][0].locationCurrent].element.setStyle("fill", "blue");
-      mapObject.markers[JSONlocation["location"][0].locationCurrent].element.setStyle("stroke", "#000");
-      mapObject.markers[JSONlocation["location"][0].locationCurrent].element.setStyle("r", 10);
+      mapObject.markers[JSONlocation[0].locationPrevious].element.setStyle("fill", "RED");
+      mapObject.markers[JSONlocation[0].locationPrevious].element.setStyle("stroke", "RED");
+      mapObject.markers[JSONlocation[0].locationPrevious].element.setStyle("r", 5);
+      mapObject.markers[JSONlocation[0].locationCurrent].element.setStyle("fill", "blue");
+      mapObject.markers[JSONlocation[0].locationCurrent].element.setStyle("stroke", "#000");
+      mapObject.markers[JSONlocation[0].locationCurrent].element.setStyle("r", 10);
 
 }
 
@@ -204,7 +204,7 @@ function onMarkerOutUpdateMap() {
     travelButtonShowHide(mapObject.getSelectedMarkers());
 
     //TODO
-    if (JSONlocation["location"][0].locationCurrent == mapObject.getSelectedMarkers()) {
+    if (JSONlocation[0].locationCurrent == mapObject.getSelectedMarkers()) {
       //same location as current!
       updateTurnDetails(""); //???
     } else {
@@ -212,9 +212,9 @@ function onMarkerOutUpdateMap() {
     }
 
   } else {
-    travelObjectUpdate(parseInt(JSONlocation["location"][0].locationCurrent)); //display destination details
-    travelObjectDisplay(parseInt(JSONlocation["location"][0].locationCurrent)); //display destination details
-    travelButtonShowHide(JSONlocation["location"][0].locationCurrent);
+    travelObjectUpdate(parseInt(JSONlocation[0].locationCurrent)); //display destination details
+    travelObjectDisplay(parseInt(JSONlocation[0].locationCurrent)); //display destination details
+    travelButtonShowHide(JSONlocation[0].locationCurrent);
     updateTurnDetails(""); //???
   } //if
 
@@ -228,7 +228,7 @@ function getRegionDetails(strRegion) {
 var strTemp = "";
 
   //get array
-  var arrTemp = JSONdestinations["destinations"];
+  var arrTemp = JSONdestinations;
   //loop through
   for (var i = 0; i < arrTemp.length; i++) {
 
