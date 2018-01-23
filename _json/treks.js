@@ -1,7 +1,6 @@
-//temporary store for potential work selection
+//temporary store for potential trek selection
 var JSONtrek = [{
-    "money"      : 0
-    ,"happiness" : 0
-    ,"days"      : 0
-//    ,"holidays"  : 0
+  "money"      : 0
+  ,"happiness" : 0
+  ,"days"      : 0
 }];

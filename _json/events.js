@@ -1,4 +1,4 @@
-
+//details of all events that can occur
 var JSONevent = [
   {
     "id"                  : 0
@@ -13,7 +13,7 @@ var JSONevent = [
     ,"daysWorked"         : 0
     ,"travelledDistance"  : 0
     ,"travelledDays"      : 1
-    ,"eventTypeWorkTravel"          : "travel"
+    ,"eventTypeWorkTravel": "travel"
   }
   ,{
     "id"                  : 1
@@ -28,7 +28,7 @@ var JSONevent = [
     ,"daysWorked"         : 0
     ,"travelledDistance"  : 0
     ,"travelledDays"      : 1
-    ,"eventTypeWorkTravel"          : "travel"
+    ,"eventTypeWorkTravel": "travel"
   }
   ,{
     "id"                  : 2
@@ -43,7 +43,7 @@ var JSONevent = [
     ,"daysWorked"         : 0
     ,"travelledDistance"  : 0
     ,"travelledDays"      : 1
-    ,"eventTypeWorkTravel"          : "travel"
+    ,"eventTypeWorkTravel": "travel"
   }
   ,{
     "id"                  : 3
@@ -58,7 +58,7 @@ var JSONevent = [
     ,"daysWorked"         : 0
     ,"travelledDistance"  : 0
     ,"travelledDays"      : 0
-    ,"eventTypeWorkTravel"          : "travel"
+    ,"eventTypeWorkTravel": "travel"
   }
   ,{
     "id"                  : 4
@@ -73,7 +73,7 @@ var JSONevent = [
     ,"daysWorked"         : 0
     ,"travelledDistance"  : 0
     ,"travelledDays"      : 0
-    ,"eventTypeWorkTravel"          : "travel"
+    ,"eventTypeWorkTravel": "travel"
   }
   ,{
     "id"                  : 5
@@ -88,7 +88,7 @@ var JSONevent = [
     ,"daysWorked"         : 0
     ,"travelledDistance"  : 0
     ,"travelledDays"      : 0
-    ,"eventTypeWorkTravel"          : "travel"
+    ,"eventTypeWorkTravel": "travel"
   }
   ,{
     "id"                  : 6
@@ -103,7 +103,7 @@ var JSONevent = [
     ,"daysWorked"         : 0
     ,"travelledDistance"  : 0
     ,"travelledDays"      : 0
-    ,"eventTypeWorkTravel"          : "travel"
+    ,"eventTypeWorkTravel": "travel"
   }
   ,{
     "id"                  : 7
@@ -118,7 +118,7 @@ var JSONevent = [
     ,"daysWorked"         : 0
     ,"travelledDistance"  : 0
     ,"travelledDays"      : 0
-    ,"eventTypeWorkTravel"          : "travel"
+    ,"eventTypeWorkTravel": "travel"
   }
   ,{
     "id"                  : 8
@@ -133,7 +133,7 @@ var JSONevent = [
     ,"daysWorked"         : 0
     ,"travelledDistance"  : 0
     ,"travelledDays"      : 0
-    ,"eventTypeWorkTravel"          : "travel"
+    ,"eventTypeWorkTravel": "travel"
   }
   ,{
     "id"                  : 9
@@ -148,7 +148,7 @@ var JSONevent = [
     ,"daysWorked"         : 0
     ,"travelledDistance"  : 0
     ,"travelledDays"      : 0
-    ,"eventTypeWorkTravel"          : "travel"
+    ,"eventTypeWorkTravel": "travel"
   }
   ,{
     "id"                  : 10
@@ -163,7 +163,7 @@ var JSONevent = [
     ,"daysWorked"         : 0
     ,"travelledDistance"  : 0
     ,"travelledDays"      : 0
-    ,"eventTypeWorkTravel"          : "travel"
+    ,"eventTypeWorkTravel": "travel"
   }
   ,{
     "id"                  : 11
@@ -178,7 +178,7 @@ var JSONevent = [
     ,"daysWorked"         : 0
     ,"travelledDistance"  : 0
     ,"travelledDays"      : 0
-    ,"eventTypeWorkTravel"          : "travel"
+    ,"eventTypeWorkTravel": "travel"
   }
   ,{
     "id"                  : 12
@@ -193,7 +193,7 @@ var JSONevent = [
     ,"daysWorked"         : 0
     ,"travelledDistance"  : 0
     ,"travelledDays"      : 0
-    ,"eventTypeWorkTravel"          : "travel"
+    ,"eventTypeWorkTravel": "travel"
   }
   ,{
     "id"                  : 13
@@ -208,7 +208,7 @@ var JSONevent = [
     ,"daysWorked"         : 0
     ,"travelledDistance"  : 0
     ,"travelledDays"      : 0
-    ,"eventTypeWorkTravel"          : "travel"
+    ,"eventTypeWorkTravel": "travel"
   }
   ,{
     "id"                  : 14
@@ -223,7 +223,7 @@ var JSONevent = [
     ,"daysWorked"         : 0
     ,"travelledDistance"  : 0
     ,"travelledDays"      : 0
-    ,"eventTypeWorkTravel"          : "travel"
+    ,"eventTypeWorkTravel": "travel"
   }
   ,{
     "id"                  : 15
@@ -238,7 +238,7 @@ var JSONevent = [
     ,"daysWorked"         : 0
     ,"travelledDistance"  : 0
     ,"travelledDays"      : 0
-    ,"eventTypeWorkTravel"          : "travel"
+    ,"eventTypeWorkTravel": "travel"
   }
   ,{
     "id"                  : 16
@@ -253,7 +253,7 @@ var JSONevent = [
     ,"daysWorked"         : 0
     ,"travelledDistance"  : 0
     ,"travelledDays"      : 0
-    ,"eventTypeWorkTravel"          : "travel"
+    ,"eventTypeWorkTravel": "travel"
   }
   ,{
     "id"                  : 17
@@ -268,7 +268,7 @@ var JSONevent = [
     ,"daysWorked"         : 0
     ,"travelledDistance"  : 0
     ,"travelledDays"      : 0
-    ,"eventTypeWorkTravel"          : "travel"
+    ,"eventTypeWorkTravel": "travel"
   }
   ,{
     "id"                  : 18
@@ -283,7 +283,7 @@ var JSONevent = [
     ,"daysWorked"         : 0
     ,"travelledDistance"  : 0
     ,"travelledDays"      : 0
-    ,"eventTypeWorkTravel"          : "travel"
+    ,"eventTypeWorkTravel": "travel"
   }
   ,{
     "id"                  : 19
@@ -298,7 +298,7 @@ var JSONevent = [
     ,"daysWorked"         : 0
     ,"travelledDistance"  : 0
     ,"travelledDays"      : 0
-    ,"eventTypeWorkTravel"          : "travel"
+    ,"eventTypeWorkTravel": "travel"
   }
   ,{
     "id"                  : 20
@@ -313,7 +313,7 @@ var JSONevent = [
     ,"daysWorked"         : 0
     ,"travelledDistance"  : 0
     ,"travelledDays"      : 0
-    ,"eventTypeWorkTravel"          : "travel"
+    ,"eventTypeWorkTravel": "travel"
   }
 /**
  *END ALL FOR FIGHTS?
@@ -336,7 +336,7 @@ var JSONevent = [
    ,"daysWorked"         : 0
    ,"travelledDistance"  : 0
    ,"travelledDays"      : 0
-   ,"eventTypeWorkTravel"          : "work"
+   ,"eventTypeWorkTravel": "work"
  }
 
 ];

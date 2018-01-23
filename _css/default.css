@@ -9,7 +9,6 @@
 
 /************ END OF DEFAULT STYLES ************/
 
-
 .divTable {
   display: table;
   width: 100%;
@@ -27,13 +26,6 @@
 .divRight {
   text-align: right;
 }
-/*
-<div class="divTable">
-  <div class="divRow">
-    <div class="divCell"></div><!-- divCell -->
-  </div><!-- divRow -->
-</div><!-- divTable -->
-*/
 
 #elemHistory, #elemTurnDetails {
   width: 100%;

@@ -32,19 +32,17 @@
   <script src="_js/actions.js"></script>
 
   <!-- chance cheat -->
-  <script src="_js/chance.min.js"></script>
+  <script src="_js/chancejs/chance.min.js"></script>
 
   <!-- datamaps -->
-  <script src="_js/map/d3.min.js"></script>
-  <script src="_js/map/topojson.js"></script>
-  <script src="_js/map/datamaps.world.hires.min.js"></script>
+  <script src="_js/datamaps/d3.min.js"></script>
+  <script src="_js/datamaps/topojson.js"></script>
+  <script src="_js/datamaps/datamaps.world.hires.min.js"></script>
 
 </head>
 <body>
 
-
   <button type="button" onClick="createJSON()">createJSON</button>
-
 
   <div class="divTable">
     <div class="divRow">
@@ -59,15 +57,15 @@
           <div class="divTable">
             <div class="divRow">
                 <div class="divCell divRight"><img src="_images/guiHome.png" alt="Current Location"></div><!-- divCell -->
-              <div id="locationCurrentName" class="divCell">???</div><!-- divCell -->
+              <div id="locationCurrentName" class="divCell">DATA</div><!-- divCell -->
             </div><!-- divRow -->
             <div class="divRow">
               <div class="divCell divRight"><img src="_images/guiDestination.png" alt="Destination"> <button id="butTravel" type="button" onClick="actionSelectExecute('flight', '')">Travel</button></div><!-- divCell -->
-              <div id="locationDestinationName" class="divCell">???</div><!-- divCell -->
+              <div id="locationDestinationName" class="divCell">DATA</div><!-- divCell -->
             </div><!-- divRow -->
             <div class="divRow">
               <div class="divCell divRight"><img src="_images/guiPrevious.png" alt="Previous Location"></div><!-- divCell -->
-              <div id="meLocationPrevious" class="divCell">???</div><!-- divCell -->
+              <div id="meLocationPrevious" class="divCell">DATA</div><!-- divCell -->
             </div><!-- divRow -->
 
             <div class="divRow">
@@ -77,11 +75,11 @@
 
             <div class="divRow">
               <div class="divCell divRight"><img src="_images/guiHappiness.png" alt="Happiness"></div><!-- divCell -->
-              <div id="meHappiness" class="divCell">???</div><!-- divCell -->
+              <div id="meHappiness" class="divCell">DATA</div><!-- divCell -->
             </div><!-- divRow -->
             <div class="divRow">
               <div class="divCell divRight"><img src="_images/guiMoney.png" alt="Money"></div><!-- divCell -->
-              <div id="meMoney" class="divCell">???</div><!-- divCell -->
+              <div id="meMoney" class="divCell">DATA</div><!-- divCell -->
             </div><!-- divRow -->
             <div class="divRow">
               <div class="divCell divRight"><img src="_images/guiSalary.png" alt="">Salary (per day)
@@ -101,15 +99,15 @@
                 <button id="butWork" type="button" onClick="actionSelectExecute('work', this.value)">Work</button>
 
               </div><!-- divCell -->
-              <div id="meSalary" class="divCell">???</div><!-- divCell -->
+              <div id="meSalary" class="divCell">DATA</div><!-- divCell -->
             </div><!-- divRow -->
             <div class="divRow">
               <div class="divCell divRight"><img src="_images/guiDaysWorked.png" alt="Days worked"></div><!-- divCell -->
-              <div id="meDaysWorked" class="divCell">????</div><!-- divCell -->
+              <div id="meDaysWorked" class="divCell">DATA</div><!-- divCell -->
             </div><!-- divRow -->
             <div class="divRow">
               <div class="divCell divRight"><img src="_images/guiHolidays.png" alt="Hoilday days"></div><!-- divCell -->
-              <div id="meDaysLeft" class="divCell">???</div><!-- divCell -->
+              <div id="meDaysLeft" class="divCell">DATA</div><!-- divCell -->
             </div><!-- divRow -->
 
             <div class="divRow">
@@ -147,41 +145,35 @@
               </div><!-- divCell -->
             </div><!-- divRow -->
 
-
             <div class="divRow">
               <div class="divCell divRight"><img src="_images/guiDistanceTravelled.png" alt="Distance Travelled"></div><!-- divCell -->
-              <div id="meTravelledDistance" class="divCell">???</div><!-- divCell -->
+              <div id="meTravelledDistance" class="divCell">DATA</div><!-- divCell -->
             </div><!-- divRow -->
             <div class="divRow">
               <div class="divCell divRight"><img src="_images/guiDaysTravelled.png" alt="Days Travelled"></div><!-- divCell -->
-              <div id="meTravelledDays" class="divCell">???</div><!-- divCell -->
+              <div id="meTravelledDays" class="divCell">DATA</div><!-- divCell -->
             </div><!-- divRow -->
           </div><!-- divTable -->
 
-<br>
+          <br>
 
           <div id="actionTable" class="divTable">
               <div class="divRow">
               <div class="divCell divRight"><img src="_images/guiDaysTravelled.png" alt="Days"></div><!-- divCell -->
-              <div id="divActionDays" class="divCell">????</div><!-- divCell -->
+              <div id="divActionDays" class="divCell">DATA</div><!-- divCell -->
               <div class="divCell divRight"><img src="_images/guiMoney.png" alt="Cost / Wages"></div><!-- divCell -->
-              <div id="divActionMoney" class="divCell">????</div><!-- divCell -->
+              <div id="divActionMoney" class="divCell">DATA</div><!-- divCell -->
               <div class="divCell divRight"><img src="_images/guiHappiness.png" alt="Happiness"></div><!-- divCell -->
-              <div id="divActionHappiness" class="divCell">????</div><!-- divCell -->
+              <div id="divActionHappiness" class="divCell">DATA</div><!-- divCell -->
               <div class="divCell divRight"><img src="_images/guiDistanceTravelled.png" alt="Distance Travelled"></div><!-- divCell -->
-              <div id="divActionTravelledDistance" class="divCell">????</div><!-- divCell -->
+              <div id="divActionTravelledDistance" class="divCell">DATA</div><!-- divCell -->
             </div><!-- divRow -->
           </div><!-- divTable -->
-
-
-
 
       </div><!-- divCell -->
     </div><!-- divRow -->
 
-
   </div><!-- divTable  -->
-
 
 
   <h2>Potential Turn</h2>
@@ -191,13 +183,10 @@
   <textarea id="elemHistory"></textarea>
 
 
-
   <script>
-
     $(document).ready(function() {
       initStart(); //init
     });
-
   </script>
 
 </body>
