@@ -63,6 +63,7 @@ function initStart() {
   //updateTurnDetails(""); //???
 }
 function turnStart() {
+  alert("turn started!");
 }
 function turnEnd() {
 //  createMap();
@@ -82,32 +83,30 @@ function turnEnd() {
         latitude: JSONdestinations[JSONlocation[0].locationCurrent].latitude
         ,longitude: JSONdestinations[JSONlocation[0].locationCurrent].longitude
       }
-//      ,strokeColor: 'green'
-//      ,strokeWidth: 2
+  //      ,strokeColor: 'green'
+  //      ,strokeWidth: 2
   });
-//  $("#container").datamaps(options);
-//map.arc(arcCurrentToDestination);
-var c = Object.assign(arcCurrentToDestination, arcHistory);
-map.arc(c);
-//END draws arc
+  //  $("#container").datamaps(options);
+  //map.arc(arcCurrentToDestination);
+  var c = Object.assign(arcCurrentToDestination, arcHistory);
+  map.arc(c);
+  //END draws arc
 
-//START MAP COLOURS
-var m = {};//GLOBAL
-m[JSONdestinations[JSONlocation[0].locationCurrent].country] = 'blue';
-//m[JSONdestinations[JSONlocation[0].locationCurrent].country] = 'green';
-JSONdestinations[JSONlocation[0].locationCurrent].fillKey = 'visited';
+  //START MAP COLOURS
+  var m = {};//GLOBAL
+  m[JSONdestinations[JSONlocation[0].locationCurrent].country] = 'blue';
+  //m[JSONdestinations[JSONlocation[0].locationCurrent].country] = 'green';
+  JSONdestinations[JSONlocation[0].locationCurrent].fillKey = 'visited';
 
   map.updateChoropleth(m);
-intIClickedOn="";
-//END MAP COLOURS
+  intIClickedOn="";
+  //END MAP COLOURS
 
+  turnReset();
 
-
-
-
-turnReset();
   alert("turn ended!");
   // WORK OUT % OF COUNTRY YOU HAVE TREKKED?????
+
 } //function
 function turnReset() {
   $('#workChoice')[0].selectedIndex = 0;

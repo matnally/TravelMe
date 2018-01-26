@@ -106,6 +106,7 @@ function calHappiness(intDays, intCost, intDistance, strUnit) {
 function calcAfford(intCurrentValue, intCost, elemName) {
 
   var intResult = (parseInt(intCurrentValue) - parseInt(intCost));
+
   if (intResult < 0) {
     document.getElementById(elemName).style.color = "red";
   } else {

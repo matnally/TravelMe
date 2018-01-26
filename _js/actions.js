@@ -1,19 +1,22 @@
 
 function actionSelect(strAction, index) {
+
   var intDays = 0;
   var intMoney = 0;
   var intTravelledDistance = 0;
   var intHappiness = 0;
 
+  var elem = ""; //element to update
+
   //resets any error styles
+  calcAfford(0, 0, "divActionHappiness");
   calcAfford(0, 0, "divActionDays");
   calcAfford(0, 0, "divActionMoney");
-  calcAfford(0, 0, "divActionHappiness");
 
   switch (strAction) {
     case "work":
       updateAndDisplayLocationObject(strAction, JSONlocation[0].locationPrevious, JSONlocation[0].locationCurrent, "");
-      var elem = document.getElementById("workChoice");
+      elem = document.getElementById("workChoice");
       intDays = elem.options[elem.selectedIndex].value;
       intMoney = calcMoney(intDays, JSONdestinations[JSONlocation[0].locationCurrent].costOfLiving);
       intTravelledDistance = 0; //as working NOT travelling
@@ -27,23 +30,22 @@ function actionSelect(strAction, index) {
       intMoney = calcDistanceCost(calcDistance(JSONdestinations[JSONlocation[0].locationCurrent].latitude, JSONdestinations[JSONlocation[0].locationCurrent].longitude, JSONdestinations[JSONlocation[0].locationDestination].latitude, JSONdestinations[JSONlocation[0].locationDestination].longitude, JSONconfig[0].units), JSONconfig[0].units);
       intTravelledDistance = calcDistance(JSONdestinations[JSONlocation[0].locationCurrent].latitude, JSONdestinations[JSONlocation[0].locationCurrent].longitude, JSONdestinations[JSONlocation[0].locationDestination].latitude, JSONdestinations[JSONlocation[0].locationDestination].longitude, JSONconfig[0].units);
       intHappiness = calHappiness(intDays, intMoney, intTravelledDistance, JSONconfig[0].units);
-      calcAfford(JSONme[0].days, intDays, "divActionDays");
+      calcAfford(JSONme[0].daysLeft, intDays, "divActionDays");
       calcAfford(JSONme[0].money, intMoney, "divActionMoney");
     break;
     case "trek":
       updateAndDisplayLocationObject(strAction, JSONlocation[0].locationPrevious, JSONlocation[0].locationCurrent, index);
-      var elem = document.getElementById("trekChoice");
-      var actionSelectIndex = elem.options[elem.selectedIndex].value;
-      intDays = calcTimeTakenToTravel(calcDistance(JSONdestinations[JSONlocation[0].locationCurrent].latitude, JSONdestinations[JSONlocation[0].locationCurrent].longitude, JSONdestinations[actionSelectIndex].latitude, JSONdestinations[actionSelectIndex].longitude), JSONconfig[0].units);
-      intMoney = calcDistanceCost(calcDistance(JSONdestinations[JSONlocation[0].locationCurrent].latitude, JSONdestinations[JSONlocation[0].locationCurrent].longitude, JSONdestinations[actionSelectIndex].latitude, JSONdestinations[actionSelectIndex].longitude, JSONconfig[0].units), JSONconfig[0].units);
-      intTravelledDistance = JSONdestinations[actionSelectIndex].travelledDistance;
+      elem = document.getElementById("trekChoice");
+      intDays = calcTimeTakenToTravel(calcDistance(JSONdestinations[JSONlocation[0].locationCurrent].latitude, JSONdestinations[JSONlocation[0].locationCurrent].longitude, JSONdestinations[elem.options[elem.selectedIndex].value].latitude, JSONdestinations[elem.options[elem.selectedIndex].value].longitude), JSONconfig[0].units);
+      intMoney = calcDistanceCost(calcDistance(JSONdestinations[JSONlocation[0].locationCurrent].latitude, JSONdestinations[JSONlocation[0].locationCurrent].longitude, JSONdestinations[elem.options[elem.selectedIndex].value].latitude, JSONdestinations[elem.options[elem.selectedIndex].value].longitude, JSONconfig[0].units), JSONconfig[0].units);
+      intTravelledDistance = JSONdestinations[elem.options[elem.selectedIndex].value].travelledDistance;
       intHappiness = calHappiness(intDays, intMoney, intTravelledDistance, JSONconfig[0].units);
-      calcAfford(JSONme[0].days, intDays, "divActionDays");
+      calcAfford(JSONme[0].daysLeft, intDays, "divActionDays");
       calcAfford(JSONme[0].money, intMoney, "divActionMoney");
     break;
     case "walkAbout":
       updateAndDisplayLocationObject(strAction, JSONlocation[0].locationPrevious, JSONlocation[0].locationCurrent, JSONlocation[0].locationDestination);
-      var elem = document.getElementById("walkAboutChoice");
+      elem = document.getElementById("walkAboutChoice");
       intDays = elem.options[elem.selectedIndex].value;
       intMoney = calcMoney(parseInt(intDays), parseInt(JSONdestinations[JSONlocation[0].locationCurrent].costOfLiving));
       intTravelledDistance = JSONdestinations[JSONlocation[0].locationCurrent].travelledDistance; //put before happiness as needs the value
@@ -64,11 +66,10 @@ function actionSelect(strAction, index) {
   updateElement("divActionMoney", JSONconfig[0].currency + displayNumbersWithCommas(JSONaction[0].money));
   updateElement("divActionTravelledDistance", displayNumbersWithCommas(JSONaction[0].travelledDistance) + " " + JSONconfig[0].units);
   updateElement("divActionHappiness", JSONaction[0].happiness);
+
 } //function
 
 function actionSelectExecute(strAction, index) {
-
-  turnStart(); //before anything, do something
 
   var intDays = 0;
   var intMoney = 0;
@@ -83,28 +84,40 @@ function actionSelectExecute(strAction, index) {
   intTravelledDistance = parseInt(JSONaction[0].travelledDistance);
   intHappiness = parseInt(JSONaction[0].happiness);
 
+  var strTemp = ""; //holds can't afford message
+
+alert("TODO sort out this logic!");
   //do calculations
   switch (strAction) {
     case "work":
-      updateAndDisplayLocationObject(strAction, "", "", "");
-      intMoney = JSONme[0].money + intMoney;
-      intTravelledDistance = JSONme[0].travelledDistance + intTravelledDistance;
-      intHappiness = JSONme[0].happiness - intHappiness;
-      intDaysLeft = JSONme[0].daysLeft + intDays;
-      intDaysWorked = JSONme[0].daysWorked + intDays; // + 0 as have not worked!
-      intTravelledDays = JSONme[0].travelledDays + 0;
+      if (calcAfford(JSONme[0].happiness, -intHappiness, "divActionHappiness") > 0) { //More than 0 so can afford
+        updateAndDisplayLocationObject(strAction, "", "", "");
+        intMoney = JSONme[0].money + intMoney;
+        intTravelledDistance = JSONme[0].travelledDistance + intTravelledDistance;
+        intHappiness = JSONme[0].happiness + intHappiness; //Work so happiness should be positive. Therefore, plus a negative!
+        intDaysLeft = JSONme[0].daysLeft + intDays;
+        intDaysWorked = JSONme[0].daysWorked + intDays; // + 0 as have not worked!
+        intTravelledDays = JSONme[0].travelledDays + 0;
+      } else {
+         strTemp = "Can't afford the Happiness!";
+      }
     break;
     case "flight":
-      updateAndDisplayLocationObject(strAction, JSONlocation[0].locationCurrent, JSONlocation[0].locationDestination, "");
-      trekPopulateLocationChoices();
-      intMoney = JSONme[0].money - intMoney;
-      intTravelledDistance = JSONme[0].travelledDistance + intTravelledDistance;
-      intHappiness = JSONme[0].happiness + intHappiness;
-      intDaysLeft = JSONme[0].daysLeft - intDays;
-      intDaysWorked = JSONme[0].daysWorked + 0; // + 0 as have not worked!
-      intTravelledDays = JSONme[0].travelledDays + intDays;
+      if ((calcAfford(JSONme[0].daysLeft, intDays, "divActionDays") < 0) || (calcAfford(JSONme[0].money, intMoney, "divActionMoney") < 0)) {
+        updateAndDisplayLocationObject(strAction, JSONlocation[0].locationCurrent, JSONlocation[0].locationDestination, "");
+        trekPopulateLocationChoices();
+        intMoney = JSONme[0].money - intMoney;
+        intTravelledDistance = JSONme[0].travelledDistance + intTravelledDistance;
+        intHappiness = JSONme[0].happiness + intHappiness;
+        intDaysLeft = JSONme[0].daysLeft - intDays;
+        intDaysWorked = JSONme[0].daysWorked + 0; // + 0 as have not worked!
+        intTravelledDays = JSONme[0].travelledDays + intDays;
+      } else {
+         strTemp = "Can't afford either the Days off or the Money!";
+      }
     break;
     case "trek":
+    if ((calcAfford(JSONme[0].daysLeft, intDays, "divActionDays") < 0) || (calcAfford(JSONme[0].money, intMoney, "divActionMoney") < 0)) {
       updateAndDisplayLocationObject(strAction, JSONlocation[0].locationCurrent, JSONlocation[0].locationDestination, "");
       intMoney = JSONme[0].money - intMoney;
       intTravelledDistance = JSONme[0].travelledDistance + intTravelledDistance;
@@ -112,8 +125,12 @@ function actionSelectExecute(strAction, index) {
       intDaysLeft = JSONme[0].daysLeft - intDays;
       intDaysWorked = JSONme[0].daysWorked + 0; // + 0 as have not worked!
       intTravelledDays = JSONme[0].travelledDays + intDays;
+    } else {
+      strTemp = "Can't afford either the Days off or the Money!";
+    }
     break;
     case "walkAbout":
+    if ((calcAfford(JSONme[0].daysLeft, intDays, "divActionDays") >= 0) || (calcAfford(JSONme[0].money, intMoney, "divActionMoney") >= 0)) {
       updateAndDisplayLocationObject(strAction, "", "", "");
       intMoney = JSONme[0].money - intMoney;
       intTravelledDistance = JSONme[0].travelledDistance + intTravelledDistance;
@@ -121,26 +138,40 @@ function actionSelectExecute(strAction, index) {
       intDaysLeft = JSONme[0].daysLeft - intDays;
       intDaysWorked = JSONme[0].daysWorked + 0; // + 0 as have not worked!
       intTravelledDays = JSONme[0].travelledDays + intDays;
+    } else {
+      strTemp = "Can't afford either the Days off or the Money!";
+    }
     break;
     default:
       alert("ERROR: actionSelectExecute - Not an recognised action choice! How did you get here?");
   } //switch
 
-  //UPDATE and DISPLAY object
-  JSONme[0].money = intMoney;
-  JSONme[0].happiness = intHappiness;
-  JSONme[0].daysLeft = intDaysLeft; //rename to days?
-  JSONme[0].daysWorked = intDaysWorked;
-  JSONme[0].travelledDays = intTravelledDays;
-  JSONme[0].travelledDistance = intTravelledDistance;
-  updateElement("meMoney", JSONme[0].money);
-  updateElement("meHappiness", JSONme[0].happiness);
-  updateElement("meDaysLeft", JSONme[0].daysLeft);
-  updateElement("meDaysWorked", JSONme[0].daysWorked);
-  updateElement("meTravelledDays", JSONme[0].travelledDays);
-  updateElement("meTravelledDistance", displayNumbersWithCommas(JSONme[0].travelledDistance));
+  if (strTemp != "") {
+    //Can NOT afford it, so do nothing and warn the user
+    alert(strTemp);
+  } else {
+    //TURN! Can afford it, so make changes
 
-  turnEnd(); //finally do something
+    turnStart(); //before anything, do something
+
+    //UPDATE and DISPLAY object
+    JSONme[0].money = intMoney;
+    JSONme[0].happiness = intHappiness;
+    JSONme[0].daysLeft = intDaysLeft; //rename to days?
+    JSONme[0].daysWorked = intDaysWorked;
+    JSONme[0].travelledDays = intTravelledDays;
+    JSONme[0].travelledDistance = intTravelledDistance;
+    updateElement("meMoney", JSONme[0].money);
+    updateElement("meHappiness", JSONme[0].happiness);
+    updateElement("meDaysLeft", JSONme[0].daysLeft);
+    updateElement("meDaysWorked", JSONme[0].daysWorked);
+    updateElement("meTravelledDays", JSONme[0].travelledDays);
+    updateElement("meTravelledDistance", displayNumbersWithCommas(JSONme[0].travelledDistance));
+
+    turnEnd(); //finally do something
+
+  } //if
+
 
 } //function
 
