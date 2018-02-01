@@ -392,8 +392,9 @@ var JSONdestinations = [
       ,"longitude": 3.7837
       ,"costOfLiving": "50"
       ,"destinationType": "trek"
-      ,"days": "4"
+      ,"days": "1"
       ,"travelledDistance": "69"
+      ,"cost": "500"
       ,"radius": "10"
       ,"fillKey": "destination"
   }    ,{
@@ -403,8 +404,9 @@ var JSONdestinations = [
       ,"longitude": 1.3047
       ,"costOfLiving": "50"
       ,"destinationType": "trek"
-      ,"days": "4"
+      ,"days": "2"
       ,"travelledDistance": "200"
+      ,"cost": "100"
       ,"radius": "10"
       ,"fillKey": "destination"
   }
@@ -415,8 +417,9 @@ var JSONdestinations = [
       ,"longitude": 6.2263
       ,"costOfLiving": "50"
       ,"destinationType": "trek"
-      ,"days": "5"
+      ,"days": "3"
       ,"travelledDistance": "170"
+      ,"cost": "200"
       ,"radius": "10"
       ,"fillKey": "destination"
   }
@@ -427,7 +430,9 @@ var JSONdestinations = [
       ,"longitude": 115.1398
       ,"costOfLiving": "110"
       ,"destinationType": "trek"
+      ,"days": "4"
       ,"travelledDistance": "65"
+      ,"cost": "300"
       ,"radius": "10"
       ,"fillKey": "destination"
   }
@@ -438,7 +443,9 @@ var JSONdestinations = [
       ,"longitude": 110.1735
       ,"costOfLiving": "100"
       ,"destinationType": "trek"
+      ,"days": "5"
       ,"travelledDistance": "90"
+      ,"cost": "400"
       ,"radius": "10"
       ,"fillKey": "destination"
   }
@@ -449,7 +456,9 @@ var JSONdestinations = [
       ,"longitude": 74.006
       ,"costOfLiving": "120"
       ,"destinationType": "trek"
+      ,"days": "6"
       ,"travelledDistance": "196"
+      ,"cost": "500"
       ,"radius": "10"
       ,"fillKey": "destination"
   }

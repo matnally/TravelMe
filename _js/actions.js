@@ -8,10 +8,7 @@ function actionSelect(strAction, index) {
 
   var elem = ""; //element to update
 
-  //resets any error styles
-  calcAfford(0, 0, "divActionHappiness");
-  calcAfford(0, 0, "divActionDays");
-  calcAfford(0, 0, "divActionMoney");
+  resetErrorStyles(); //resets any RED error styles (money, happiness, days, etc...)
 
   switch (strAction) {
     case "work":
@@ -36,8 +33,8 @@ function actionSelect(strAction, index) {
     case "trek":
       updateAndDisplayLocationObject(strAction, JSONlocation[0].locationPrevious, JSONlocation[0].locationCurrent, index);
       elem = document.getElementById("trekChoice");
-      intDays = calcTimeTakenToTravel(calcDistance(JSONdestinations[JSONlocation[0].locationCurrent].latitude, JSONdestinations[JSONlocation[0].locationCurrent].longitude, JSONdestinations[elem.options[elem.selectedIndex].value].latitude, JSONdestinations[elem.options[elem.selectedIndex].value].longitude), JSONconfig[0].units);
-      intMoney = calcDistanceCost(calcDistance(JSONdestinations[JSONlocation[0].locationCurrent].latitude, JSONdestinations[JSONlocation[0].locationCurrent].longitude, JSONdestinations[elem.options[elem.selectedIndex].value].latitude, JSONdestinations[elem.options[elem.selectedIndex].value].longitude, JSONconfig[0].units), JSONconfig[0].units);
+      intDays = JSONdestinations[elem.options[elem.selectedIndex].value].days;
+      intMoney = JSONdestinations[elem.options[elem.selectedIndex].value].cost;
       intTravelledDistance = JSONdestinations[elem.options[elem.selectedIndex].value].travelledDistance;
       intHappiness = calHappiness(intDays, intMoney, intTravelledDistance, JSONconfig[0].units);
       calcAfford(JSONme[0].daysLeft, intDays, "divActionDays");
@@ -49,7 +46,7 @@ function actionSelect(strAction, index) {
       intDays = elem.options[elem.selectedIndex].value;
       intMoney = calcMoney(parseInt(intDays), parseInt(JSONdestinations[JSONlocation[0].locationCurrent].costOfLiving));
       intTravelledDistance = JSONdestinations[JSONlocation[0].locationCurrent].travelledDistance; //put before happiness as needs the value
-      intHappiness = -calHappiness(parseInt(intDays), parseInt(calcMoney(intDays,  parseInt(JSONdestinations[JSONlocation[0].locationCurrent].costOfLiving))), parseInt(JSONlocation[0].travelledDistance), JSONconfig[0].units); //adding the - to calHappiness below forces a positive
+      intHappiness = -calHappiness(intDays, calcMoney(intDays,  JSONdestinations[JSONlocation[0].locationCurrent].costOfLiving), JSONlocation[0].travelledDistance, JSONconfig[0].units); //adding the - to calHappiness below forces a positive
       calcAfford(JSONme[0].daysLeft, intDays, "divActionDays");
       calcAfford(JSONme[0].money, intMoney, "divActionMoney");
     break;
@@ -86,11 +83,10 @@ function actionSelectExecute(strAction, index) {
 
   var strTemp = ""; //holds can't afford message
 
-alert("TODO sort out this logic!");
   //do calculations
   switch (strAction) {
     case "work":
-      if (calcAfford(JSONme[0].happiness, -intHappiness, "divActionHappiness") > 0) { //More than 0 so can afford
+      if (calcAfford(JSONme[0].happiness, -intHappiness, "divActionHappiness") >= 0) { //More than 0 so can afford
         updateAndDisplayLocationObject(strAction, "", "", "");
         intMoney = JSONme[0].money + intMoney;
         intTravelledDistance = JSONme[0].travelledDistance + intTravelledDistance;
@@ -103,7 +99,7 @@ alert("TODO sort out this logic!");
       }
     break;
     case "flight":
-      if ((calcAfford(JSONme[0].daysLeft, intDays, "divActionDays") < 0) || (calcAfford(JSONme[0].money, intMoney, "divActionMoney") < 0)) {
+      if ((calcAfford(JSONme[0].daysLeft, intDays, "divActionDays") >= 0) && (calcAfford(JSONme[0].money, intMoney, "divActionMoney") >= 0)) {
         updateAndDisplayLocationObject(strAction, JSONlocation[0].locationCurrent, JSONlocation[0].locationDestination, "");
         trekPopulateLocationChoices();
         intMoney = JSONme[0].money - intMoney;
@@ -117,7 +113,7 @@ alert("TODO sort out this logic!");
       }
     break;
     case "trek":
-    if ((calcAfford(JSONme[0].daysLeft, intDays, "divActionDays") < 0) || (calcAfford(JSONme[0].money, intMoney, "divActionMoney") < 0)) {
+    if ((calcAfford(JSONme[0].daysLeft, intDays, "divActionDays") >= 0) && (calcAfford(JSONme[0].money, intMoney, "divActionMoney") >= 0)) {
       updateAndDisplayLocationObject(strAction, JSONlocation[0].locationCurrent, JSONlocation[0].locationDestination, "");
       intMoney = JSONme[0].money - intMoney;
       intTravelledDistance = JSONme[0].travelledDistance + intTravelledDistance;
@@ -130,7 +126,7 @@ alert("TODO sort out this logic!");
     }
     break;
     case "walkAbout":
-    if ((calcAfford(JSONme[0].daysLeft, intDays, "divActionDays") >= 0) || (calcAfford(JSONme[0].money, intMoney, "divActionMoney") >= 0)) {
+    if ((calcAfford(JSONme[0].daysLeft, intDays, "divActionDays") >= 0) && (calcAfford(JSONme[0].money, intMoney, "divActionMoney") >= 0)) {
       updateAndDisplayLocationObject(strAction, "", "", "");
       intMoney = JSONme[0].money - intMoney;
       intTravelledDistance = JSONme[0].travelledDistance + intTravelledDistance;
@@ -183,7 +179,7 @@ function trekPopulateLocationChoices() {
   var elemTrekSelect = document.getElementById("trekChoice");
   //loop through
   for (var i = 0; i < JSONdestinations.length; i++) {
-    if ((JSONdestinations[i].region == JSONdestinations[JSONlocation[0].locationCurrent].region)&&(JSONdestinations[i].destinationType == "trek")) {
+      if ((JSONdestinations[i].country == JSONdestinations[JSONlocation[0].locationCurrent].country) && (JSONdestinations[i].destinationType == "trek")) {
       elemTrekSelect.options[elemTrekSelect.options.length] = new Option(JSONdestinations[i].name, i);
     } //if
   }//for
@@ -216,9 +212,9 @@ function updateAndDisplayLocationObject(strAction, intPrevious, intCurrent, intD
     case "walkAbout":
     break;
     case "start":
-    //start
-    updateElement("meLocationPrevious", "");
-    updateElement("locationDestinationName", "");
+      //start
+      updateElement("meLocationPrevious", "");
+      updateElement("locationDestinationName", "");
     break;
     default:
       alert("ERROR: actionSelectExecute - Not an recognised action choice! How did you get here?");

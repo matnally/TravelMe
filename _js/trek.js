@@ -56,7 +56,7 @@ function trekButtonShowHide() {
 //    updateElement("trekErrorMessage", "2");
     document.getElementById("butTrek").disabled = false;
   } else {
-    updateElement("trekErrorMessage", "You need to go to your home country of " +JSONdestinations[JSONconfig[0].home].name);
+    updateElement("trekErrorMessage", "You need to go to your home country of " + JSONdestinations[JSONconfig[0].home].name);
     document.getElementById("butTrek").disabled = true;
   } //if
 } //function
