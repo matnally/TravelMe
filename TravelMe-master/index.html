@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>TravelMe</title>
+  <meta charset="utf-8">
+
+  <!-- defaults -->
+  <link rel="stylesheet" href="_css/default.css">
+  <script src="_js/default.js"></script>
+  <script src="_js/jquery.js"></script>
+
+  <!-- JSON -->
+  <script src="_json/config.js"></script>
+  <script src="_json/me.js"></script>
+  <script src="_json/destinations.js"></script>
+  <script src="_json/location.js"></script>
+  <script src="_json/work.js"></script>
+  <script src="_json/events.js"></script>
+  <script src="_json/action.js"></script>
+
+  <!-- modules -->
+  <script src="_js/calc.js"></script>
+  <script src="_js/display.js"></script>
+  <script src="_js/travel.js"></script>
+  <script src="_js/work.js"></script>
+  <script src="_js/event.js"></script>
+  <script src="_js/history.js"></script>
+  <script src="_js/map.js"></script>
+  <script src="_js/trek.js"></script>
+  <script src="_js/walkAbout.js"></script>
+  <script src="_js/actions.js"></script>
+
+  <!-- chance cheat -->
+  <script src="_js/chancejs/chance.min.js"></script>
+
+  <!-- datamaps -->
+  <script src="_js/datamaps/d3.min.js"></script>
+  <script src="_js/datamaps/topojson.js"></script>
+  <script src="_js/datamaps/datamaps.world.hires.min.js"></script>
+
+</head>
+<body>
+
+  <button type="button" onClick="createJSON()">createJSON</button>
+
+  <div class="divTable">
+    <div class="divRow">
+
+      <div class="divCell" style="width:50%;">
+
+        <div id="divDatamaps" style="position: relative; width: 700px; height: 400px;"></div>
+
+      </div><!-- divCell -->
+      <div class="divCell" style="width:50%;">
+
+          <div class="divTable">
+            <div class="divRow">
+                <div class="divCell divRight"><img src="_images/guiHome.png" alt="Current Location"></div><!-- divCell -->
+              <div id="locationCurrentName" class="divCell">DATA</div><!-- divCell -->
+            </div><!-- divRow -->
+            <div class="divRow">
+              <div class="divCell divRight"><img src="_images/guiDestination.png" alt="Destination"> <button id="butTravel" type="button" onClick="actionSelectExecute('flight', '')">Travel</button></div><!-- divCell -->
+              <div id="locationDestinationName" class="divCell">DATA</div><!-- divCell -->
+            </div><!-- divRow -->
+            <div class="divRow">
+              <div class="divCell divRight"><img src="_images/guiPrevious.png" alt="Previous Location"></div><!-- divCell -->
+              <div id="meLocationPrevious" class="divCell">DATA</div><!-- divCell -->
+            </div><!-- divRow -->
+
+            <div class="divRow">
+              <div class="divCell divRight"></div><!-- divCell -->
+              <div class="divCell"></div><!-- divCell -->
+            </div><!-- divRow -->
+
+            <div class="divRow">
+              <div class="divCell divRight"><img src="_images/guiHappiness.png" alt="Happiness"></div><!-- divCell -->
+              <div id="meHappiness" class="divCell">DATA</div><!-- divCell -->
+            </div><!-- divRow -->
+            <div class="divRow">
+              <div class="divCell divRight"><img src="_images/guiMoney.png" alt="Money"></div><!-- divCell -->
+              <div id="meMoney" class="divCell">DATA</div><!-- divCell -->
+            </div><!-- divRow -->
+            <div class="divRow">
+              <div class="divCell divRight"><img src="_images/guiSalary.png" alt="">Salary (per day)
+
+                <select id="workChoice" onChange="actionSelect('work', this.value)">
+                  <option value="0">Please choose</option>
+                  <option value="7">1 Week</option>
+                  <option value="14">2 Weeks</option>
+                  <option value="21">3 Weeks</option>
+                  <option value="28">1 Month</option>
+                  <option value="35">2 Months</option>
+                  <option value="42">3 Months</option>
+                  <option value="49">4 Months</option>
+                  <option value="56">5 Months</option>
+                  <option value="63">6 Months</option>
+                </select>
+                <button id="butWork" type="button" onClick="actionSelectExecute('work', this.value)">Work</button>
+
+              </div><!-- divCell -->
+              <div id="meSalary" class="divCell">DATA</div><!-- divCell -->
+            </div><!-- divRow -->
+            <div class="divRow">
+              <div class="divCell divRight"><img src="_images/guiDaysWorked.png" alt="Days worked"></div><!-- divCell -->
+              <div id="meDaysWorked" class="divCell">DATA</div><!-- divCell -->
+            </div><!-- divRow -->
+            <div class="divRow">
+              <div class="divCell divRight"><img src="_images/guiHolidays.png" alt="Hoilday days"></div><!-- divCell -->
+              <div id="meDaysLeft" class="divCell">DATA</div><!-- divCell -->
+            </div><!-- divRow -->
+
+            <div class="divRow">
+              <div class="divCell divRight"></div><!-- divCell -->
+              <div class="divCell"></div><!-- divCell -->
+            </div><!-- divRow -->
+
+            <div class="divRow">
+              <div class="divCell divRight">
+                <select id="walkAboutChoice" onChange="actionSelect('walkAbout', this.value)">
+                  <option value="0">Please choose</option>
+                  <option value="1">1 day</option>
+                  <option value="2">2 days</option>
+                  <option value="3">3 days</option>
+                  <option value="4">4 days</option>
+                  <option value="5">5 days</option>
+                  <option value="6">6 days</option>
+                  <option value="7">1 Week</option>
+                  <option value="14">2 Weeks</option>
+                  <option value="21">3 Weeks</option>
+                  <option value="28">1 Month</option>
+                  <option value="35">2 Months</option>
+                  <option value="42">3 Months</option>
+                  <option value="49">4 Months</option>
+                  <option value="56">5 Months</option>
+                  <option value="63">6 Months</option>
+                </select>
+                <button id="butWalkAbout" type="button" onClick="actionSelectExecute('walkAbout', this.value)">Travel around</button>
+              </div><!-- divCell -->
+              <div class="divCell">
+                <select id="trekChoice" onChange="actionSelect('trek', this.value)">
+                  <!-- will populate dynamically with Treks for Region -->
+                </select>
+                <button id="butTrek" type="button" onClick="actionSelectExecute('trek', this.value)">Trek</button>
+              </div><!-- divCell -->
+            </div><!-- divRow -->
+
+            <div class="divRow">
+              <div class="divCell divRight"><img src="_images/guiDistanceTravelled.png" alt="Distance Travelled"></div><!-- divCell -->
+              <div id="meTravelledDistance" class="divCell">DATA</div><!-- divCell -->
+            </div><!-- divRow -->
+            <div class="divRow">
+              <div class="divCell divRight"><img src="_images/guiDaysTravelled.png" alt="Days Travelled"></div><!-- divCell -->
+              <div id="meTravelledDays" class="divCell">DATA</div><!-- divCell -->
+            </div><!-- divRow -->
+          </div><!-- divTable -->
+
+          <br>
+
+          <div id="actionTable" class="divTable">
+              <div class="divRow">
+              <div class="divCell divRight"><img src="_images/guiDaysTravelled.png" alt="Days"></div><!-- divCell -->
+              <div id="divActionDays" class="divCell">DATA</div><!-- divCell -->
+              <div class="divCell divRight"><img src="_images/guiMoney.png" alt="Cost / Wages"></div><!-- divCell -->
+              <div id="divActionMoney" class="divCell">DATA</div><!-- divCell -->
+              <div class="divCell divRight"><img src="_images/guiHappiness.png" alt="Happiness"></div><!-- divCell -->
+              <div id="divActionHappiness" class="divCell">DATA</div><!-- divCell -->
+              <div class="divCell divRight"><img src="_images/guiDistanceTravelled.png" alt="Distance Travelled"></div><!-- divCell -->
+              <div id="divActionTravelledDistance" class="divCell">DATA</div><!-- divCell -->
+            </div><!-- divRow -->
+          </div><!-- divTable -->
+
+      </div><!-- divCell -->
+    </div><!-- divRow -->
+
+  </div><!-- divTable  -->
+
+
+  <h2>Potential Turn</h2>
+  <textarea id="elemTurnDetails"></textarea>
+
+  <h2>History</h2>
+  <textarea id="elemHistory"></textarea>
+
+
+  <script>
+    $(document).ready(function() {
+      initStart(); //init
+    });
+  </script>
+
+</body>
+</html>
