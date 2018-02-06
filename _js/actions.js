@@ -190,12 +190,14 @@ function trekPopulateLocationChoices() {
 
 //UPDATE and DISPLAY object
 function updateAndDisplayLocationObject(strAction, intPrevious, intCurrent, intDestination) {
+
   if (intPrevious != "")
     JSONlocation[0].locationPrevious = intPrevious;
   if (intCurrent != "")
   JSONlocation[0].locationCurrent = intCurrent;
   if (intDestination != "")
     JSONlocation[0].locationDestination = intDestination;
+
   updateElement("meLocationPrevious", JSONdestinations[JSONlocation[0].locationPrevious].name);
   updateElement("locationCurrentName", JSONdestinations[JSONlocation[0].locationCurrent].name);
   updateElement("locationDestinationName", JSONdestinations[JSONlocation[0].locationDestination].name);

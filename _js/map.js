@@ -116,7 +116,8 @@ map.svg.selectAll('.datamaps-bubble').on('click', function(e,data) {
     m[JSONdestinations[intIClickedOn].country] = "#ccc"; //reset
 
   if ((intIClickedOn!="")&&(JSONdestinations[intIClickedOn].fillKey == "visited"))  //or visited!
-   m[JSONdestinations[intIClickedOn].country] = 'blue';
+  m[JSONdestinations[intIClickedOn].country] = "#ccc"; //reset
+//   m[JSONdestinations[intIClickedOn].country] = 'blue';
 
   intIClickedOn = JSONlocation[0].locationDestination;
 
@@ -181,7 +182,7 @@ function updateMap() {
 function updateMapCurrentLocation() {
 
   var mapObject = $("#jvectormap").vectorMap("get", "mapObject");
-      mapObject.clearSelectedMarkers();
+//      mapObject.clearSelectedMarkers(); //IF USE, NO RECORD OF WHERE FLOWN!
       mapObject.markers[JSONlocation[0].locationPrevious].element.setStyle("fill", "RED");
       mapObject.markers[JSONlocation[0].locationPrevious].element.setStyle("stroke", "RED");
       mapObject.markers[JSONlocation[0].locationPrevious].element.setStyle("r", 5);
@@ -244,3 +245,48 @@ var strTemp = "";
 return strTemp;
 
 }
+
+
+
+
+function updateMap() {
+
+  //if (JSONlocation[0].locationCurrent == JSONlocation[0].locationPrevious) { //Current and Previous locations are the same, so have not moved! So don't update map
+  if (JSONdestinations[JSONlocation[0].locationCurrent].destinationType == "trek") {
+    //No need to update the map if is it a trek
+  } else {
+
+    //START MAP UPDATE
+      //START draws arc
+      arcHistory.push({
+          origin: {
+            latitude: JSONdestinations[JSONlocation[0].locationPrevious].latitude
+            ,longitude: JSONdestinations[JSONlocation[0].locationPrevious].longitude
+          },
+          destination: {
+            latitude: JSONdestinations[JSONlocation[0].locationCurrent].latitude
+            ,longitude: JSONdestinations[JSONlocation[0].locationCurrent].longitude
+          }
+      //      ,strokeColor: 'green'
+      //      ,strokeWidth: 2
+      });
+      //  $("#container").datamaps(options);
+      //map.arc(arcCurrentToDestination);
+      var c = Object.assign(arcCurrentToDestination, arcHistory);
+      map.arc(c);
+      //END draws arc
+
+      //START MAP COLOURS
+      var m = {};//GLOBAL
+      m[JSONdestinations[JSONlocation[0].locationCurrent].country] = 'blue';
+      //m[JSONdestinations[JSONlocation[0].locationCurrent].country] = 'green';
+      JSONdestinations[JSONlocation[0].locationCurrent].fillKey = 'visited';
+
+      map.updateChoropleth(m);
+      intIClickedOn="";
+      //END MAP COLOURS
+    //END MAP UPDATE
+
+  } //if
+
+} //function

@@ -3,10 +3,10 @@ function callEvent(index, strType) {
 //  alert(JSONevent["event"][index].eventType.toString());
 
   //get array of events
-  var arrTemp = JSONevent["event"];
+  var arrTemp = JSONevent;
   //loop through events
   for (var i = 0; i < arrTemp.length; i++) {
-    if ((calcEventChance(i) == true) && (JSONevent["event"][i].eventTypeWorkTravel.toString() == strType.toString())) {
+    if ((calcEventChance(i) == true) && (JSONevent[i].eventTypeWorkTravel.toString() == strType.toString())) {
       //event chance happened and TYPE is correct
       executeEvent(i);
     } //if (calcEventChance(arrTemp[i]) == true) {
@@ -19,7 +19,7 @@ function callEvent(index, strType) {
 function calcEventChance(index) {
   // calc changce of event happen
 
-  var strTemp = JSONevent["event"][index].eventType
+  var strTemp = JSONevent[index].eventType
   var intChance = 0;
 
   switch (strTemp) {
@@ -48,14 +48,14 @@ function calcEventChance(index) {
 function executeEvent(index) {
 
   alert(displayEventFactors(index)); //display
-  executeEventFactors(index); //take away
-  displayMeObject(); //displays the user's details
+//  executeEventFactors(index); //take away
+//  displayMeObject(); //displays the user's details
 
 }
 
 function executeEventFactors(index) {
 
-  var objEvent = JSONevent["event"][index];
+  var objEvent = JSONevent[index];
 
   updateHistory("*" + objEvent.name);
 
@@ -84,7 +84,7 @@ function executeFactor(strProperty, intFactor) {
 function displayEventFactors(index) {
   //build up event text
 
-  var objEvent = JSONevent["event"][index];
+  var objEvent = JSONevent[index];
   var strTemp = "";
 
       strTemp += objEvent.name + "\n";
@@ -111,7 +111,7 @@ function displayFactor(strProperty, intFactor) {
   var strTemp = "";
 
   if (intFactor != 0) {
-    strTemp = "Plus or Add : " + intFactor + " to " + strProperty  + "\n";
+    strTemp = "Event Result : " + intFactor + " to " + strProperty  + "\n";
   }
 
   return strTemp;

@@ -60,59 +60,27 @@ function initStart() {
   displayMeObject(); //displays UPDATE? the user's details
   trekPopulateLocationChoices();
   updateHistory("Started in " + JSONdestinations[JSONlocation[0].locationCurrent].name);
-  //updateTurnDetails(""); //???
 }
 function turnStart() {
-  alert("turn started!");
+//  alert("turn started!");
 }
 function turnEnd() {
-//  createMap();
+
+callEvent(JSONlocation[0].locationCurrent, "travel");
+
   updateTurnDetails(""); //???
-//  updateMapCurrentLocation();
   trekPopulateLocationChoices();
   displayMeObject(); //displays the user's details
-  //  travelButtonShowHide(JSONlocation[0].locationCurrent); //if can afford
-
-  //START draws arc
-  arcHistory.push({
-      origin: {
-        latitude: JSONdestinations[JSONlocation[0].locationPrevious].latitude
-        ,longitude: JSONdestinations[JSONlocation[0].locationPrevious].longitude
-      },
-      destination: {
-        latitude: JSONdestinations[JSONlocation[0].locationCurrent].latitude
-        ,longitude: JSONdestinations[JSONlocation[0].locationCurrent].longitude
-      }
-  //      ,strokeColor: 'green'
-  //      ,strokeWidth: 2
-  });
-  //  $("#container").datamaps(options);
-  //map.arc(arcCurrentToDestination);
-  var c = Object.assign(arcCurrentToDestination, arcHistory);
-  map.arc(c);
-  //END draws arc
-
-  //START MAP COLOURS
-  var m = {};//GLOBAL
-  m[JSONdestinations[JSONlocation[0].locationCurrent].country] = 'blue';
-  //m[JSONdestinations[JSONlocation[0].locationCurrent].country] = 'green';
-  JSONdestinations[JSONlocation[0].locationCurrent].fillKey = 'visited';
-
-  map.updateChoropleth(m);
-  intIClickedOn="";
-  //END MAP COLOURS
-
+  updateMap(); //draws lines if applicable
   turnReset();
 
-  alert("turn ended!");
+//  alert("turn ended!");
   // WORK OUT % OF COUNTRY YOU HAVE TREKKED?????
 
 } //function
 function turnReset() {
   $('#workChoice')[0].selectedIndex = 0;
   $('#walkAboutChoice')[0].selectedIndex = 0;
-  //$('#trekChoice')[0].selectedIndex = 0;
-//  document.getElementById("butTravel").disabled = true;
 } //function
 
 function elemHideShow(elemName, strAction) {
