@@ -18,21 +18,26 @@
   <script src="_json/work.js"></script>
   <script src="_json/events.js"></script>
   <script src="_json/action.js"></script>
+  <script src="_json/history.js"></script>
 
   <!-- modules -->
+  <script src="_js/turn.js"></script>
   <script src="_js/calc.js"></script>
   <script src="_js/display.js"></script>
   <script src="_js/travel.js"></script>
   <script src="_js/work.js"></script>
   <script src="_js/event.js"></script>
-  <script src="_js/history.js"></script>
   <script src="_js/map.js"></script>
   <script src="_js/trek.js"></script>
   <script src="_js/walkAbout.js"></script>
   <script src="_js/actions.js"></script>
+  <script src="_js/history.js"></script>
 
   <!-- chance cheat -->
   <script src="_js/chancejs/chance.min.js"></script>
+
+  <!-- sweetalert popups -->
+  <script src="_js/sweetalert/sweetalert2.all.min.js"></script>
 
   <!-- datamaps -->
   <script src="_js/datamaps/d3.min.js"></script>
@@ -42,7 +47,31 @@
 </head>
 <body>
 
-  <button type="button" onClick="createJSON()">createJSON</button>
+
+
+  <img src="_imagesOLD/profile.png" alt="User profile pic">
+  <div class="divTable">
+      <div class="divCell" style="width:50%;">
+        <p>something here</p>
+      </div><!-- divCell -->
+      <div class="divCell" style="width:50%;">
+        <p>something here2</p>
+      </div><!-- divCell -->
+    </div><!-- divRow -->
+
+
+
+
+
+    <div class="divRow">
+      <div class="divCell">
+      </div><!-- divCell -->
+    </div><!-- divRow -->
+  </div><!-- divTable -->
+
+
+
+
 
   <div class="divTable">
     <div class="divRow">
@@ -85,7 +114,7 @@
               <div class="divCell divRight"><img src="_images/guiSalary.png" alt="">Salary (per day)
 
                 <select id="workChoice" onChange="actionSelect('work', this.value)">
-                  <option value="0">Please choose</option>
+                  <!--<option value="0">Please choose</option>-->
                   <option value="7">1 Week</option>
                   <option value="14">2 Weeks</option>
                   <option value="21">3 Weeks</option>
@@ -118,7 +147,7 @@
             <div class="divRow">
               <div class="divCell divRight">
                 <select id="walkAboutChoice" onChange="actionSelect('walkAbout', this.value)">
-                  <option value="0">Please choose</option>
+                  <!--<option value="0">Please choose</option>-->
                   <option value="1">1 day</option>
                   <option value="2">2 days</option>
                   <option value="3">3 days</option>
@@ -175,13 +204,8 @@
 
   </div><!-- divTable  -->
 
-
-  <h2>Potential Turn</h2>
-  <textarea id="elemTurnDetails"></textarea>
-
   <h2>History</h2>
   <textarea id="elemHistory"></textarea>
-
 
   <script>
     $(document).ready(function() {

@@ -45,9 +45,19 @@ function calcEventChance(index) {
 } //function
 
 
+
 function executeEvent(index) {
 
-  alert(displayEventFactors(index)); //display
+
+  swal(JSONevent[index].name, displayEventFactors(index), "warning");
+//swal({ html:true, title:'<i>TITLE</i>', text:'<b>TEXT</b>'});
+  //title, body text, message type
+//  swal(JSONevent[index].name, displayEventFactors(index), "warning");
+
+//  alert(displayEventFactors(index)); //display
+
+
+
 //  executeEventFactors(index); //take away
 //  displayMeObject(); //displays the user's details
 
@@ -57,7 +67,7 @@ function executeEventFactors(index) {
 
   var objEvent = JSONevent[index];
 
-  updateHistory("*" + objEvent.name);
+//  updateHistory("*" + objEvent.name);
 
   executeFactor("happiness", objEvent.happiness);
   executeFactor("money", objEvent.money);

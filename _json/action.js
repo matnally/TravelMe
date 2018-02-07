@@ -4,4 +4,5 @@ var JSONaction = [{
   ,"money"              : 0 //????
   ,"happiness"          : 0 //????
   ,"travelledDistance"  : 0 //????
+  ,"actionType"         : "start"
 }];

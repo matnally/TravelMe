@@ -10,13 +10,13 @@ function createMap() {
     ,fills: {
       country: 'yellow'
       ,destination:'black'
-      ,defaultFill: '#ccc'
+      ,defaultFill: 'white'
       ,chosenDestination: 'yellow'
      } //fills
     ,geographyConfig: {
       highlightOnHover: true,
       highlightFillColor: 'yellow',
-      highlightBorderColor: 'black',
+      highlightBorderColor: 'white',
       highlightBorderWidth: 1,
       highlightBorderOpacity: 1,
 /*
@@ -31,7 +31,7 @@ popupOnHover: true, //disable the popup while hovering
 */
       popupOnHover: true
       ,highlightOnHover: true
-      ,borderColor: '#000'
+      ,borderColor: 'white'
       ,borderWidth: 1
     }, //geographyConfig
     bubblesConfig: {
@@ -252,9 +252,11 @@ return strTemp;
 function updateMap() {
 
   //if (JSONlocation[0].locationCurrent == JSONlocation[0].locationPrevious) { //Current and Previous locations are the same, so have not moved! So don't update map
-  if (JSONdestinations[JSONlocation[0].locationCurrent].destinationType == "trek") {
+//  if (JSONdestinations[JSONlocation[0].locationCurrent].destinationType == "trek") {
     //No need to update the map if is it a trek
-  } else {
+  //} else {
+
+    if (JSONaction[0].actionType == "flight") {
 
     //START MAP UPDATE
       //START draws arc

@@ -53,45 +53,6 @@ document.write(strBubbleJSON);
 
 
 
-
-function initStart() {
-  createMap();
-  updateAndDisplayLocationObject("start", 0, JSONconfig[0].home, 0);
-  displayMeObject(); //displays UPDATE? the user's details
-  trekPopulateLocationChoices();
-  updateHistory("Started in " + JSONdestinations[JSONlocation[0].locationCurrent].name);
-}
-function turnStart() {
-//  alert("turn started!");
-}
-function turnEnd() {
-
-callEvent(JSONlocation[0].locationCurrent, "travel");
-
-  updateTurnDetails(""); //???
-  trekPopulateLocationChoices();
-  displayMeObject(); //displays the user's details
-  updateMap(); //draws lines if applicable
-  turnReset();
-
-//  alert("turn ended!");
-  // WORK OUT % OF COUNTRY YOU HAVE TREKKED?????
-
-} //function
-function turnReset() {
-  $('#workChoice')[0].selectedIndex = 0;
-  $('#walkAboutChoice')[0].selectedIndex = 0;
-} //function
-
-function elemHideShow(elemName, strAction) {
-
-  var elem = document.getElementById(elemName);
-
-  if (strAction == "Show") $(elem).show();
-  else $(elem).hide();
-
-}
-
 function updateElement(elemName, strTemp) {
   //update the element with text
   document.getElementById(elemName).innerHTML = strTemp;

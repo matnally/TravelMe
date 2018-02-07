@@ -59,6 +59,8 @@ function actionSelect(strAction, index) {
   JSONaction[0].money = intMoney;
   JSONaction[0].travelledDistance = intTravelledDistance;
   JSONaction[0].happiness = intHappiness;
+  JSONaction[0].actionType = strAction;
+
   updateElement("divActionDays", JSONaction[0].days);
   updateElement("divActionMoney", JSONconfig[0].currency + displayNumbersWithCommas(JSONaction[0].money));
   updateElement("divActionTravelledDistance", displayNumbersWithCommas(JSONaction[0].travelledDistance) + " " + JSONconfig[0].units);
@@ -147,6 +149,8 @@ function actionSelectExecute(strAction, index) {
     alert(strTemp);
   } else {
     //TURN! Can afford it, so make changes
+
+    JSONaction[0].actionType = strAction; //update what action is being taken
 
     turnStart(); //before anything, do something
 
