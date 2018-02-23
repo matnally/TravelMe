@@ -10,7 +10,7 @@ function createMap() {
     ,fills: {
       country: 'yellow'
       ,destination:'black'
-      ,defaultFill: '#CCC'
+      ,defaultFill: 'white'
       ,chosenDestination: 'PURPLE'
      } //fills
     ,geographyConfig: {
@@ -82,6 +82,13 @@ function createMap() {
 //START BUBBLE CLICK
 map.svg.selectAll('.datamaps-bubble').on('click', function(e,data) {
 //  alert("bubble click");
+
+popupTemplate: function(geography, data) { //this function should just return a string
+  return '<div class="hoverinfo"><strong>' + geography.properties.name + '</strong></div>';
+};
+
+
+
   map.svg.call(d3.behavior.zoom().on("zoom", redraw));
   //console.log(e.name);
   //console.log(data);
