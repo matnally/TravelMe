@@ -10,29 +10,32 @@ function createMap() {
     ,fills: {
       country: 'yellow'
       ,destination:'black'
-      ,defaultFill: 'white'
-      ,chosenDestination: 'yellow'
+      ,defaultFill: '#CCC'
+      ,chosenDestination: 'PURPLE'
      } //fills
     ,geographyConfig: {
       highlightOnHover: true,
-      highlightFillColor: 'yellow',
-      highlightBorderColor: 'white',
+      highlightFillColor: 'red',
+      highlightBorderColor: 'black',
       highlightBorderWidth: 1,
       highlightBorderOpacity: 1,
-/*
-hideAntarctica: true,
-borderWidth: 1,
-borderOpacity: 1,
-borderColor: '#FDFDFD',
-popupTemplate: function(geography, data) { //this function should just return a string
-  return '<div class="hoverinfo"><strong>' + geography.properties.name + '</strong></div>';
-},
-popupOnHover: true, //disable the popup while hovering
-*/
-      popupOnHover: true
-      ,highlightOnHover: true
-      ,borderColor: 'white'
-      ,borderWidth: 1
+      popupOnHover: true,
+      highlightOnHover: true,
+      borderColor: 'white',
+      borderWidth: 1
+
+      /*
+      hideAntarctica: true,
+      borderWidth: 1,
+      borderOpacity: 1,
+      borderColor: '#FDFDFD',
+      popupTemplate: function(geography, data) { //this function should just return a string
+        return '<div class="hoverinfo"><strong>' + geography.properties.name + '</strong></div>';
+      },
+      popupOnHover: true, //disable the popup while hovering
+      */
+
+
     }, //geographyConfig
     bubblesConfig: {
         borderWidth: 2,
