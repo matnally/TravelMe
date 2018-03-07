@@ -1,10 +1,10 @@
 //store of user's data
 var JSONme = [{
 	"name"							: "Me"
-	,"happiness"				: 100
+	,"happiness"				: 0
 	,"money"						: 10000
-	,"salary"						: 100
-	,"daysLeft"					: 25
+	,"salary"						: 50 //per day (£50 x 365 = £18k roughly)
+	,"daysLeft"					: 20
 	,"daysWorked"				: 0
 	,"travelledDistance": 0
 	,"travelledDays"		: 0

@@ -1,6 +1,6 @@
 
 
-var map=[];
+var map = [];
 function createMap() {
 
    map = new Datamap({
@@ -34,7 +34,6 @@ function createMap() {
       },
       popupOnHover: true, //disable the popup while hovering
       */
-
 
     }, //geographyConfig
     bubblesConfig: {
@@ -91,8 +90,23 @@ map.svg.selectAll('.datamaps-bubble').on('click', function(e,data) {
   //apply action function
   actionSelect('flight', data);
 
+
+
   if (JSONlocation[0].locationCurrent != data) {
     //not at current dest!
+
+//setInterval(function() {
+
+//  console.log("here");
+//map.svg.selectAll('.datamaps-arc').remove();
+//map.arc[1].remove();
+  console.log("svg: " + map.svg.selectAll('.datamaps-arc').length);
+  console.log("arc: " + map.arc.length);
+// for (var i=0;i<=map.arc.length;i++) {
+//     console.log(map.arc[i].toString());
+// }
+
+
 
     //START draws arc
     arcCurrentToDestination=[];
@@ -111,6 +125,7 @@ map.svg.selectAll('.datamaps-bubble').on('click', function(e,data) {
     var c = Object.assign(arcHistory,arcCurrentToDestination); //ORDER OF PARAMS VERY IMPORTANT!
     map.arc(c);
     //END draws arc
+//}, 2000); //setInterval
 
   } else {
     alert("Current location");

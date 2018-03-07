@@ -1,6 +1,9 @@
 
 function actionSelect(strAction, index) {
 
+  //immediately set the actionType as it is used in calHappiness
+  JSONaction[0].actionType = strAction;
+
   var intDays = 0;
   var intMoney = 0;
   var intTravelledDistance = 0;

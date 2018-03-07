@@ -99,6 +99,25 @@ function calHappiness(intDays, intCost, intDistance, strUnit) {
 
   intResult = Math.ceil((((d - c) * z) * o) / f).toFixed(0);
 
+
+
+console.log("****************************");
+console.log("intDays: " + intDays);
+console.log("intCost: " + intCost);
+console.log("intDistance: " + intDistance);
+console.log("strUnit: " + strUnit);
+console.log("intResult / Happiness: " + intResult);
+console.log("intResult / Happiness (without Factor): " + Math.ceil((((d - c) * z) * o)).toFixed(0));
+//console.log("intResult / Happiness (after x10 because < 1): " + intResult);
+//alert(JSONaction[0].actionType);
+if (JSONaction[0].actionType == "trek") {
+  intResult = Math.abs(intResult);
+  if (intResult < 10) intResult = intResult * 10;
+  console.log("intResult / Happiness (trek workaround): " + intResult);
+}
+
+
+
   return intResult;
 
 }

@@ -3,6 +3,7 @@ var intDays = 0;
 var intMoney = 0;
 var intTravelledDistance = 0;
 var intHappiness = 0;
+/*
 QUnit.test("Combobox - Trek calc Happiness", function( assert ) {
   for (var i=0; i<$("#trekChoice option").length;i++) {
     elem = document.getElementById("trekChoice");
@@ -33,3 +34,4 @@ QUnit.test("Combobox - workChoice calc Happiness", function( assert ) {
     assert.gt(parseInt(intHappiness), 1, "WORK for " + intDays + " calc Happiness is greater than 1!");
   } //for
 });
+*/

@@ -8,6 +8,8 @@ function initStart() {
   updateHistoryJSON();
   updateHistoryDisplay();
 
+  displayOpeningMessage();
+
 }
 function turnStart() {
 
