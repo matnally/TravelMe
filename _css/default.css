@@ -1,45 +1,30 @@
+/* START CORE ELEMENTS */
 * {
-     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-     margin:0;
-     padding: 0;
- }
- body {
-   background-color: #fff;
- }
+  font-family : "Inconsolata", monospace;
+  /* margin      : 0;
+  padding     : 0; */
+}
+body {
+  background-color: #fff;
+}
+/* END CORE ELEMENTS */
 
-/************ END OF DEFAULT STYLES ************/
+/* START MAIN ELEMENTS */
+img {
+}
+/* END MAIN ELEMENTS */
 
+/* START TABLES */
+.divTableWrapper {
+  border: 1px #CCC solid;
+}
 .divTable {
   display: table;
-  width: 100%;
-
 }
 .divRow {
   display: table-row;
 }
 .divCell {
-  vertical-align: top;
-  border: 1px #CCC solid;
-  display: table-cell;
-  padding: 5px;
+  display       : table-cell;
 }
-.divRight {
-  text-align: right;
-}
-
-#elemHistory, #elemTurnDetails {
-  width: 100%;
-  height: 200px;
-}
-
-.errorMessage {
-  color: red;
-}
-
-
-
-.didItWork {
-  color: red !important;
-  background-color: green !important;
-  width: 300px !important;
-}
+/* END TABLES */
