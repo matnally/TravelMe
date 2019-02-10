@@ -8,9 +8,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- DEFAULTS -->
-  <link rel="stylesheet" href="_css/default.css">
   <script src="_js/default.js"></script>
-  <script src="_js/jquery.min.js"></script>
+  <link rel="stylesheet" href="_css/default.css">
+
+  <!-- JQUERY -->
+  <script src="_js/jquery.js"></script>
+  <script src="_js/jquery-ui.js"></script>
+  <link rel="stylesheet" href="_css/jquery-ui.css">
 
   <!-- LOGIC -->
   <script src="_js/designation.js"></script>
@@ -22,6 +26,8 @@
   <script src="_js/map.js"></script>
   <script src="_js/job.js"></script>
   <script src="_js/player.js"></script>
+  <script src="_js/travel.js"></script>
+  <script src="_js/work.js"></script>
 
   <!-- JSON -->
   <script src="_json/config.js"></script>
@@ -41,30 +47,117 @@
 </head>
 <body>
 
-  <template class="template???">
-    <div class="divTableWrapper">
+  <section id="secSettings">
+    <div class="divTable">
+      <div class="divRow">
+        <div class="divCell textRight"><p>Currency</p></div> <!-- divCell -->
+        <div class="divCell"><span id="spnSelCurrency"></span></div> <!-- divCell -->
+      </div> <!-- divRow -->
+      <div class="divRow">
+        <div class="divCell textRight"><p>Measure</p></div> <!-- divCell -->
+        <div class="divCell"><span id="spnSelMeasure"></span></div> <!-- divCell -->
+      </div> <!-- divRow -->
+      <div class="divRow">
+        <div class="divCell textRight"><p>Days</p></div> <!-- divCell -->
+        <div class="divCell"><span id="spnSelDays"></span></div> <!-- divCell -->
+      </div> <!-- divRow -->
+    </div> <!-- divTable -->
+    <button onClick="gameStart();">Start Game</button>
+  </section>
 
-     <div class="divTable">
-       <div class="divRow">
-         <div class="divCell"></div> <!-- divCell -->
-       </div> <!-- divRow -->
-       <div class="divRow">
-         <div class="divCell"></div> <!-- divCell -->
-       </div> <!-- divRow -->
-     </div> <!-- divTable -->
+  <section id="secGame">
+    <div class="divTable">
+      <div class="divRow">
+        <div class="divCell">
+          <!-- map cell -->
 
-    </div> <!-- divTableWrapper -->
-  </template> <!-- template??? -->
+          <div id="divDatamaps" style="position: relative; width: 600px; height: 350px;"></div>
 
+        </div> <!-- divCell -->
+        <div class="divCell">
+          <!-- stats cell -->
 
+          <div class="divTable">
+            <div class="divRow">
+              <div class="divCell textRight"><p>Money</p></div> <!-- divCell -->
+              <div class="divCell"><p><span id="spnMoney">???</span></p></div> <!-- divCell -->
+            </div> <!-- divRow -->
+            <div class="divRow">
+              <div class="divCell textRight"><p>Happiness</p></div> <!-- divCell -->
+              <div class="divCell"><p><span id="spnHappiness">???</span></p></div> <!-- divCell -->
+            </div> <!-- divRow -->
+            <div class="divRow">
+              <div class="divCell textRight"><p>Days Worked</p></div> <!-- divCell -->
+              <div class="divCell"><p><span id="spnDaysWorked">???</span></p></div> <!-- divCell -->
+            </div> <!-- divRow -->
+            <div class="divRow">
+              <div class="divCell textRight"><p>Distance Travelled</p></div> <!-- divCell -->
+              <div class="divCell"><p><span id="spnDistanceTravelled">???</span></p></div> <!-- divCell -->
+            </div> <!-- divRow -->
+            <div class="divRow">
+              <div class="divCell textRight"></div> <!-- divCell -->
+              <div class="divCell">
+                <p>Day <span id="spnDay">???</span> of <span id="spnDays">???</span></p>
+              </div> <!-- divCell -->
+            </div> <!-- divRow -->
+          </div> <!-- divTable -->
 
+          <div class="divTable">
+            <div class="divRow">
+              <div class="divCell textRight"><p>Luxury</p></div> <!-- divCell -->
+              <div class="divCell"><span id="spnLuxury"></span></div> <!-- divCell -->
+            </div> <!-- divRow -->
+            <div class="divRow">
+              <div class="divCell textRight"><p>Description</p></div> <!-- divCell -->
+              <div class="divCell"><span id="spnLuxuryDescription"></span></div> <!-- divCell -->
+            </div> <!-- divRow -->
+            <div class="divRow">
+              <div class="divCell textRight"><p>Cost</p></div> <!-- divCell -->
+              <div class="divCell"><span id="spnLuxuryCost"></span></div> <!-- divCell -->
+            </div> <!-- divRow -->
+            <div class="divRow">
+              <div class="divCell textRight"><p>Happiness</p></div> <!-- divCell -->
+              <div class="divCell"><span id="spnLuxuryHappiness"></span></div> <!-- divCell -->
+            </div> <!-- divRow -->
+            <div class="divRow">
+              <div class="divCell textRight"></div> <!-- divCell -->
+              <div class="divCell">
+                <button onClick="luxuryBuy(parseInt(document.getElementById('selLuxury').value));">Buy Luxury</button>
+              </div> <!-- divCell -->
+            </div> <!-- divRow -->
+          </div> <!-- divTable -->
 
+          <div class="divTable">
+            <div class="divRow">
+              <div class="divCell textRight"><p>Job</p></div> <!-- divCell -->
+              <div class="divCell"><p><span id="spnJob">???</span></p></div> <!-- divCell -->
+            </div> <!-- divRow -->
+            <div class="divRow">
+              <div class="divCell textRight"></div> <!-- divCell -->
+              <div class="divCell"><p><span id="spnJobDescription">???</span></p></div> <!-- divCell -->
+            </div> <!-- divRow -->
+            <div class="divRow">
+              <div class="divCell textRight"><p>Wage</p></div> <!-- divCell -->
+              <div class="divCell"><p><span id="spnWage">???</span></p></div> <!-- divCell -->
+            </div> <!-- divRow -->
+            <div class="divRow">
+              <div class="divCell textRight"></div> <!-- divCell -->
+              <div class="divCell">
+                <input id="inpWorkDays" type="number" value=1 min=1 max=365>
+              </div> <!-- divCell -->
+            </div> <!-- divRow -->
+            <div class="divRow">
+              <div class="divCell textRight"></div> <!-- divCell -->
+              <div class="divCell">
+                <button onClick="work(parseInt(document.getElementById('inpWorkDays').value));">Work</button>
+              </div> <!-- divCell -->
+            </div> <!-- divRow -->
+          </div> <!-- divTable -->
 
-
-  <button onClick="gameStart();">Start Game</button>
-  <div id="divDatamaps" style="position: relative; width: 700px; height: 400px;"></div>
-
-
+        </div> <!-- divCell -->
+      </div> <!-- divRow -->
+    </div> <!-- divTable -->
+  </section>
 
   <script>
     $(document).ready(function() {

@@ -1,7 +1,7 @@
 
 var JSONgame = [{
-  "currency"  : "£"
-  ,"measure"  : "imperial"
-  ,"day"      : 1
-  ,"days"     : 365
+  "currency"  : ""
+  ,"measure"  : ""
+  ,"day"      : 0
+  ,"days"     : 0
 }];

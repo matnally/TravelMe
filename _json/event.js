@@ -1,17 +1,15 @@
 
 var JSONevent = [
   {
-    "name"          : "Broken!"
-    ,"description"  : "A luxury good needs repairing"
-    ,"cost"         : 0
-    ,"happiness"    : 0
-    ,"days"         : 0
+    "name"          : "Good!"
+    ,"description"  : "dunno text"
+    ,"cost"         : 300
+    ,"happiness"    : 200
   }
   ,{
-    "name"          : "Missed the bus"
+    "name"          : "Bad!"
     ,"description"  : "You have missed your bus"
     ,"cost"         : 50
     ,"happiness"    : -100
-    ,"days"         : 1
   }
 ];
