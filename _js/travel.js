@@ -10,13 +10,25 @@ function travel(intDestination) {
   intTotal = JSONplayer[0].happiness + JSONdestination[intDestination].happiness; //CALC
   JSONplayer[0].happiness = intTotal; //UPDATE
   //DISTANCE TRAVELLED
-  intTotal = JSONplayer[0].distanceTravelled + travCalcDistance(54.97328, -1.61396, JSONdestination[intDestination].latitude, JSONdestination[intDestination].longitude, JSONgame[0].measure); //CALC
+  intTotal = JSONplayer[0].distanceTravelled + travCalcDistance(JSONconfig[0].homeLatitude, JSONconfig[0].homeLongitude, JSONdestination[intDestination].latitude, JSONdestination[intDestination].longitude, JSONgame[0].measure); //CALC
   JSONplayer[0].distanceTravelled = intTotal; //UPDATE
   //DAY / TURN
   intTotal = JSONgame[0].day + JSONdestination[intDestination].days; //CALC
   JSONgame[0].day = intTotal; //UPDATE
 
-  guiCreateDialog("Enjoy the trip", "You travelled to " + JSONdestination[intDestination].name);
+  alert(JSONconfig[0].txtDialogTravelTitle + "<br><br>" + JSONconfig[0].txtDialogTravelDestination
+    + " " + JSONdestination[intDestination].name
+    + "<br>" + JSONdestination[intDestination].description
+    + "<br>" + JSONconfig[0].txtDialogTravelCost + " " + JSONgame[0].currency + defThousandsDelimiter(JSONdestination[intDestination].cost)
+    + "<br>" + JSONconfig[0].txtDialogTravelDistance + " " + travCalcDistance(JSONconfig[0].homeLatitude, JSONconfig[0].homeLongitude, JSONdestination[intDestination].latitude, JSONdestination[intDestination].longitude, JSONgame[0].measure) + " " + JSONgame[0].measure
+  );
+
+  // guiCreateDialog(JSONconfig[0].txtDialogTravelTitle, JSONconfig[0].txtDialogTravelDestination
+  //   + " " + JSONdestination[intDestination].name
+  //   + "<br>" + JSONdestination[intDestination].description
+  //   + "<br>" + JSONconfig[0].txtDialogTravelCost + " " + JSONgame[0].currency + defThousandsDelimiter(JSONdestination[intDestination].cost)
+  //   + "<br>" + JSONconfig[0].txtDialogTravelDistance + " " + travCalcDistance(JSONconfig[0].homeLatitude, JSONconfig[0].homeLongitude, JSONdestination[intDestination].latitude, JSONdestination[intDestination].longitude, JSONgame[0].measure) + " " + JSONgame[0].measure
+  // );
 
   gameTurnEnd();
 

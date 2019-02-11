@@ -10,14 +10,23 @@ function eventCheck() {
 
   if (intRandomChancePercentage <= JSONconfig[0].eventCheckChancePercentage) {
 
-    guiCreateDialog("Event", JSONevent[intEvent].name + " it will cost " + JSONgame[0].currency + defThousandsDelimiter(JSONevent[intEvent].cost) + " and " + defThousandsDelimiter(JSONevent[intEvent].happiness) + " happiness");
-
     //MONEY
     intTotal = (JSONplayer[0].money + JSONevent[intEvent].cost); //CALC
     JSONplayer[0].money = intTotal; //UPDATE
     //HAPPINESS
     intTotal = (JSONplayer[0].happiness + JSONevent[intEvent].happiness); //CALC
     JSONplayer[0].happiness = intTotal; //UPDATE
+
+    alert(JSONconfig[0].txtDialogEventTitle + "<br><br>" + JSONevent[intEvent].name
+      + "<br>" + JSONevent[intEvent].description
+      + "<br>" + JSONconfig[0].txtDialogEventCost + " " + JSONgame[0].currency + defThousandsDelimiter(JSONevent[intEvent].cost)
+      + "<br>" + JSONconfig[0].txtDialogEventHappiness + " " + defThousandsDelimiter(JSONevent[intEvent].happiness)
+    );
+    // guiCreateDialog(JSONconfig[0].txtDialogEventTitle, JSONevent[intEvent].name
+    //   + "<br>" + JSONevent[intEvent].description
+    //   + "<br>" + JSONconfig[0].txtDialogEventCost + " " + JSONgame[0].currency + defThousandsDelimiter(JSONevent[intEvent].cost)
+    //   + "<br>" + JSONconfig[0].txtDialogEventHappiness + " " + defThousandsDelimiter(JSONevent[intEvent].happiness)
+    // );
 
   } //if
 

@@ -16,7 +16,14 @@ function work(intDays) {
   intTotal = JSONgame[0].day + intDays; //CALC
   JSONgame[0].day = intTotal; //UPDATE
 
-  guiCreateDialog("Nice day at work, dear", "You worked " + intDays + " day(s) and earned " + JSONgame[0].currency + defThousandsDelimiter(Math.round(JSONjob[JSONplayer[0].job].wage / 365) * intDays));
+  alert(JSONconfig[0].txtDialogWorkTitle + "<br><br>" + JSONconfig[0].txtDialogWorkCost
+    + " " + JSONgame[0].currency + defThousandsDelimiter(Math.round(JSONjob[JSONplayer[0].job].wage / 365) * intDays)
+    + "<br>" + intDays + " " + JSONconfig[0].txtDialogWorkDays
+  );
+  // guiCreateDialog(JSONconfig[0].txtDialogWorkTitle, JSONconfig[0].txtDialogWorkCost
+  //   + " " + JSONgame[0].currency + defThousandsDelimiter(Math.round(JSONjob[JSONplayer[0].job].wage / 365) * intDays)
+  //   + "<br>" + intDays + " " + JSONconfig[0].txtDialogWorkDays
+  // );
 
   gameTurnEnd();
 

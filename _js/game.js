@@ -28,10 +28,7 @@ function gameStart() {
   plaApplyDefaults();
 
   //update the HTML
-  guiUpdateHTMLPlayer();
-  guiUpdateHTMLStats();
-
-  guiReset();
+  guiUpdateAndReset();
 
   guiSectionShow("#secGame");
 
@@ -55,13 +52,15 @@ function gameTurnEnd() {
   jobPromotionCheck();
 
   //update the HTML
-  guiUpdateHTMLPlayer();
-  guiUpdateHTMLStats();
-
-  guiReset();
-
+  guiUpdateAndReset();
   gameCheckEndGame();
 
+} //function
+
+function guiUpdateAndReset() {
+  guiUpdateHTMLPlayer();
+  guiUpdateHTMLStats();
+  guiReset();
 } //function
 
 function gameCheckEndGame() {

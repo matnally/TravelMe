@@ -93,6 +93,15 @@ function guiCreateHTMLComboBox(tmpArray, strID) {
 
 
 
+
+
+
+
+
+
+
+
+
 function guiCreateDialog(strTitle, strText) {
   return $("<div class='dialog' title='" + strTitle + "'><p>" + strText + "</p></div>")
     .dialog({
@@ -106,6 +115,32 @@ function guiCreateDialog(strTitle, strText) {
               $(this).dialog("close");
             } //click
           } //ok
+        ] //buttons
+    }); //dialog
+} //function
+
+function guiCreateDialogConfirmLuxury(strTitle, strText, intIndex) {
+  $("<div class='dialog' title='" + strTitle + "'><p>" + strText + "</p></div>")
+    .dialog({
+        resizable: false
+        ,modal: true
+        ,buttons: [
+          {
+            text: "Repair"
+            ,icon: "ui-icon-heart"
+            ,click: function() {
+              luxuryRepair(intIndex);
+              $(this).dialog("close");
+            } //click
+          } //Repair
+          ,{
+            text: "Discard"
+            ,icon: "ui-icon-heart"
+            ,click: function() {
+              luxuryDiscard(intIndex);
+              $(this).dialog("close");
+            } //click
+          } //Discard
         ] //buttons
     }); //dialog
 } //function

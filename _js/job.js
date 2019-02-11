@@ -9,6 +9,8 @@ function jobPromotionCheck() {
   if (JSONplayer[0].job < intPercent) {
     //better than current job so promote
     JSONplayer[0].job = intPercent;
+    
+    //TODO:
     alert("You have been promoted to " + JSONjob[JSONplayer[0].job].name);
   }
 
