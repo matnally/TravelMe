@@ -5,31 +5,32 @@ function luxuryBuy(intLuxury) {
 
   if (!isNaN(intLuxury)) {
 
-    //MONEY
-    intTotal = JSONplayer[0].money - JSONluxury[intLuxury].cost; //CALC
-    JSONplayer[0].money = intTotal; //UPDATE
-    //HAPPINESS
-    intTotal = JSONplayer[0].happiness + JSONluxury[intLuxury].happiness; //CALC
-    JSONplayer[0].happiness = intTotal; //UPDATE
+    if (plaCanAfford(JSONluxury[intLuxury].cost)) {
 
-    JSONplayer[0].luxury.push(intLuxury); //add luxury to player
+      //MONEY
+      intTotal = JSONplayer[0].money - JSONluxury[intLuxury].cost; //CALC
+      JSONplayer[0].money = intTotal; //UPDATE
+      //HAPPINESS
+      intTotal = JSONplayer[0].happiness + JSONluxury[intLuxury].happiness; //CALC
+      JSONplayer[0].happiness = intTotal; //UPDATE
 
-    $("#selLuxury option[value="+intLuxury+"]").hide(); //remove from dropdown
+      JSONplayer[0].luxury.push(intLuxury); //add luxury to player
 
-    alert(JSONconfig[0].txtDialogLuxuryTitle + "<br><br>" + JSONluxury[intLuxury].name
-      + "<br>" + JSONluxury[intLuxury].description
-      + "<br>" + JSONconfig[0].txtDialogLuxuryCost + " " + JSONgame[0].currency + defThousandsDelimiter(JSONluxury[intLuxury].cost)
-      + "<br>" + JSONconfig[0].txtDialogLuxuryHappiness + " " + defThousandsDelimiter(JSONluxury[intLuxury].happiness)
-    );
+      $("#selLuxury option[value="+intLuxury+"]").hide(); //remove from dropdown
 
-    // guiCreateDialog(JSONconfig[0].txtDialogLuxuryTitle, JSONluxury[intLuxury].name
-    //   + "<br>" + JSONluxury[intLuxury].description
-    //   + "<br>" + JSONconfig[0].txtDialogLuxuryCost + " " + JSONgame[0].currency + defThousandsDelimiter(JSONluxury[intLuxury].cost)
-    //   + "<br>" + JSONconfig[0].txtDialogLuxuryHappiness + " " + defThousandsDelimiter(JSONluxury[intLuxury].happiness)
-    // );
+      alert(JSONconfig[0].txtDialogLuxuryTitle + "<br><br>" + JSONluxury[intLuxury].name
+        + "<br>" + JSONluxury[intLuxury].description
+        + "<br>" + JSONconfig[0].txtDialogLuxuryCost + " " + JSONgame[0].currency + defThousandsDelimiter(JSONluxury[intLuxury].cost)
+        + "<br>" + JSONconfig[0].txtDialogLuxuryHappiness + " " + defThousandsDelimiter(JSONluxury[intLuxury].happiness)
+      );
 
-    guiUpdateAndReset();
-    gameCheckEndGame();
+      guiUpdateAndReset();
+
+    } else {
+
+      alert(JSONconfig[0].txtDialogLuxuryNotAfford + " " + JSONluxury[intLuxury].name);
+
+    } //if
 
   } //if
 
@@ -53,11 +54,6 @@ function luxuryBrokenCheck() {
           + "<br>" + JSONconfig[0].txtDialogLuxuryBrokenCost + " " + JSONgame[0].currency + defThousandsDelimiter(JSONluxury[intLuxury].cost)
           + "<br>" + JSONconfig[0].txtDialogLuxuryBrokenHappiness + " " + defThousandsDelimiter(JSONluxury[intLuxury].happiness)
     );
-    // guiCreateDialogConfirmLuxury(JSONconfig[0].txtDialogLuxuryBrokenTitle, JSONluxury[intLuxury].name + " " + JSONconfig[0].txtDialogLuxuryBrokenDescription
-    //   + "<br>" + JSONconfig[0].txtDialogLuxuryBrokenCost + " " + JSONgame[0].currency + defThousandsDelimiter(JSONluxury[intLuxury].cost)
-    //   + "<br>" + JSONconfig[0].txtDialogLuxuryBrokenHappiness + " " + defThousandsDelimiter(JSONluxury[intLuxury].happiness)
-    //   ,intLuxury
-    // );
 
     if (boolAsk == true) {
       luxuryRepair(intLuxury);

@@ -1,40 +1,32 @@
 
+var map = []; //global
+
 function mapCreate() {
 
-  var map = new Datamap({
+  map = new Datamap({
     scope: 'world'
     ,projection: 'mercator'
     ,element: document.getElementById('divDatamaps')
     ,fills: {
-      country: 'yellow'
-      ,destination:'black'
-      ,defaultFill: '#ccc'
-      ,chosenDestination: 'yellow'
+      defaultFill: JSONconfig[0].mapCountryBackground
     } //fills
     ,geographyConfig: {
-      highlightFillColor: 'yellow'
-      ,highlightBorderColor: 'black'
-      ,highlightBorderWidth: 1
-      ,highlightBorderOpacity: 1
-      ,popupOnHover: true
+      popupOnHover: true
       ,highlightOnHover: false
-      ,borderColor: '#000'
       ,borderWidth: 1
+      ,borderColor: JSONconfig[0].mapCountryOutline
     } //geographyConfig
     ,bubblesConfig: {
-      borderWidth: 2
-      ,borderOpacity: 1
-      ,borderColor: '#000'
-      ,popupOnHover: true
+      popupOnHover: true
       ,radius: 7
       ,fillOpacity: 0.75
       ,animate: true
+      ,borderWidth: 2
+      ,borderOpacity: 1
+      ,borderColor: JSONconfig[0].mapDestinationBorderColor
       ,highlightOnHover: true
-      ,highlightFillColor: 'yellow'
-      ,highlightBorderColor: 'black'
-      ,highlightBorderWidth: 2
-      ,highlightBorderOpacity: 1
-      ,highlightFillOpacity: 0.85
+      ,highlightFillColor: JSONconfig[0].mapDestinationHover
+      ,highlightBorderColor: JSONconfig[0].mapDestinationBorderColor
       ,exitDelay: 100
       ,popupTemplate: function(geography, data) {
         return '<div class="hoverinfo">'  + '<h1>' + data.name + '</h1>'
@@ -58,24 +50,21 @@ function mapCreate() {
                                           + '</div>';
       } //popupTemplate
     } //bubblesConfig
-  }); //var map = new Datamap({
+  }); //map = new Datamap({
 
   //load bubble data
   map.bubbles(JSONdestination); //variable from JSON file
 
   //bubble callback
   map.svg.selectAll('.datamaps-bubble').on('click', function(e, data) {
-    //updates map with countries visited
-    var m = [];
-    m[JSONdestination[data].country] = "green";
-    map.updateChoropleth(m);
-
     travel(data);
-
   });
 
-
-
-
-
 } //mapCreate
+
+function mapUpdateCountryVisited(intDestination) {
+  //updates map with country visited
+  var m = [];
+  m[JSONdestination[intDestination].country] = JSONconfig[0].mapCountryVisited; //set colour
+  map.updateChoropleth(m);
+} //function

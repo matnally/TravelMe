@@ -32,13 +32,16 @@ function gameStart() {
 
   guiSectionShow("#secGame");
 
-  mapCreate(); //only render if at the end
+  destCreateStats(); //create dynamic stats
+  mapCreate(); //will only render if at the end
 
 } //function
 
 function gameEnd() {
 
-  alert("You failed!");
+  alert(JSONconfig[0].gameEnd + "<br>"
+    + JSONconfig[0].gameDesignation + " " + desigGetDesignation()
+  );
 
 } //function
 

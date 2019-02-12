@@ -27,6 +27,7 @@ img {
   /* border: 1px #CCC solid; */
   display: table-cell;
   vertical-align: top;
+  padding: 5px;
 }
 /* END TABLES */
 

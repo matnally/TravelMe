@@ -22,11 +22,6 @@ function eventCheck() {
       + "<br>" + JSONconfig[0].txtDialogEventCost + " " + JSONgame[0].currency + defThousandsDelimiter(JSONevent[intEvent].cost)
       + "<br>" + JSONconfig[0].txtDialogEventHappiness + " " + defThousandsDelimiter(JSONevent[intEvent].happiness)
     );
-    // guiCreateDialog(JSONconfig[0].txtDialogEventTitle, JSONevent[intEvent].name
-    //   + "<br>" + JSONevent[intEvent].description
-    //   + "<br>" + JSONconfig[0].txtDialogEventCost + " " + JSONgame[0].currency + defThousandsDelimiter(JSONevent[intEvent].cost)
-    //   + "<br>" + JSONconfig[0].txtDialogEventHappiness + " " + defThousandsDelimiter(JSONevent[intEvent].happiness)
-    // );
 
   } //if
 

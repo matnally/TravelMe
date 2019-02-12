@@ -3,8 +3,8 @@
 <head>
 
   <title>TravelMe</title>
-  <meta charset="utf-8">
 
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- DEFAULTS -->
@@ -143,7 +143,7 @@
             <div class="divRow">
               <div class="divCell textRight"></div> <!-- divCell -->
               <div class="divCell">
-                <input id="inpWorkDays" type="number" value=1 min=1 max=365>
+                <input id="inpWorkDays" type="number" value=1 min=1 max=365 onChange="wokCheckMax(this.value);" onkeypress="wokCheckMax(this.value)">
               </div> <!-- divCell -->
             </div> <!-- divRow -->
             <div class="divRow">

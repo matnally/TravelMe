@@ -3,34 +3,37 @@ function travel(intDestination) {
 
   var intTotal = 0;
 
-  //MONEY
-  intTotal = JSONplayer[0].money - JSONdestination[intDestination].cost; //CALC
-  JSONplayer[0].money = intTotal; //UPDATE
-  //HAPPINESS
-  intTotal = JSONplayer[0].happiness + JSONdestination[intDestination].happiness; //CALC
-  JSONplayer[0].happiness = intTotal; //UPDATE
-  //DISTANCE TRAVELLED
-  intTotal = JSONplayer[0].distanceTravelled + travCalcDistance(JSONconfig[0].homeLatitude, JSONconfig[0].homeLongitude, JSONdestination[intDestination].latitude, JSONdestination[intDestination].longitude, JSONgame[0].measure); //CALC
-  JSONplayer[0].distanceTravelled = intTotal; //UPDATE
-  //DAY / TURN
-  intTotal = JSONgame[0].day + JSONdestination[intDestination].days; //CALC
-  JSONgame[0].day = intTotal; //UPDATE
+  if (plaCanAfford(JSONdestination[intDestination].cost)) {
 
-  alert(JSONconfig[0].txtDialogTravelTitle + "<br><br>" + JSONconfig[0].txtDialogTravelDestination
-    + " " + JSONdestination[intDestination].name
-    + "<br>" + JSONdestination[intDestination].description
-    + "<br>" + JSONconfig[0].txtDialogTravelCost + " " + JSONgame[0].currency + defThousandsDelimiter(JSONdestination[intDestination].cost)
-    + "<br>" + JSONconfig[0].txtDialogTravelDistance + " " + travCalcDistance(JSONconfig[0].homeLatitude, JSONconfig[0].homeLongitude, JSONdestination[intDestination].latitude, JSONdestination[intDestination].longitude, JSONgame[0].measure) + " " + JSONgame[0].measure
-  );
+    //MONEY
+    intTotal = JSONplayer[0].money - JSONdestination[intDestination].cost; //CALC
+    JSONplayer[0].money = intTotal; //UPDATE
+    //HAPPINESS
+    intTotal = JSONplayer[0].happiness + JSONdestination[intDestination].happiness; //CALC
+    JSONplayer[0].happiness = intTotal; //UPDATE
+    //DISTANCE TRAVELLED
+    intTotal = JSONplayer[0].distanceTravelled + travCalcDistance(JSONconfig[0].homeLatitude, JSONconfig[0].homeLongitude, JSONdestination[intDestination].latitude, JSONdestination[intDestination].longitude, JSONgame[0].measure); //CALC
+    JSONplayer[0].distanceTravelled = intTotal; //UPDATE
+    //DAY / TURN
+    intTotal = JSONgame[0].day + JSONdestination[intDestination].days; //CALC
+    JSONgame[0].day = intTotal; //UPDATE
 
-  // guiCreateDialog(JSONconfig[0].txtDialogTravelTitle, JSONconfig[0].txtDialogTravelDestination
-  //   + " " + JSONdestination[intDestination].name
-  //   + "<br>" + JSONdestination[intDestination].description
-  //   + "<br>" + JSONconfig[0].txtDialogTravelCost + " " + JSONgame[0].currency + defThousandsDelimiter(JSONdestination[intDestination].cost)
-  //   + "<br>" + JSONconfig[0].txtDialogTravelDistance + " " + travCalcDistance(JSONconfig[0].homeLatitude, JSONconfig[0].homeLongitude, JSONdestination[intDestination].latitude, JSONdestination[intDestination].longitude, JSONgame[0].measure) + " " + JSONgame[0].measure
-  // );
+    alert(JSONconfig[0].txtDialogTravelTitle + "<br><br>" + JSONconfig[0].txtDialogTravelDestination
+      + " " + JSONdestination[intDestination].name
+      + "<br>" + JSONdestination[intDestination].description
+      + "<br>" + JSONconfig[0].txtDialogTravelCost + " " + JSONgame[0].currency + defThousandsDelimiter(JSONdestination[intDestination].cost)
+      + "<br>" + JSONconfig[0].txtDialogTravelDistance + " " + travCalcDistance(JSONconfig[0].homeLatitude, JSONconfig[0].homeLongitude, JSONdestination[intDestination].latitude, JSONdestination[intDestination].longitude, JSONgame[0].measure) + " " + JSONgame[0].measure
+    );
 
-  gameTurnEnd();
+    mapUpdateCountryVisited(intDestination);
+
+    gameTurnEnd();
+
+  } else {
+
+    alert(JSONconfig[0].txtDialogTravelNotAfford + " " + JSONdestination[intDestination].name);
+
+  } //if
 
 } //function
 

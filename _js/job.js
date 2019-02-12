@@ -8,10 +8,17 @@ function jobPromotionCheck() {
 
   if (JSONplayer[0].job < intPercent) {
     //better than current job so promote
+
+    if (intPercent >= JSONjob.length) //max job if percent over length
+      intPercent = JSONjob.length - 1; //-1 asARRAY starts at 0
+
     JSONplayer[0].job = intPercent;
-    
-    //TODO:
-    alert("You have been promoted to " + JSONjob[JSONplayer[0].job].name);
-  }
+
+    alert(JSONconfig[0].txtPromotionTitle + "<br><br>" + JSONjob[intPercent].name
+      + "<br>" + JSONjob[intPercent].description
+      + "<br>" + JSONconfig[0].txtPromotionWage + " " + JSONgame[0].currency + defThousandsDelimiter(JSONjob[intPercent].wage)
+    );
+
+  } //if
 
 } //function
