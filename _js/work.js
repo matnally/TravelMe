@@ -3,9 +3,7 @@ function work(intDays) {
 
   var intTotal = 0;
 
-  //CHANGE? wokCheckMax
-  if ((JSONgame[0].day + intDays) > JSONgame[0].days) //check so don't go over max days
-    intDays = JSONgame[0].days - JSONgame[0].day; //equal remaining days
+  wokCheckMax(intDays); //check so don't go over max days
 
   //MONEY
   intTotal = (JSONplayer[0].money + (Math.round(JSONjob[JSONplayer[0].job].wage / 365) * intDays)); //CALC
@@ -29,8 +27,19 @@ function work(intDays) {
 
 } //function
 
+
+//////////////////////////
+//// SUPPORTING LOGIC ////
+//////////////////////////
+
 function wokCheckMax(intCurrent) {
-  //TODO:
   if (intCurrent > JSONgame[0].days) //check so don't go over max days
-    document.getElementById("inpWorkDays").value = intCurrent;
+    intCurrent = JSONgame[0].days - JSONgame[0].day;
+  return intCurrent;
 } //function
+
+$(function () { //TODO: Best way of doing this?
+  $('#inpWorkDays').on('keyup keydown keypress onchange', function(e) {
+    $(this).val(wokCheckMax($(this).val()));
+  }); //on
+}); //function

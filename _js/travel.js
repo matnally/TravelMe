@@ -62,6 +62,6 @@ function travCalcDistance(currentLat, currentLong, destinationLat, destinationLo
     intResult = intKilometres;
   } //if
 
-  return parseInt(intResult); //TODO:
+  return parseInt(intResult);
 
 } //function
