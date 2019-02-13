@@ -40,8 +40,9 @@ function gameStart() {
 function gameEnd() {
 
   alert(JSONconfig[0].gameEnd + "<br>"
-    + JSONconfig[0].gameDesignation + " " + desigGetDesignation()
+    + JSONconfig[0].gameResult + " " + desigGetResult()
   );
+
 
 } //function
 

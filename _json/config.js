@@ -20,16 +20,23 @@ var JSONconfig = [{
   ,"mapCountryVisited"          : "#006600"
   ,"mapDestinationHover"        : "#FFFF00"
   ,"mapDestinationBorderColor"  : "#000"
-  //JSON OFFSETS
+
+  //JSON CREATION OFFSETS
+  ////////////////////////////////
+  //DESTINATION
   ,"JSONdestinationCostOffset"      : 14
   ,"JSONdestinationHappinessOffset" : 100
   ,"JSONdestinationDaysOffset"      : 1000
+  //LUXURY
+  ,"JSONluxuryCostOffset"       : 0
+  ,"JSONluxuryCostRepairOffset" : 0
+  ,"JSONluxuryHappinessOffset"  : 0
 
   //TEXT INGAME
   ////////////////////////////////
   //GAME
   ,"gameEnd"          : "You failed"
-  ,"gameDesignation"  : "Your designation is"
+  ,"gameResult"  : "Your result is"
   //WORK
   ,"txtDialogWorkTitle" : "Nice day at work, dear?"
   ,"txtDialogWorkCost"  : "You earned"
