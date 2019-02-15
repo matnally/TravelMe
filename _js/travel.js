@@ -13,7 +13,7 @@ function travel(intDestination) {
     JSONplayer[0].happiness = intTotal; //UPDATE
     //DISTANCE TRAVELLED
     intTotal = JSONplayer[0].distanceTravelled + travCalcDistance(JSONconfig[0].homeLatitude, JSONconfig[0].homeLongitude, JSONdestination[intDestination].latitude, JSONdestination[intDestination].longitude, JSONgame[0].measure); //CALC
-    JSONplayer[0].distanceTravelled = intTotal; //UPDATE
+    JSONplayer[0].distanceTravelled = JSONplayer[0].distanceTravelled + intTotal; //UPDATE
     //DAY / TURN
     intTotal = JSONgame[0].day + JSONdestination[intDestination].days; //CALC
     JSONgame[0].day = intTotal; //UPDATE

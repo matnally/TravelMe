@@ -4,6 +4,8 @@ var JSONconfig = [{
   //SETTINGS
   "currency"          : ["&#163;","&#36;","&#128;","&#165;","&#162;","&#8355;","&#8356;","&#8359;","&#x20B9;","&#8361;","&#8372;","&#8367;","&#8366;","&#8368;","&#8370;","&#8369;","&#8371;","&#8373;","&#8365;","&#8362;","&#8363;"]
   ,"measure"          : ["Imperial (Miles)", "Metric (Kilometres)"]
+  ,"difficulty"       : ["Easy", "Normal", "Hard", "Real Life"]
+  ,"difficultyOffset" : [10, 1, 0.5, 0.25]
   ,"moneyNormal"      : 1000
   ,"happinessNormal"  : 100
   ,"days"             : [365,730,1095,1460]
@@ -15,8 +17,10 @@ var JSONconfig = [{
   ,"homeLatitude"   : 54.97328
   ,"homeLongitude"  : -1.61396
   //MAP
-  ,"mapCountryOutline"          : "#000"
-  ,"mapCountryBackground"       : "#CCC"
+  ,"mapCountryOutline"          : "#FFF"
+  ,"mapCountryBackground"       : "#FFF"
+  // ,"mapCountryOutline"          : "#000"
+  // ,"mapCountryBackground"       : "#CCC"
   ,"mapCountryVisited"          : "#006600"
   ,"mapDestinationHover"        : "#FFFF00"
   ,"mapDestinationBorderColor"  : "#000"
@@ -28,9 +32,11 @@ var JSONconfig = [{
   ,"JSONdestinationHappinessOffset" : 100
   ,"JSONdestinationDaysOffset"      : 1000
   //LUXURY
-  ,"JSONluxuryCostOffset"       : 0
-  ,"JSONluxuryCostRepairOffset" : 0
-  ,"JSONluxuryHappinessOffset"  : 0
+  ,"JSONluxuryBaseValueMin"        : 500
+  ,"JSONluxuryBaseValueMax"        : 10000
+  ,"JSONluxuryCostOffset"       : 1
+  ,"JSONluxuryCostRepairOffset" : 2
+  ,"JSONluxuryHappinessOffset"  : 3
 
   //TEXT INGAME
   ////////////////////////////////

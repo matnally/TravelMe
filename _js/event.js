@@ -4,11 +4,19 @@ function eventCheck() {
   var intRandomChancePercentage = 0;
   var intEvent = 0;
   var intTotal = 0;
+  var strType = "";
 
   intRandomChancePercentage = Math.random() * 100;
-  intEvent = Math.floor(Math.random() * (JSONevent.length - 1) + 0); //choose a random event
 
   if (intRandomChancePercentage <= JSONconfig[0].eventCheckChancePercentage) {
+
+    //get appropiate event type
+    strType = eventGetEventType();
+    do {
+      //get an event related to the chosen event type
+      intEvent = eventGetEventRandom();
+    } //do
+    while (JSONevent[intEvent].type == strType);
 
     //MONEY
     intTotal = (JSONplayer[0].money + JSONevent[intEvent].cost); //CALC
@@ -24,5 +32,24 @@ function eventCheck() {
     );
 
   } //if
+
+} //function
+
+
+//////////////////////////
+//// SUPPORTING LOGIC ////
+//////////////////////////
+
+function eventGetEventRandom() {
+  return Math.floor(Math.random() * (JSONevent.length - 1) + 0); //choose a random event
+} //function
+
+function eventGetEventType() {
+  //IF WORK / TRAVEL A LOT, MAKE EVENT RELEVENT (breakdown, stress, tropical disease)
+
+  // JSONplayer[0].distanceTravelled
+  // JSONplayer[0].destination.length
+  // JSONplayer[0].luxury.length
+  return strType = "work";
 
 } //function

@@ -5,6 +5,9 @@ function gameInit() {
   defUpdateElement("spnSelCurrency", guiCreateHTMLComboBoxSettings(JSONconfig[0].currency, "selCurrency"));
   defUpdateElement("spnSelMeasure", guiCreateHTMLComboBoxSettings(JSONconfig[0].measure, "selMeasure"));
   defUpdateElement("spnSelDays", guiCreateHTMLComboBoxSettings(JSONconfig[0].days, "selDays"));
+  defUpdateElement("spnSelDifficulty", guiCreateHTMLComboBoxSettings(JSONconfig[0].difficulty, "selDifficulty"));
+
+  $("#selDifficulty [value='1']").attr("selected","selected"); //default to normal option for difficulty
 
   defUpdateElement("spnLuxury", guiCreateHTMLComboBox(JSONluxury, "selLuxury"));
   $('#selLuxury').find('option').sort(function(x, y) {
@@ -32,6 +35,8 @@ function gameStart() {
 
   guiSectionShow("#secGame");
 
+  luxuryCreateStats();
+
   destCreateStats(); //create dynamic stats
   mapCreate(); //will only render if at the end
 
@@ -39,10 +44,10 @@ function gameStart() {
 
 function gameEnd() {
 
+  //TODO: something more substancial
   alert(JSONconfig[0].gameEnd + "<br>"
-    + JSONconfig[0].gameResult + " " + desigGetResult()
+    + JSONconfig[0].gameResult + " " + resGetResult()
   );
-
 
 } //function
 
@@ -85,6 +90,7 @@ function gameCheckEndGame() {
 
 } //function
 
+
 //////////////////////////
 //// SUPPORTING LOGIC ////
 //////////////////////////
@@ -105,7 +111,17 @@ function gamApplyDefaults() {
   tmpElem = document.getElementById("selDays");
   JSONgame[0].days = JSONconfig[0].days[tmpElem[tmpElem.selectedIndex].value];
 
+  tmpElem = document.getElementById("selDifficulty");
+  gameSetDifficultyDefaults(tmpElem.selectedIndex);
+
   //set the max value of the work days input
   document.getElementById("inpWorkDays").max = JSONconfig[0].days[tmpElem[tmpElem.selectedIndex].value];
+
+} //function
+
+function gameSetDifficultyDefaults(intDifficulty) {
+
+  //TODO: work out offsets
+  JSONgame[0].difficultyOffset = JSONconfig[0].difficultyOffset[intDifficulty];
 
 } //function

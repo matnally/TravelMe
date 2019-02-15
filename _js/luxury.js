@@ -90,18 +90,16 @@ function luxuryCreateStats() {
   var intCost = 0;
   var intCostRepair = 0;
   var intHappiness = 0;
-  var intDunno = 0;
+  var intBaseValue = 0;
 
   for (l in JSONluxury) {
 
-    intDunno = 1000000;
+    intBaseValue = Math.floor(Math.random() * (JSONconfig[0].JSONluxuryBaseValueMax) + JSONconfig[0].JSONluxuryBaseValueMin); //get random base value
 
-    intCost = (intDunno / JSONconfig[0].JSONluxuryCostOffset).toFixed(0);
-    intCostRepair = (intDunno / JSONconfig[0].JSONluxuryCostRepairOffset).toFixed(0);
-    intHappiness = (intDunno / JSONconfig[0].JSONluxuryHappinessOffset).toFixed(0);
+    intCost = (intBaseValue / JSONconfig[0].JSONluxuryCostOffset).toFixed(0);
+    intCostRepair = (intBaseValue / JSONconfig[0].JSONluxuryCostRepairOffset).toFixed(0);
+    intHappiness = (intBaseValue / JSONconfig[0].JSONluxuryHappinessOffset).toFixed(0);
 
-    // NAME
-    // DESCRIPTION
     JSONluxury[l].cost = parseInt(intCost);
     JSONluxury[l].costRepair = parseInt(intCostRepair);
     JSONluxury[l].happiness = parseInt(intHappiness);
