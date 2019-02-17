@@ -1,3 +1,4 @@
+
 /* START CORE ELEMENTS */
 * {
   font-family : "Inconsolata", monospace;
@@ -5,12 +6,19 @@
   padding     : 0;
 }
 body {
-  background-color: #fff;
+  background-color: #FFF;
 }
 /* END CORE ELEMENTS */
 
 /* START MAIN ELEMENTS */
 img {
+}
+input {
+  width: 75px;
+}
+button {
+  font-weight: bold;
+  padding: 2px;
 }
 /* END MAIN ELEMENTS */
 
@@ -27,11 +35,24 @@ img {
   /* border: 1px #CCC solid; */
   display: table-cell;
   vertical-align: top;
-  padding: 5px;
+  padding: 2px;
 }
 /* END TABLES */
 
+/* START TEXT */
+.info {
+    font-size: 75%;
+}
 .textRight {
   text-align: right;
   font-weight: bold;
 }
+/* END TEXT */
+
+/* START SECTIONS */
+#secSettings {
+  width: 20%;
+}
+#secGame {
+}
+/* END SECTIONS */

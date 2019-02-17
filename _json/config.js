@@ -2,51 +2,73 @@
 var JSONconfig = [{
 
   //SETTINGS
-  "currency"          : ["&#163;","&#36;","&#128;","&#165;","&#162;","&#8355;","&#8356;","&#8359;","&#x20B9;","&#8361;","&#8372;","&#8367;","&#8366;","&#8368;","&#8370;","&#8369;","&#8371;","&#8373;","&#8365;","&#8362;","&#8363;"]
-  ,"measure"          : ["Imperial (Miles)", "Metric (Kilometres)"]
-  ,"difficulty"       : ["Easy", "Normal", "Hard", "Real Life"]
-  ,"difficultyOffset" : [10, 1, 0.5, 0.25]
-  ,"moneyNormal"      : 1000
-  ,"happinessNormal"  : 100
-  ,"days"             : [365,730,1095,1460]
+  "currency"              : ["&#163;", "&#36;", "&#128;", "&#165;"] //£, $, €, ¥
+  ,"measure"              : ["Miles", "Kilometres"] //imperial, metric
+  ,"difficulty"           : ["Easy", "Normal", "Hard", "Real Life"] //seperate from difficultyOffset for guiCreateHTMLComboBoxSettings
+  ,"difficultyOffset"     : [2, 1, 0.5, 0.25] //easy, normal, hard, real life
+  ,"money"                : 10000 //starting value
+  ,"happiness"            : 100 //starting value
+  ,"days"                 : [365,730,1095,1460]
+  ,"startingDay"          : 0 //what day to begin with
+  ,"homeLocation"         : ["Newcastle upon Tyne", "London"]
+  ,"homeLocationLatLong"  : [ [54.97328,-1.61396], [51.5074,0.1278] ]
+  ,"destinations"         : ["RTW Trip", "Countries", "Capital Cities"]
+  ,"destinationsJSON"     : ["JSONRTWTrip", "JSONcountries", "JSONcapitals"]
+
   //OFFSETS
-  ,"workHappiness"                      : 50 //happiness to take away
-  ,"luxuryBrokenCheckChancePercentage"  : 10 //10% chance
-  ,"eventCheckChancePercentage"         : 20 //20% chance
-  //HOME
-  ,"homeLatitude"   : 54.97328
-  ,"homeLongitude"  : -1.61396
+  ,"workHappiness"                      : -50 //happiness to take away
+  ,"luxuryBrokenCheckChancePercentage"  : 10 //% chance
+  ,"eventCheckChancePercentage"         : 10 //% chance
+  ,"eventGetEventTypeOffsetDestination" : 2 //if (player destinations > (destinations / THIS))
+  ,"eventGetEventTypeOffsetDistance"    : 2 //if (player distance > total distance / THIS)
+
   //MAP
-  ,"mapCountryOutline"          : "#FFF"
-  ,"mapCountryBackground"       : "#FFF"
-  // ,"mapCountryOutline"          : "#000"
-  // ,"mapCountryBackground"       : "#CCC"
+  // ,"mapCountryOutline"          : "#FFF" // AT WORK
+  // ,"mapCountryBackground"       : "#FFF" // AT WORK
+  ,"mapCountryOutline"          : "#000"
+  ,"mapCountryBackground"       : "#CCC"
   ,"mapCountryVisited"          : "#006600"
   ,"mapDestinationHover"        : "#FFFF00"
   ,"mapDestinationBorderColor"  : "#000"
+  ,"mapArcColour"               : "#00F"
 
-  //JSON CREATION OFFSETS
-  ////////////////////////////////
+
+  //START JSON CREATION OFFSETS
+  // NOTE: include and change in gameSetDifficultyDefaults()
   //DESTINATION
   ,"JSONdestinationCostOffset"      : 14
   ,"JSONdestinationHappinessOffset" : 100
   ,"JSONdestinationDaysOffset"      : 1000
   //LUXURY
-  ,"JSONluxuryBaseValueMin"        : 500
-  ,"JSONluxuryBaseValueMax"        : 10000
+  ,"JSONluxuryBaseValueMin"     : 500
+  ,"JSONluxuryBaseValueMax"     : 10000
   ,"JSONluxuryCostOffset"       : 1
   ,"JSONluxuryCostRepairOffset" : 2
   ,"JSONluxuryHappinessOffset"  : 3
+  //EVENT
+  ,"JSONeventBaseValueMin"    : -1000
+  ,"JSONeventBaseValueMax"    : 1000
+  ,"JSONeventCostOffset"      : 1
+  ,"JSONeventHappinessOffset" : 2
+  //END JSON CREATION OFFSETS
+
 
   //TEXT INGAME
   ////////////////////////////////
   //GAME
-  ,"gameEnd"          : "You failed"
-  ,"gameResult"  : "Your result is"
+  ,"gameDayPrefix"        : "Day&nbsp;"
+  ,"gameDaysPrefix"       : "&nbsp;of&nbsp;"
+  ,"gameEnd"              : "You failed"
+  ,"gameResult"           : "Your result is"
+  ,"gameWagePerDay"       : "per day"
+  ,"gameHappinessPerDay"  : "Happiness per day"
   //WORK
-  ,"txtDialogWorkTitle" : "Nice day at work, dear?"
-  ,"txtDialogWorkCost"  : "You earned"
-  ,"txtDialogWorkDays"  : "days worked"
+  ,"txtDialogWorkTitle"               : "Nice day at work, dear?"
+  ,"txtDialogWorkCost"                : "You earned"
+  ,"txtDialogWorkDays"                : "days worked"
+  ,"txtDialogWorkDaysMax"             : "The maximum days you can work is"
+  ,"txtDialogWorkHappiness"           : "Happiness was affected by"
+  ,"txtDialogWorkHappinessNotAfford"  : "You'll be too unhappy if you work this long"
   //EVENT
   ,"txtDialogEventTitle"      : "Event"
   ,"txtDialogEventCost"       : "It cost"
@@ -55,6 +77,7 @@ var JSONconfig = [{
   ,"txtDialogLuxuryTitle"     : "Luxury bought"
   ,"txtDialogLuxuryCost"      : "It cost"
   ,"txtDialogLuxuryHappiness" : "Happiness was increased by"
+  ,"txtLuxurySelectPrompt"    : "Choose A Luxury"
   //LUXURY BROKEN
   ,"txtDialogLuxuryBrokenTitle"       : "Luxury Broken"
   ,"txtDialogLuxuryBrokenDescription" : "has become broken"
@@ -67,6 +90,7 @@ var JSONconfig = [{
   ,"txtDialogTravelCost"        : "It cost"
   ,"txtDialogTravelDistance"    : "You travelled a distance of"
   ,"txtDialogTravelNotAfford"   : "You cannot afford to travel to"
+  ,"txtDialogTravelDays"        : "days taken to travel"
   //PROMOTION
   ,"txtPromotionTitle"  : "You have been promoted"
   ,"txtPromotionWage"   : "Your new wage is"

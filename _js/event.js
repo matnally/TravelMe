@@ -10,13 +10,10 @@ function eventCheck() {
 
   if (intRandomChancePercentage <= JSONconfig[0].eventCheckChancePercentage) {
 
-    //get appropiate event type
-    strType = eventGetEventType();
+    strType = eventGetEventType(); //get appropiate event type
     do {
-      //get an event related to the chosen event type
-      intEvent = eventGetEventRandom();
-    } //do
-    while (JSONevent[intEvent].type == strType);
+      intEvent = eventGetEventRandom(); //get event related to the chosen event type
+    } while (JSONevent[intEvent].type != strType);
 
     //MONEY
     intTotal = (JSONplayer[0].money + JSONevent[intEvent].cost); //CALC
@@ -25,11 +22,13 @@ function eventCheck() {
     intTotal = (JSONplayer[0].happiness + JSONevent[intEvent].happiness); //CALC
     JSONplayer[0].happiness = intTotal; //UPDATE
 
-    alert(JSONconfig[0].txtDialogEventTitle + "<br><br>" + JSONevent[intEvent].name
-      + "<br>" + JSONevent[intEvent].description
-      + "<br>" + JSONconfig[0].txtDialogEventCost + " " + JSONgame[0].currency + defThousandsDelimiter(JSONevent[intEvent].cost)
-      + "<br>" + JSONconfig[0].txtDialogEventHappiness + " " + defThousandsDelimiter(JSONevent[intEvent].happiness)
+    var strTemp = (JSONconfig[0].txtDialogEventTitle
+      + "\n\n" + JSONevent[intEvent].name
+      + "\n" + JSONevent[intEvent].description
+      + "\n\n" + JSONconfig[0].txtDialogEventCost + " " + JSONgame[0].currency + defThousandsDelimiter(JSONevent[intEvent].cost)
+      + "\n" + JSONconfig[0].txtDialogEventHappiness + " " + defThousandsDelimiter(JSONevent[intEvent].happiness)
     );
+    alert( $('<span/>').html(strTemp).text());
 
   } //if
 
@@ -41,15 +40,49 @@ function eventCheck() {
 //////////////////////////
 
 function eventGetEventRandom() {
-  return Math.floor(Math.random() * (JSONevent.length - 1) + 0); //choose a random event
+  return Math.round(Math.random() * (JSONevent.length - 1) + 0); //choose a random event
 } //function
 
 function eventGetEventType() {
-  //IF WORK / TRAVEL A LOT, MAKE EVENT RELEVENT (breakdown, stress, tropical disease)
 
-  // JSONplayer[0].distanceTravelled
-  // JSONplayer[0].destination.length
-  // JSONplayer[0].luxury.length
-  return strType = "work";
+  var strType = "";
+
+  switch (true) {
+    case (JSONplayer[0].destination.length  > (JSONdestination.length / JSONconfig[0].eventGetEventTypeOffsetDestination)):
+      strType = "work";
+    break;
+    case (JSONplayer[0].distanceTravelled  > (travCalcDistanceTotal() / JSONconfig[0].eventGetEventTypeOffsetDistance)):
+      strType = "travel";
+    break;
+    case ((JSONplayer[0].distanceTravelled  > (travCalcDistanceTotal() / JSONconfig[0].eventGetEventTypeOffsetDistance)) && (JSONplayer[0].destination.length  > (JSONdestination.length / JSONconfig[0].eventGetEventTypeOffsetDestination))):
+      //both
+      strType = "";
+    break;
+    default:
+      strType = "";
+  } //switch
+
+  return strType;
+
+} //function
+
+function eventCreateStats() {
+
+  var intCost = 0;
+  var intHappiness = 0;
+  var intBaseValue = 0;
+
+  for (e in JSONevent) {
+
+    intBaseValue = Math.floor(Math.random() * (JSONconfig[0].JSONeventBaseValueMax) + JSONconfig[0].JSONeventBaseValueMin); //get random base value
+
+    intCost = (intBaseValue / JSONconfig[0].JSONeventCostOffset).toFixed(0);
+    intHappiness = (intBaseValue / JSONconfig[0].JSONeventHappinessOffset).toFixed(0);
+
+    JSONevent[e].name = JSONevent[e].name + " " + e;
+    JSONevent[e].cost = parseInt(intCost);
+    JSONevent[e].happiness = parseInt(intHappiness);
+
+  } //for
 
 } //function

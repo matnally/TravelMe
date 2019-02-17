@@ -14,10 +14,12 @@ function jobPromotionCheck() {
 
     JSONplayer[0].job = intPercent;
 
-    alert(JSONconfig[0].txtPromotionTitle + "<br><br>" + JSONjob[intPercent].name
-      + "<br>" + JSONjob[intPercent].description
-      + "<br>" + JSONconfig[0].txtPromotionWage + " " + JSONgame[0].currency + defThousandsDelimiter(JSONjob[intPercent].wage)
+    var strTemp = (JSONconfig[0].txtPromotionTitle
+      + "\n\n" + JSONjob[intPercent].name
+      + "\n" + JSONjob[intPercent].description
+      + "\n\n" + JSONconfig[0].txtPromotionWage + " " + JSONgame[0].currency + defThousandsDelimiter(JSONjob[intPercent].wage)
     );
+    alert( $('<span/>').html(strTemp).text());
 
   } //if
 

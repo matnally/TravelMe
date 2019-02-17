@@ -1,25 +1,34 @@
 
-function guiUpdateHTMLPlayer() {
+function guiUpdateAndReset() {
+  guiUpdateHTMLPlayer();
+  guiUpdateHTMLStats();
+  guiReset();
+} //function
 
+function guiUpdateHTMLPlayer() {
   defUpdateElement("spnMoney", JSONgame[0].currency + defThousandsDelimiter(JSONplayer[0].money));
   defUpdateElement("spnHappiness", defThousandsDelimiter(JSONplayer[0].happiness));
   defUpdateElement("spnDaysWorked", defThousandsDelimiter(JSONplayer[0].daysWorked));
   defUpdateElement("spnJob", JSONjob[JSONplayer[0].job].name);
   defUpdateElement("spnJobDescription", JSONjob[JSONplayer[0].job].description);
-  defUpdateElement("spnWage", JSONgame[0].currency + defThousandsDelimiter(JSONjob[JSONplayer[0].job].wage) + " (" + JSONgame[0].currency + (JSONjob[JSONplayer[0].job].wage/365).toFixed(0) + " per day worked)");
+  defUpdateElement("spnWage", JSONgame[0].currency + defThousandsDelimiter(JSONjob[JSONplayer[0].job].wage));
+  defUpdateElement("spnWagePerDay", JSONgame[0].currency + defThousandsDelimiter((JSONjob[JSONplayer[0].job].wage/365).toFixed(0)) + " " + JSONconfig[0].gameWagePerDay);
+  defUpdateElement("spnHappinessPerDay", JSONgame[0].workHappiness + " " +  JSONconfig[0].gameHappinessPerDay);
   defUpdateElement("spnDistanceTravelled", defThousandsDelimiter(JSONplayer[0].distanceTravelled) + " " + JSONgame[0].measure);
+} //function
 
+function guiReset() {
+  document.getElementById("inpWorkDays").value = 1;
+  document.getElementById("selLuxury").value = "DEFAULT";
+  guiUpdateHTMLLuxuryReset();
 } //function
 
 function guiUpdateHTMLStats() {
-
   defUpdateElement("spnDay", defThousandsDelimiter(JSONgame[0].day));
   defUpdateElement("spnDays", defThousandsDelimiter(JSONgame[0].days));
-
 } //function
 
 function guiUpdateHTMLLuxury(intLuxury) {
-
   if (!isNaN(intLuxury)) {
     defUpdateElement("spnLuxuryDescription", JSONluxury[intLuxury].description);
     defUpdateElement("spnLuxuryCost", JSONgame[0].currency + defThousandsDelimiter(JSONluxury[intLuxury].cost));
@@ -27,24 +36,12 @@ function guiUpdateHTMLLuxury(intLuxury) {
   } else {
     guiUpdateHTMLLuxuryReset();
   } //if
-
 } //function
 
 function guiUpdateHTMLLuxuryReset() {
-
   defUpdateElement("spnLuxuryDescription", "");
   defUpdateElement("spnLuxuryCost", "");
   defUpdateElement("spnLuxuryHappiness", "");
-
-} //function
-
-function guiReset() {
-
-  document.getElementById("inpWorkDays").value = 1;
-
-  document.getElementById("selLuxury").value = "DEFAULT";
-  guiUpdateHTMLLuxuryReset();
-
 } //function
 
 
@@ -58,6 +55,7 @@ function guiSectionHide() {
     $(tmpElems[i]).hide();
   } //for
 } //function
+
 function guiSectionShow(tmpElem) {
   guiSectionHide();
   $(tmpElem).show();
@@ -91,17 +89,11 @@ function guiCreateHTMLComboBox(tmpArray, strID) {
 
 
 
+/////////////////////////////////
+//// UNUSED AS DIALOG STACKS ////
+/////////////////////////////////
 
-
-
-
-
-
-
-
-
-
-
+// JQUERY UI
 function guiCreateDialog(strTitle, strText) {
   return $("<div class='dialog' title='" + strTitle + "'><p>" + strText + "</p></div>")
     .dialog({

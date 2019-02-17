@@ -5,7 +5,7 @@ function luxuryBuy(intLuxury) {
 
   if (!isNaN(intLuxury)) {
 
-    if (plaCanAfford(JSONluxury[intLuxury].cost)) {
+    if (plaCanAfford(JSONplayer[0].money, JSONluxury[intLuxury].cost)) {
 
       //MONEY
       intTotal = JSONplayer[0].money - JSONluxury[intLuxury].cost; //CALC
@@ -18,11 +18,13 @@ function luxuryBuy(intLuxury) {
 
       $("#selLuxury option[value="+intLuxury+"]").hide(); //remove from dropdown
 
-      alert(JSONconfig[0].txtDialogLuxuryTitle + "<br><br>" + JSONluxury[intLuxury].name
-        + "<br>" + JSONluxury[intLuxury].description
-        + "<br>" + JSONconfig[0].txtDialogLuxuryCost + " " + JSONgame[0].currency + defThousandsDelimiter(JSONluxury[intLuxury].cost)
-        + "<br>" + JSONconfig[0].txtDialogLuxuryHappiness + " " + defThousandsDelimiter(JSONluxury[intLuxury].happiness)
+      var strTemp = (JSONconfig[0].txtDialogLuxuryTitle
+        + "\n\n" + JSONluxury[intLuxury].name
+        + "\n" + JSONluxury[intLuxury].description
+        + "\n\n" + JSONconfig[0].txtDialogLuxuryCost + " " + JSONgame[0].currency + defThousandsDelimiter(JSONluxury[intLuxury].cost)
+        + "\n" + JSONconfig[0].txtDialogLuxuryHappiness + " " + defThousandsDelimiter(JSONluxury[intLuxury].happiness)
       );
+      alert( $('<span/>').html(strTemp).text());
 
       guiUpdateAndReset();
 
@@ -33,35 +35,6 @@ function luxuryBuy(intLuxury) {
     } //if
 
   } //if
-
-} //function
-
-function luxuryBrokenCheck() {
-
-  var intLuxury = 0;
-  var intRandomChancePercentage = 0;
-  var boolAsk = false;
-  var intTotal = 0;
-
-  intRandomChancePercentage = Math.random() * 100;
-  intLuxury = Math.floor(Math.random() * (JSONplayer[0].luxury.length - 1) + 0); //choose a random luxury
-  intLuxury = JSONplayer[0].luxury[intLuxury];
-
-  if (intRandomChancePercentage <= JSONconfig[0].luxuryBrokenCheckChancePercentage) {
-    //met the requirments for broken luxury
-
-    boolAsk = confirm(JSONconfig[0].txtDialogLuxuryBrokenTitle + "<br><br>" +  JSONluxury[intLuxury].name + " " + JSONconfig[0].txtDialogLuxuryBrokenDescription
-          + "<br>" + JSONconfig[0].txtDialogLuxuryBrokenCost + " " + JSONgame[0].currency + defThousandsDelimiter(JSONluxury[intLuxury].cost)
-          + "<br>" + JSONconfig[0].txtDialogLuxuryBrokenHappiness + " " + defThousandsDelimiter(JSONluxury[intLuxury].happiness)
-    );
-
-    if (boolAsk == true) {
-      luxuryRepair(intLuxury);
-    } else {
-      luxuryDiscard(intLuxury);
-    } //if
-
-  } //iif
 
 } //function
 
@@ -83,9 +56,42 @@ function luxuryDiscard(intLuxury) {
 } //function
 
 
+//////////////////////////
+//// SUPPORTING LOGIC ////
+//////////////////////////
 
-//TODO: implement
-function luxuryCreateStats() {
+function luxBrokenCheck() {
+
+  var intLuxury = 0;
+  var intRandomChancePercentage = 0;
+  var boolAsk = false;
+  var intTotal = 0;
+
+  intRandomChancePercentage = Math.random() * 100;
+  intLuxury = Math.floor(Math.random() * (JSONplayer[0].luxury.length - 1) + 0); //choose a random luxury
+  intLuxury = JSONplayer[0].luxury[intLuxury];
+
+  if (intRandomChancePercentage <= JSONconfig[0].luxuryBrokenCheckChancePercentage) {
+    //met the requirments for broken luxury
+
+    var strTemp = (JSONconfig[0].txtDialogLuxuryBrokenTitle
+          + "\n\n" +  JSONluxury[intLuxury].name + " " + JSONconfig[0].txtDialogLuxuryBrokenDescription
+          + "\n\n" + JSONconfig[0].txtDialogLuxuryBrokenCost + " " + JSONgame[0].currency + defThousandsDelimiter(JSONluxury[intLuxury].cost)
+          + "\n\n" + JSONconfig[0].txtDialogLuxuryBrokenHappiness + " " + defThousandsDelimiter(JSONluxury[intLuxury].happiness)
+    );
+    boolAsk = confirm( $('<span/>').html(strTemp).text());
+
+    if (boolAsk == true) {
+      luxuryRepair(intLuxury);
+    } else {
+      luxuryDiscard(intLuxury);
+    } //if
+
+  } //iif
+
+} //function
+
+function luxCreateStats() {
 
   var intCost = 0;
   var intCostRepair = 0;

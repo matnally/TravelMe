@@ -1,24 +1,220 @@
 
 var JSONevent = [
+
+  // NORMAL
   {
-    "name"          : "You are ill"
-    ,"description"  : "You have picked up a tropical disease in your travels"
-    ,"cost"         : 300
-    ,"happiness"    : 200
+    "name"          : "normal event"
+    ,"description"  : "Normal Event description"
+    ,"cost"         : 0
+    ,"happiness"    : 0
+    ,"type"         : ""
+  }
+  ,{
+    "name"          : "normal event"
+    ,"description"  : "Normal Event description"
+    ,"cost"         : 0
+    ,"happiness"    : 0
+    ,"type"         : ""
+  }
+  ,{
+    "name"          : "normal event"
+    ,"description"  : "Normal Event description"
+    ,"cost"         : 0
+    ,"happiness"    : 0
+    ,"type"         : ""
+  }
+  ,{
+    "name"          : "normal event"
+    ,"description"  : "Normal Event description"
+    ,"cost"         : 0
+    ,"happiness"    : 0
+    ,"type"         : ""
+  }
+  ,{
+    "name"          : "normal event"
+    ,"description"  : "Normal Event description"
+    ,"cost"         : 0
+    ,"happiness"    : 0
+    ,"type"         : ""
+  }
+  ,{
+    "name"          : "normal event"
+    ,"description"  : "Normal Event description"
+    ,"cost"         : 0
+    ,"happiness"    : 0
+    ,"type"         : ""
+  }
+  ,{
+    "name"          : "normal event"
+    ,"description"  : "Normal Event description"
+    ,"cost"         : 0
+    ,"happiness"    : 0
+    ,"type"         : ""
+  }
+  ,{
+    "name"          : "normal event"
+    ,"description"  : "Normal Event description"
+    ,"cost"         : 0
+    ,"happiness"    : 0
+    ,"type"         : ""
+  }
+  ,{
+    "name"          : "normal event"
+    ,"description"  : "Normal Event description"
+    ,"cost"         : 0
+    ,"happiness"    : 0
+    ,"type"         : ""
+  }
+  ,{
+    "name"          : "normal event"
+    ,"description"  : "Normal Event description"
+    ,"cost"         : 0
+    ,"happiness"    : 0
+    ,"type"         : ""
+  }
+  
+  // TRAVEL
+  ,{
+    "name"          : "travel event"
+    ,"description"  : "Travel Event description"
+    ,"cost"         : 0
+    ,"happiness"    : 0
     ,"type"         : "travel"
   }
   ,{
-    "name"          : "Stressed"
-    ,"description"  : "You have worked so much you have had a breakdown"
-    ,"cost"         : 50
-    ,"happiness"    : -100
+    "name"          : "travel event"
+    ,"description"  : "Travel Event description"
+    ,"cost"         : 0
+    ,"happiness"    : 0
+    ,"type"         : "travel"
+  }
+  ,{
+    "name"          : "travel event"
+    ,"description"  : "Travel Event description"
+    ,"cost"         : 0
+    ,"happiness"    : 0
+    ,"type"         : "travel"
+  }
+  ,{
+    "name"          : "travel event"
+    ,"description"  : "Travel Event description"
+    ,"cost"         : 0
+    ,"happiness"    : 0
+    ,"type"         : "travel"
+  }
+  ,{
+    "name"          : "travel event"
+    ,"description"  : "Travel Event description"
+    ,"cost"         : 0
+    ,"happiness"    : 0
+    ,"type"         : "travel"
+  }
+  ,{
+    "name"          : "travel event"
+    ,"description"  : "Travel Event description"
+    ,"cost"         : 0
+    ,"happiness"    : 0
+    ,"type"         : "travel"
+  }
+  ,{
+    "name"          : "travel event"
+    ,"description"  : "Travel Event description"
+    ,"cost"         : 0
+    ,"happiness"    : 0
+    ,"type"         : "travel"
+  }
+  ,{
+    "name"          : "travel event"
+    ,"description"  : "Travel Event description"
+    ,"cost"         : 0
+    ,"happiness"    : 0
+    ,"type"         : "travel"
+  }
+  ,{
+    "name"          : "travel event"
+    ,"description"  : "Travel Event description"
+    ,"cost"         : 0
+    ,"happiness"    : 0
+    ,"type"         : "travel"
+  }
+  ,{
+    "name"          : "travel event"
+    ,"description"  : "Travel Event description"
+    ,"cost"         : 0
+    ,"happiness"    : 0
+    ,"type"         : "travel"
+  }
+
+  // WORK
+  ,{
+    "name"          : "work event"
+    ,"description"  : "work Event description"
+    ,"cost"         : 0
+    ,"happiness"    : 0
     ,"type"         : "work"
   }
   ,{
-    "name"          : "Break in"
-    ,"description"  : "Your house has been broken in to"
-    ,"cost"         : 50
-    ,"happiness"    : -100
-    ,"type"         : ""
+    "name"          : "work event"
+    ,"description"  : "work Event description"
+    ,"cost"         : 0
+    ,"happiness"    : 0
+    ,"type"         : "work"
   }
+  ,{
+    "name"          : "work event"
+    ,"description"  : "work Event description"
+    ,"cost"         : 0
+    ,"happiness"    : 0
+    ,"type"         : "work"
+  }
+  ,{
+    "name"          : "work event"
+    ,"description"  : "work Event description"
+    ,"cost"         : 0
+    ,"happiness"    : 0
+    ,"type"         : "work"
+  }
+  ,{
+    "name"          : "work event"
+    ,"description"  : "work Event description"
+    ,"cost"         : 0
+    ,"happiness"    : 0
+    ,"type"         : "work"
+  }
+  ,{
+    "name"          : "work event"
+    ,"description"  : "work Event description"
+    ,"cost"         : 0
+    ,"happiness"    : 0
+    ,"type"         : "work"
+  }
+  ,{
+    "name"          : "work event"
+    ,"description"  : "work Event description"
+    ,"cost"         : 0
+    ,"happiness"    : 0
+    ,"type"         : "work"
+  }
+  ,{
+    "name"          : "work event"
+    ,"description"  : "work Event description"
+    ,"cost"         : 0
+    ,"happiness"    : 0
+    ,"type"         : "work"
+  }
+  ,{
+    "name"          : "work event"
+    ,"description"  : "work Event description"
+    ,"cost"         : 0
+    ,"happiness"    : 0
+    ,"type"         : "work"
+  }
+  ,{
+    "name"          : "work event"
+    ,"description"  : "work Event description"
+    ,"cost"         : 0
+    ,"happiness"    : 0
+    ,"type"         : "work"
+  }
+
 ];
