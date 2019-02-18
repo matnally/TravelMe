@@ -17,7 +17,10 @@ function resGetResult() {
   intDistanceTravelled =JSONplayer[0].distanceTravelled
   intJob = JSONplayer[0].job
 
-  //WORLD WONDER BONUS? Continent checklist
+// WORLD WONDER BONUS? Continent checklist
+//total number of destinations vs visited (do I choose not to )
+// top destintination (been to the most)
+// luxuries
 
   return "Dunno";
 

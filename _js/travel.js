@@ -18,8 +18,20 @@ function travel(intDestination) {
     intTotal = JSONgame[0].day + JSONdestination[intDestination].days; //CALC
     JSONgame[0].day = intTotal; //UPDATE
 
-    if (!travAlreadyVisited(intDestination)) //check if player has already visited destination
-      JSONplayer[0].destination.push(intDestination); //add destination to player
+
+    //TODO: if having FAVOURITE destination in RESULT then can't just count no of places
+      //get country
+      //get all NOs of destinations in country
+      //check in if player'switch
+
+    // if (!travAlreadyVisited(intDestination)) //check if player has already visited destination
+    //   JSONplayer[0].destination.push(intDestination); //add destination to player
+
+    if (travDestinationsInCountryPlayer(intDestination) == travDestinationsInCountry(intDestination).length) {
+      //player has visited all the destinations in the country
+      mapUpdateCountryVisited(intDestination); //update colour of country
+    } //if
+
 
     var strTemp = (JSONconfig[0].txtDialogTravelTitle
       + "\n\n" + JSONconfig[0].txtDialogTravelDestination + " " + JSONdestination[intDestination].name
@@ -29,11 +41,6 @@ function travel(intDestination) {
       + "\n" + JSONconfig[0].txtDialogTravelDistance + " " + defThousandsDelimiter(travCalcDistance(JSONgame[0].homeLatitude, JSONgame[0].homeLongitude, JSONdestination[intDestination].latitude, JSONdestination[intDestination].longitude, JSONgame[0].measure)) + " " + JSONgame[0].measure
     );
     alert( $('<span/>').html(strTemp).text());
-
-    if (travCountDestinationsInCountryPlayer(intDestination) >= travCountDestinationsInCountry(intDestination)) {
-      //player has visited all the destinations in the country
-      mapUpdateCountryVisited(intDestination); //update colour of country
-    } //if
 
     gameTurnEnd();
 
@@ -51,18 +58,19 @@ function travel(intDestination) {
 //// SUPPORTING LOGIC ////
 //////////////////////////
 
-function travCountDestinationsInCountry(intDestination) {
+function travDestinationsInCountry(intDestination) {
   //count number of destinations in a country
-  var intTemp = 0;
+  var arrTemp = [];
   for (d in JSONdestination) {
     if (JSONdestination[d].country == JSONdestination[intDestination].country) {
-      intTemp++;
+      alert(d);
+      intTemp.push[JSONdestination[d]];
     } //if
   } //for
-  return intTemp;
+  return arrTemp;
 } //function
 
-function travCountDestinationsInCountryPlayer(intDestination) {
+function travDestinationsInCountryPlayer(intDestination) {
   //count number of destinations in a country player has visited
   var intTemp = 0;
   for (d in JSONplayer[0].destination) {
