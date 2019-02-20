@@ -14,24 +14,19 @@ function travel(intDestination) {
     //DISTANCE TRAVELLED
     intTotal = JSONplayer[0].distanceTravelled + travCalcDistance(JSONgame[0].homeLatitude, JSONgame[0].homeLongitude, JSONdestination[intDestination].latitude, JSONdestination[intDestination].longitude, JSONgame[0].measure); //CALC
     JSONplayer[0].distanceTravelled = JSONplayer[0].distanceTravelled + intTotal; //UPDATE
+    //DAYS TRAVELLED
+    intTotal = JSONplayer[0].daysTravelled +  JSONdestination[intDestination].days; //CALC
+    JSONplayer[0].daysTravelled = intTotal; //UPDATE
     //DAY / TURN
     intTotal = JSONgame[0].day + JSONdestination[intDestination].days; //CALC
     JSONgame[0].day = intTotal; //UPDATE
 
+    JSONplayer[0].destination.push(intDestination); //add destination to player
 
-    //TODO: if having FAVOURITE destination in RESULT then can't just count no of places
-      //get country
-      //get all NOs of destinations in country
-      //check in if player'switch
-
-    // if (!travAlreadyVisited(intDestination)) //check if player has already visited destination
-    //   JSONplayer[0].destination.push(intDestination); //add destination to player
-
-    if (travDestinationsInCountryPlayer(intDestination) == travDestinationsInCountry(intDestination).length) {
-      //player has visited all the destinations in the country
+    if (travDestinationsInCountryVisited(intDestination).length === travDestinationsInCountry(intDestination).length) {
+      //player has visited all the destinations in the country - PUSH before this
       mapUpdateCountryVisited(intDestination); //update colour of country
     } //if
-
 
     var strTemp = (JSONconfig[0].txtDialogTravelTitle
       + "\n\n" + JSONconfig[0].txtDialogTravelDestination + " " + JSONdestination[intDestination].name
@@ -59,26 +54,26 @@ function travel(intDestination) {
 //////////////////////////
 
 function travDestinationsInCountry(intDestination) {
-  //count number of destinations in a country
+  //pushes all destinations of country from intDestination
   var arrTemp = [];
   for (d in JSONdestination) {
     if (JSONdestination[d].country == JSONdestination[intDestination].country) {
-      alert(d);
-      intTemp.push[JSONdestination[d]];
+      arrTemp.push(d);
     } //if
   } //for
   return arrTemp;
 } //function
 
-function travDestinationsInCountryPlayer(intDestination) {
-  //count number of destinations in a country player has visited
-  var intTemp = 0;
+function travDestinationsInCountryVisited(intDestination) {
+  //pushes all destinations of country from intDestination
+  var arrTemp = [];
   for (d in JSONplayer[0].destination) {
     if (JSONdestination[JSONplayer[0].destination[d]].country == JSONdestination[intDestination].country) {
-      intTemp++;
+      arrTemp.push(JSONplayer[0].destination[d]);
     } //if
   } //for
-  return intTemp;
+  arrTemp = defRemoveDuplicatesArray(arrTemp);
+  return arrTemp;
 } //function
 
 function travAlreadyVisited(intDestination) {
@@ -115,4 +110,26 @@ function travCalcDistanceTotal() {
     intTotalDistance += travCalcDistance(JSONgame[0].homeLatitude, JSONgame[0].homeLongitude, JSONdestination[d].latitude, JSONdestination[d].longitude, JSONgame[0].measure)
   } //for
   return intTotalDistance;
+} //function
+
+
+
+
+
+
+
+
+
+
+
+
+
+function travGetCountryComplete(JSONtoUse) {
+  var arrTemp = [];
+  for (a in JSONtoUse) {
+    if (travDestinationsInCountryVisited(a).length === travDestinationsInCountry(a).length) {
+      arrTemp.push(JSONtoUse[a].country);
+    } //if
+  } //for
+  return arrTemp;
 } //function

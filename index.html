@@ -175,6 +175,66 @@
     </div> <!-- divTable -->
   </section>
 
+  <section id="secGameEnd">
+
+    <p>Travel</p>
+    <div class="divTable">
+      <div class="divRow">
+        <div class="divCell textRight"><p>Total days spent travelling</p></div> <!-- divCell -->
+        <div class="divCell"><span id="spnTravelTotalPercentage"></span></div> <!-- divCell -->
+      </div> <!-- divRow -->
+      <div class="divRow">
+        <div class="divCell textRight"><p>Total Distance Travelled</p></div> <!-- divCell -->
+        <div class="divCell"><span id="spnTravelTotalDistance"></span></div> <!-- divCell -->
+      </div> <!-- divRow -->
+    </div> <!-- divTable -->
+
+    <p>Destinations</p>
+    <div class="divTable">
+      <div class="divRow">
+        <div class="divCell textRight"><p>Destinations visited</p></div> <!-- divCell -->
+        <div class="divCell"><span id="spnDestinationVisitedTotal"></span></div> <!-- divCell -->
+      </div> <!-- divRow -->
+      <div class="divRow">
+        <div class="divCell textRight"><p>Unique destinations visited</p></div> <!-- divCell -->
+        <div class="divCell"><span id="spnDestinationVisitedTotalUnique"></span></div> <!-- divCell -->
+      </div> <!-- divRow -->
+      <div class="divRow">
+        <div class="divCell textRight"><p>% of destinations visited</p></div> <!-- divCell -->
+        <div class="divCell"><span id="spnDestinationVisitedPercentage"></span></div> <!-- divCell -->
+      </div> <!-- divRow -->
+      <div class="divRow">
+        <div class="divCell textRight"><p>Most visited destination</p></div> <!-- divCell -->
+        <div class="divCell"><span id="spnDestinationVisitedMost"></span></div> <!-- divCell -->
+      </div> <!-- divRow -->
+    </div> <!-- divTable -->
+
+    <p>Countries</p>
+    <div class="divTable">
+      <div class="divRow">
+        <div class="divCell textRight"><p>Countries visited</p></div> <!-- divCell -->
+        <div class="divCell"><span id="spnCountryVisitedTotal"></span></div> <!-- divCell -->
+      </div> <!-- divRow -->
+      <div class="divRow">
+        <div class="divCell textRight"><p>Countries</p></div> <!-- divCell -->
+        <div class="divCell"><span id="spnCountryTotal"></span></div> <!-- divCell -->
+      </div> <!-- divRow -->
+      <div class="divRow">
+        <div class="divCell textRight"><p>% of countries visited</p></div> <!-- divCell -->
+        <div class="divCell"><span id="spnCountryVisitedPercentage"></span></div> <!-- divCell -->
+      </div> <!-- divRow -->
+      <div class="divRow">
+        <div class="divCell textRight"><p>Most visited country</p></div> <!-- divCell -->
+        <div class="divCell"><span id="spnCountryVisitedMost"></span></div> <!-- divCell -->
+      </div> <!-- divRow -->
+    </div> <!-- divTable -->
+
+  </section>
+
+
+<button id="" onClick="gameEnd();">Game End</button>
+
+
   <script>
     $(document).ready(function() {
       gameInit(); //Initialisation of game elements!

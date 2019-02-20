@@ -6,7 +6,7 @@ var JSONconfig = [{
   ,"measure"              : ["Miles", "Kilometres"] //imperial, metric
   ,"difficulty"           : ["Easy", "Normal", "Hard", "Real Life"] //seperate from difficultyOffset for guiCreateHTMLComboBoxSettings
   ,"difficultyOffset"     : [2, 1, 0.5, 0.25] //easy, normal, hard, real life
-  ,"money"                : 10000 //starting value
+  ,"money"                : 100000 //starting value
   ,"happiness"            : 100 //starting value
   ,"days"                 : [365,730,1095,1460]
   ,"startingDay"          : 0 //what day to begin with

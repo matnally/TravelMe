@@ -5,6 +5,7 @@ var JSONplayer = [{
   ,"destination"        : []
   ,"luxury"             : []
   ,"daysWorked"         : 0
+  ,"daysTravelled"      : 0
   ,"distanceTravelled"  : 0
   ,"job"                : 0
 }];

@@ -10,5 +10,34 @@ function defUpdateElement(elemName, strTemp) {
 } //function
 
 function defCalcPercentage(intValue, intTotal) {
-   return ((100 * intValue) / intTotal);
+   return ((100 * intValue) / intTotal); //TODO: toFixed ? Round up ?
+} //function
+
+function defRemoveDuplicatesArray(arrTemp) {
+  return arrTemp.filter(function(value, index){ return arrTemp.indexOf(value) == index }); //remove duplicates
+} //function
+function defRemoveDuplicatesArrayByProperty(originalArray, prop) {
+  var newArray = [];
+  var lookupObject  = {};
+  for(var i in originalArray) {
+    lookupObject[originalArray[i][prop]] = originalArray[i];
+  } //for
+  for(i in lookupObject) {
+    newArray.push(lookupObject[i]);
+  } //for
+  return newArray;
+} //function
+
+function defFindMostFrequent(arr) {
+  return arr.reduce((acc, cur, ind, arr) => {
+      if (arr.indexOf(cur) === ind) {
+        return [...acc, [cur, 1]];
+      } else {
+        acc[acc.indexOf(acc.find(e => e[0] === cur))] = [cur, acc[acc.indexOf(acc.find(e => e[0] === cur))][1] + 1]; //acc
+        return acc;
+      } //if
+    }, []) //reduce
+    .sort((a, b) => b[1] - a[1])
+    .filter((cur, ind, arr) => cur[1] === arr[0][1])
+    .map(cur => cur[0]);
 } //function

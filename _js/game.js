@@ -52,9 +52,10 @@ function gameEnd() {
   //TODO: something more substancial
   var strTemp = (JSONconfig[0].gameEnd
     + "\n"
-    // + JSONconfig[0].gameResult + " " + resGetResult()
   );
   alert( $('<span/>').html(strTemp).text());
+
+  resShowResult(); //show end game stats
 
 } //function
 

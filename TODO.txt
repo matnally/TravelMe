@@ -1,0 +1,136 @@
+
+
+
+General
+--------------
+Choose different maps (which have different destinations [USA - home = Catskills, SE Asia  - home = BKK])
+The more-luxuries-bought / more-travelled the less happiness they give
+Improve Alert boxes
+At EndGame - Animation of travelled arcs
+World wonders at destination. Happiness bonus (also checklist at Endgame)
+Milestones : distance travelled / days worked / destinations travelled to - If achieve X by turn X then bonus
+Event specific to Destination
+luxuries associated with travel or work event
+Buy car (commute is shorter so Happier when working)
+Travel bag more happiness from travelling
+Colour to indicate GOOD / BAD for values
+IMPROVE when events are triggered
+SELL LUXURY FOR MONEY DISCOUNTED?????
+NO ACTION CHECK -
+  if no money travel cheapest destination AND buy cheapest luxury - CANT GENERATE HAPPINESS
+  if no happiness to work 1 day - CANT GENERATE MONEY - SELL LUXURY FOR DISCOUNT?????
+
+
+Map
+--------------
+Different colour of destinations visited
+On hover of Country, details of where visited already
+Zoom in and out
+
+Luxuries
+--------------
+Has own % change of becoming broken
+Passive benefit (+10 every-day-worked / destination travelled)
+
+Job
+--------------
+Job Promotion factors (have to have at least X happiness, money, etc...)
+
+Travel
+--------------
+Destinations have cost of living factored into travel cost
+
+Event
+--------------
+Travelling / Working  / Buying too long in a row. If do again, affects happiness
+
+
+ENDGAME
+============
+Travel
+======
+% of the year spent travelling (days vs total days)
+Total Distance Travelled
+You travelled the most in the ??? hemisphere
+
+Destinations
+============
+Total vs Visited
+% of destinations Visited
+Most visited destination(s)
+
+Countries
+=========
+Total vs Visited
+% of Countries Visited
+% of Countries Completed (visited all available destinations in country)
+Most visited Country(s)
+
+Job
+===
+% of the year spent working (days vs total days)
+You have been promoted X times
+% worked way up the company ladder
+You lost X happiness from Job
+
+Luxuries
+========
+Total money spent on luxuries
+Total happiness from luxuries
+No of repairs(?)
+Most luxury broken?
+
+Player
+======
+You preferred to Travel more than Work (total days comparison)
+Most happy (day | value)?
+Lowest happiness (day | value)?
+Day spent the most money?
+
+Events(?)
+=======
+No  of events?
+Total money spent on Events
+Total happiness gained from Events
+Total happiness lost from Events
+
+
+
+events
+==========
+ONLY EVENT ON WORK OR TRAVEL?
+luxuries associated with travel or work
+
+
+travel
+======
+hospital
+stolen items (luxury)
+miss stop
+no reservation
+lost passport
+no visa
+bad weather experience
+met good travel buddy
+gain / lose a day due to time diff
+ill, something does agree with you
+
+
+work
+====
+car breakdown
+demoted for something (linked to limit of happiness, money)
+night out
+conference
+work romance
+leaving party
+someones bday brought in cake
+bake sale at work
+CEO visiting (or you superior is visiting so less happiness)
+training (extra work days)
+stolen milk. so no milk in coffee (minus happines)
+run out of coffee
+hungover at work
+
+
+
