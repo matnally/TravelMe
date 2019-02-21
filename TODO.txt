@@ -49,40 +49,19 @@ ENDGAME
 ============
 Travel
 ======
-% of the year spent travelling (days vs total days)
-Total Distance Travelled
 You travelled the most in the ??? hemisphere
-
-Destinations
-============
-Total vs Visited
-% of destinations Visited
-Most visited destination(s)
 
 Countries
 =========
-Total vs Visited
-% of Countries Visited
-% of Countries Completed (visited all available destinations in country)
 Most visited Country(s)
-
-Job
-===
-% of the year spent working (days vs total days)
-You have been promoted X times
-% worked way up the company ladder
-You lost X happiness from Job
 
 Luxuries
 ========
-Total money spent on luxuries
-Total happiness from luxuries
 No of repairs(?)
 Most luxury broken?
 
 Player
 ======
-You preferred to Travel more than Work (total days comparison)
 Most happy (day | value)?
 Lowest happiness (day | value)?
 Day spent the most money?
@@ -131,6 +110,3 @@ training (extra work days)
 stolen milk. so no milk in coffee (minus happines)
 run out of coffee
 hungover at work
-
-
-
