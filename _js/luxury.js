@@ -25,12 +25,14 @@ function luxuryBuy(intLuxury) {
         + "\n" + JSONconfig[0].txtDialogLuxuryHappiness + " " + defThousandsDelimiter(JSONluxury[intLuxury].happiness)
       );
       alert( $('<span/>').html(strTemp).text());
+      // guiCreateDialog(JSONconfig[0].txtDialogLuxuryTitle, strTemp);
 
-      guiUpdateAndReset();
+      gameTurnEnd("luxury");
 
     } else {
 
       alert(JSONconfig[0].txtDialogLuxuryNotAfford + " " + JSONluxury[intLuxury].name);
+      // guiCreateDialog(JSONconfig[0].txtDialogLuxuryNotAfford, JSONconfig[0].txtDialogLuxuryNotAfford + " " + JSONluxury[intLuxury].name);
 
     } //if
 
@@ -80,6 +82,7 @@ function luxBrokenCheck() {
           + "\n\n" + JSONconfig[0].txtDialogLuxuryBrokenHappiness + " " + defThousandsDelimiter(JSONluxury[intLuxury].happiness)
     );
     boolAsk = confirm( $('<span/>').html(strTemp).text());
+    // guiCreateDialogConfirmLuxury(JSONconfig[0].txtDialogLuxuryBrokenTitle, strTemp, intLuxury);
 
     if (boolAsk == true) {
       luxuryRepair(intLuxury);

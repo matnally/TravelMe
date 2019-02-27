@@ -1,19 +1,19 @@
 
-function eventCheck() {
+function eventCheck(strAction) {
 
   var intRandomChancePercentage = 0;
   var intEvent = 0;
   var intTotal = 0;
-  var strType = "";
+  // var strType = "";
 
   intRandomChancePercentage = Math.random() * 100;
 
   if (intRandomChancePercentage <= JSONconfig[0].eventCheckChancePercentage) {
 
-    strType = eventGetEventType(); //get appropiate event type
+    // strType = eventGetEventType(); //get appropiate event type
     do {
       intEvent = eventGetEventRandom(); //get event related to the chosen event type
-    } while (JSONevent[intEvent].type != strType);
+    } while (JSONevent[intEvent].type != strAction);
 
     //MONEY
     intTotal = (JSONplayer[0].money + JSONevent[intEvent].cost); //CALC
@@ -29,6 +29,7 @@ function eventCheck() {
       + "\n" + JSONconfig[0].txtDialogEventHappiness + " " + defThousandsDelimiter(JSONevent[intEvent].happiness)
     );
     alert( $('<span/>').html(strTemp).text());
+    //guiCreateDialog(JSONconfig[0].txtDialogEventTitle, strTemp);
 
   } //if
 
@@ -44,7 +45,7 @@ function eventGetEventRandom() {
 } //function
 
 function eventGetEventType() {
-
+//NEED ANYMORE????
   var strType = "";
 
   switch (true) {
@@ -59,7 +60,7 @@ function eventGetEventType() {
       strType = "";
     break;
     default:
-      strType = "";
+      alert("eventGetEventType-ERROR");
   } //switch
 
   return strType;

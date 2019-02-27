@@ -23,12 +23,15 @@ function travel(intDestination) {
 
     JSONplayer[0].destination.push(intDestination); //add destination to player
 
+    //map changes
+    mapArcAdd(intDestination); //add arc to map
     if (travDestinationsInCountryVisited(intDestination).length === travDestinationsInCountry(intDestination).length) {
       //player has visited all the destinations in the country - PUSH before this
       mapUpdateCountryVisited(intDestination); //update colour of country
     } //if
 
     var strTemp = (JSONconfig[0].txtDialogTravelTitle
+      + "\n\n" + "<img src='" + JSONconfig[0].imgEventTravel + "' alt='Travel Event'>"
       + "\n\n" + JSONconfig[0].txtDialogTravelDestination + " " + JSONdestination[intDestination].name
       + "\n" + JSONdestination[intDestination].description
       + "\n\n" + JSONdestination[intDestination].days + " " + JSONconfig[0].txtDialogTravelDays
@@ -36,13 +39,15 @@ function travel(intDestination) {
       + "\n" + JSONconfig[0].txtDialogTravelDistance + " " + defThousandsDelimiter(travCalcDistance(JSONgame[0].homeLatitude, JSONgame[0].homeLongitude, JSONdestination[intDestination].latitude, JSONdestination[intDestination].longitude, JSONgame[0].measure)) + " " + JSONgame[0].measure
     );
     alert( $('<span/>').html(strTemp).text());
+    // guiCreateDialog(JSONconfig[0].txtDialogTravelTitle, strTemp);
 
-    gameTurnEnd();
+    gameTurnEnd("travel");
 
   } else {
 
-    strTemp = (JSONconfig[0].txtDialogTravelNotAfford + " " + JSONdestination[intDestination].name);
+    var strTemp = (JSONconfig[0].txtDialogTravelNotAfford + " " + JSONdestination[intDestination].name);
     alert( $('<span/>').html(strTemp).text());
+    // guiCreateDialog(JSONconfig[0].txtDialogTravelNotAfford, strTemp);
 
   } //if
 

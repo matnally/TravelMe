@@ -6,7 +6,6 @@ General
 Choose different maps (which have different destinations [USA - home = Catskills, SE Asia  - home = BKK])
 The more-luxuries-bought / more-travelled the less happiness they give
 Improve Alert boxes
-At EndGame - Animation of travelled arcs
 World wonders at destination. Happiness bonus (also checklist at Endgame)
 Milestones : distance travelled / days worked / destinations travelled to - If achieve X by turn X then bonus
 Event specific to Destination
@@ -16,16 +15,12 @@ Travel bag more happiness from travelling
 Colour to indicate GOOD / BAD for values
 IMPROVE when events are triggered
 SELL LUXURY FOR MONEY DISCOUNTED?????
-NO ACTION CHECK -
-  if no money travel cheapest destination AND buy cheapest luxury - CANT GENERATE HAPPINESS
-  if no happiness to work 1 day - CANT GENERATE MONEY - SELL LUXURY FOR DISCOUNT?????
 
 
 Map
 --------------
 Different colour of destinations visited
 On hover of Country, details of where visited already
-Zoom in and out
 
 Luxuries
 --------------
@@ -51,41 +46,37 @@ Travel
 ======
 You travelled the most in the ??? hemisphere
 
-Countries
-=========
-Most visited Country(s)
 
 Luxuries
 ========
 No of repairs(?)
 Most luxury broken?
 
-Player
-======
-Most happy (day | value)?
-Lowest happiness (day | value)?
-Day spent the most money?
 
 Events(?)
 =======
-No  of events?
+No of events?
 Total money spent on Events
 Total happiness gained from Events
 Total happiness lost from Events
 
 
 
+
+
+
 events
 ==========
-ONLY EVENT ON WORK OR TRAVEL?
 luxuries associated with travel or work
+travel event costs days
+travel stolen items (remove luxury)
+missed stop (extra days)
+
 
 
 travel
 ======
-hospital
-stolen items (luxury)
-miss stop
+
 no reservation
 lost passport
 no visa

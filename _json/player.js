@@ -8,4 +8,5 @@ var JSONplayer = [{
   ,"daysTravelled"      : 0
   ,"distanceTravelled"  : 0
   ,"job"                : 0
+  ,"moneyEarned"        : 0
 }];

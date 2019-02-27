@@ -6,7 +6,7 @@ var JSONconfig = [{
   ,"measure"              : ["Miles", "Kilometres"] //imperial, metric
   ,"difficulty"           : ["Easy", "Normal", "Hard", "Real Life"] //seperate from difficultyOffset for guiCreateHTMLComboBoxSettings
   ,"difficultyOffset"     : [2, 1, 0.5, 0.25] //easy, normal, hard, real life
-  ,"money"                : 100000 //starting value
+  ,"money"                : 10000 //starting value
   ,"happiness"            : 100 //starting value
   ,"days"                 : [365,730,1095,1460]
   ,"startingDay"          : 0 //what day to begin with
@@ -46,8 +46,8 @@ var JSONconfig = [{
   ,"JSONluxuryCostRepairOffset" : 2
   ,"JSONluxuryHappinessOffset"  : 3
   //EVENT
-  ,"JSONeventBaseValueMin"    : -1000
-  ,"JSONeventBaseValueMax"    : 1000
+  ,"JSONeventBaseValueMin"    : -500
+  ,"JSONeventBaseValueMax"    : 500
   ,"JSONeventCostOffset"      : 1
   ,"JSONeventHappinessOffset" : 2
   //END JSON CREATION OFFSETS
@@ -94,5 +94,9 @@ var JSONconfig = [{
   //PROMOTION
   ,"txtPromotionTitle"  : "You have been promoted"
   ,"txtPromotionWage"   : "Your new wage is"
+
+  //IMAGES
+  ,"imgEventWork"   : "_images/eventWork.png"
+  ,"imgEventTravel" : "_images/eventTravel.png"
 
 }];

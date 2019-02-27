@@ -43,32 +43,90 @@ function gameStart() {
 
   guiSectionShow("#secGame");
 
-  mapCreate(); //will only render if at the end
+  mapCreate("divDatamapGame"); //will only render if at the end
 
 } //function
 
-function gameEnd() {
+function gameEnd(strReason) {
+
+  var strFail = "";
+
+  switch (strReason) { //get appropiate message
+    case "money":
+      strFail = "You've run out of money";
+    break;
+    case "happiness":
+      strFail = "You're too unhappy";
+    break;
+    case "days":
+      strFail = "End of days";
+    break;
+    case "action":
+      strFail = "You can't perform an action (too little happiness and money)";
+    break;
+    default:
+      alert("gameEnd-ERROR");
+  } //switch
 
   //TODO: something more substancial
   var strTemp = (JSONconfig[0].gameEnd
-    + "\n"
+    + "\n\n" + strFail
   );
   alert( $('<span/>').html(strTemp).text());
+  // guiCreateDialog(JSONconfig[0].gameEnd, strFail);
 
   resShowResult(); //show end game stats
 
 } //function
 
-function gameTurnEnd() {
+function gameTurnEnd(strAction) {
+  //a turn has happened (bought luxury, worked, travelled)
 
-  jobPromotionCheck();
-  eventCheck();
+  switch (strAction) {
+    case "work":
+      jobPromotionCheck();
+      eventCheck(strAction);
+      if (JSONplayer[0].luxury.length > 0)
+        luxBrokenCheck();
+    break;
+    case "travel":
+      eventCheck(strAction);
+      if (JSONplayer[0].luxury.length > 0)
+        luxBrokenCheck();
+    break;
+    case "luxury":
+      //do nothing
+    break;
+    default:
+      // alert("gameTurnEnd-ERROR"); //TODO
+  } //switch
 
-  if (JSONplayer[0].luxury.length > 0)
-    luxBrokenCheck();
-
+  //do common functions to all
   guiUpdateAndReset();
   gamCheckEndGame();
+
+} //function
+
+function gamCheckEndGame() {
+  //check for any failing factors
+
+  switch (true) { //if fail, send gameEnd appropiate factor
+    case (JSONplayer[0].money <= 0):
+      gameEnd("money");
+    break;
+    case (JSONplayer[0].happiness <= 0):
+      gameEnd("happiness");
+    break;
+    case (JSONgame[0].day == JSONgame[0].days):
+      gameEnd("days"); //reached max days
+    break;
+    case ((JSONplayer[0].happiness + JSONgame[0].workHappiness <= 0) && (JSONplayer[0].money - defGetCheapest(JSONdestination) <= 0) && (JSONplayer[0].money - defGetCheapest(JSONluxury) <= 0)):
+      //CANT GENERATE HAPPINESS & MONEY (i.e. can't perform an action)
+      gameEnd("action");
+    break;
+    default:
+      // alert("gamCheckEndGame-ERROR"); //TODO
+  } //switch
 
 } //function
 
@@ -135,22 +193,6 @@ function gameSetDifficultyDefaults(intDifficulty) {
 
 // console.log(JSON.stringify(JSONconfig));
 
-} //function
-
-function gamCheckEndGame() {
-  //check for any failing factors
-  switch (true) {
-    case (JSONplayer[0].money <= 0):
-      gameEnd();
-    break;
-    case (JSONplayer[0].happiness <= 0):
-      gameEnd();
-    break;
-    case (JSONgame[0].day == JSONgame[0].days):
-      //reached max days
-      gameEnd();
-    break;
-  } //switch
 } //function
 
 function gamSetGameText() {

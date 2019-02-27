@@ -37,7 +37,6 @@
   <script src="_json/job.js"></script>
   <script src="_json/luxury.js"></script>
   <script src="_json/player.js"></script>
-  <script src="_json/result.js"></script>
 
   <!-- DATAMAPS -->
   <script src="_js/datamaps/d3.min.js"></script>
@@ -86,11 +85,13 @@
         <div class="divCell">
           <!-- map cell -->
 
-          <div id="divDatamaps" style="position: relative; width: 600px; height: 400px;"></div>
+          <div id="divDatamapGame" style="position: relative; width: 600px; height: 400px;"></div>
 
           <button onClick="mapZoomIn();">+</button>
           <button onClick="mapReset();">Reset</button>
           <button onClick="mapZoomOut();">-</button>
+
+          <button onClick="mapGoTo(-400,-100);">Go somewhere</button>
 
         </div> <!-- divCell -->
         <div class="divCell">
@@ -151,16 +152,16 @@
               <div class="divCell"><span id="spnLuxury"></span></div> <!-- divCell -->
             </div> <!-- divRow -->
             <div class="divRow">
-              <div class="divCell textRight"><p>Description</p></div> <!-- divCell -->
-              <div class="divCell"><span id="spnLuxuryDescription"></span></div> <!-- divCell -->
-            </div> <!-- divRow -->
-            <div class="divRow">
               <div class="divCell textRight"><p>Cost</p></div> <!-- divCell -->
               <div class="divCell"><span id="spnLuxuryCost"></span></div> <!-- divCell -->
             </div> <!-- divRow -->
             <div class="divRow">
               <div class="divCell textRight"><p>Happiness</p></div> <!-- divCell -->
               <div class="divCell"><span id="spnLuxuryHappiness"></span></div> <!-- divCell -->
+            </div> <!-- divRow -->
+            <div class="divRow">
+              <div class="divCell textRight"><p>Description</p></div> <!-- divCell -->
+              <div class="divCell"><span id="spnLuxuryDescription"></span></div> <!-- divCell -->
             </div> <!-- divRow -->
             <div class="divRow">
               <div class="divCell textRight"></div> <!-- divCell -->
@@ -177,6 +178,11 @@
 
   <section id="secGameEnd">
 
+    <div id="divDatamapResult" style="position: relative; width: 300px; height: 200px;"></div>
+    <button onClick="mapCreateResultArcs();">Show animation</button>
+    <button onClick="mapCreateResultArcsReset();">Reset</button>
+
+    <h1>Results</h1>
     <p>Work</p>
     <div class="divTable">
       <div class="divRow">
@@ -268,13 +274,37 @@
         <div class="divCell"><span id="spnLuxuryTotalSpend"></span></div> <!-- divCell -->
       </div> <!-- divRow -->
       <div class="divRow">
-        <div class="divCell textRight"><p>Money happiness from luxuries</p></div> <!-- divCell -->
+        <div class="divCell textRight"><p>Happiness from luxuries</p></div> <!-- divCell -->
         <div class="divCell"><span id="spnLuxuryTotalHappiness"></span></div> <!-- divCell -->
       </div> <!-- divRow -->
     </div> <!-- divTable -->
 
     <p>Player</p>
     <div class="divTable">
+      <div class="divRow">
+        <div class="divCell textRight"><p>Ending Money</p></div> <!-- divCell -->
+        <div class="divCell"><span id="spnPlayerEndingMoney"></span></div> <!-- divCell -->
+      </div> <!-- divRow -->
+      <div class="divRow">
+        <div class="divCell textRight"><p>Ending Happiness</p></div> <!-- divCell -->
+        <div class="divCell"><span id="spnPlayerEndingHappiness"></span></div> <!-- divCell -->
+      </div> <!-- divRow -->
+      <div class="divRow">
+        <div class="divCell textRight"><p>Ending Days Worked</p></div> <!-- divCell -->
+        <div class="divCell"><span id="spnPlayerEndingDaysWorked"></span></div> <!-- divCell -->
+      </div> <!-- divRow -->
+      <div class="divRow">
+        <div class="divCell textRight"><p>Ending Days Travelled</p></div> <!-- divCell -->
+        <div class="divCell"><span id="spnPlayerEndingDaysTravelled"></span></div> <!-- divCell -->
+      </div> <!-- divRow -->
+      <div class="divRow">
+        <div class="divCell textRight"><p>Ending Distance Travelled</p></div> <!-- divCell -->
+        <div class="divCell"><span id="spnPlayerEndingDistanceTravelled"></span></div> <!-- divCell -->
+      </div> <!-- divRow -->
+      <div class="divRow">
+        <div class="divCell textRight"><p>Ending Job</p></div> <!-- divCell -->
+        <div class="divCell"><span id="spnPlayerEndingJob"></span></div> <!-- divCell -->
+      </div> <!-- divRow -->
       <div class="divRow">
         <div class="divCell textRight"><p>Your work life balance was</p></div> <!-- divCell -->
         <div class="divCell"><span id="spnPlayerLifeBalance"></span></div> <!-- divCell -->
@@ -288,18 +318,26 @@
         <div class="divCell"><span id="spnPlayerTotalMoneyEarned">???</span></div> <!-- divCell -->
       </div> <!-- divRow -->
       <div class="divRow">
-        <div class="divCell textRight"><p>Total money spent (travelling & luxuries)</p></div> <!-- divCell -->
+        <div class="divCell textRight"><p>Total happiness earned (travelling & luxuries)</p></div> <!-- divCell -->
         <div class="divCell"><span id="spnPlayerTotalHappiness">???</span></div> <!-- divCell -->
       </div> <!-- divRow -->
     </div> <!-- divTable -->
 
-
-
-
-
   </section>
 
 
+
+<select id="selJSON">
+  <option value="JSONconfig">Config</option>
+  <option value="JSONdestination">Destination</option>
+  <option value="JSONevent">Event</option>
+  <option value="JSONgame">Game</option>
+  <option value="JSONjob">Job</option>
+  <option value="JSONluxury">Luxury</option>
+  <option value="JSONplayer">Player</option>
+</select>
+<button onClick="defJSONshow(document.getElementById('selJSON').value);">Show JSON</button>
+<br>
 <button id="" onClick="gameEnd();">Game End</button>
 
 

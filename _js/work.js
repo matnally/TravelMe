@@ -11,6 +11,7 @@ function work(intDays) {
     //MONEY
     intTotal = (JSONplayer[0].money + (Math.round(JSONjob[JSONplayer[0].job].wage / 365) * intDays)); //CALC
     JSONplayer[0].money = intTotal; //UPDATE
+    JSONplayer[0].moneyEarned = intTotal; //UPDATE
     //HAPPINESS
     intTotal = (JSONplayer[0].happiness + (JSONgame[0].workHappiness * intDays)); //CALC
     JSONplayer[0].happiness = intTotal; //UPDATE
@@ -22,13 +23,15 @@ function work(intDays) {
     JSONgame[0].day = intTotal; //UPDATE
 
     var strTemp = (JSONconfig[0].txtDialogWorkTitle
+      + "\n\n" + "<img src='" + JSONconfig[0].imgEventWork + "' alt='Work Event'>"
       + "\n\n" + intDays + " " + JSONconfig[0].txtDialogWorkDays
       + "\n\n" + JSONconfig[0].txtDialogWorkCost + " " + JSONgame[0].currency + defThousandsDelimiter(Math.round(JSONjob[JSONplayer[0].job].wage / 365) * intDays)
       + "\n" + JSONconfig[0].txtDialogWorkHappiness + " " + defThousandsDelimiter(JSONgame[0].workHappiness * intDays)
     );
     alert( $('<span/>').html(strTemp).text());
+    // guiCreateDialog(JSONconfig[0].txtDialogWorkTitle, strTemp);
 
-    gameTurnEnd();
+    gameTurnEnd("work");
 
   } else {
 
@@ -39,6 +42,7 @@ function work(intDays) {
       + "\n\n" + JSONconfig[0].txtDialogWorkDaysMax + " " + intDaysCanWork
     );
     alert( $('<span/>').html(strTemp).text());
+    // guiCreateDialog(JSONconfig[0].txtDialogWorkHappinessNotAfford, strTemp);
 
   } //if
 

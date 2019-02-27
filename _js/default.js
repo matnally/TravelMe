@@ -41,3 +41,19 @@ function defFindMostFrequent(arr) {
     .filter((cur, ind, arr) => cur[1] === arr[0][1])
     .map(cur => cur[0]);
 } //function
+
+function defGetCheapest(JSONtoUse) {
+  var intCost = 1000000; //purposely high
+  var intI = 0;
+  for (i in JSONtoUse) {
+    if (parseInt(JSONtoUse[i].cost) < intCost) {
+      intI = i;
+      intCost = JSONtoUse[i].cost;
+    } //if
+  } //for
+  return parseInt(JSONtoUse[intI].cost);
+} //function
+
+function defJSONshow(strJSON) {
+  console.log(JSON.stringify(window[strJSON]));
+} //function

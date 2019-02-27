@@ -2,13 +2,13 @@
 var map = []; //global so function as use MAP instance
 var arrMapArcs = []; //global so maintain history
 
-function mapCreate() {
+function mapCreate(strMapElem) {
 
   map = new Datamap({
     scope: 'world'
     ,responsive: false
     ,projection: 'mercator'
-    ,element: document.getElementById('divDatamaps')
+    ,element: document.getElementById(strMapElem)
     ,fills: {
       defaultFill: JSONconfig[0].mapCountryBackground
     } //fills
@@ -17,6 +17,30 @@ function mapCreate() {
       ,highlightOnHover: false
       ,borderWidth: 1
       ,borderColor: JSONconfig[0].mapCountryOutline
+      ,popupTemplate: function(geography, data) {
+        return '<div class="hoverinfo">'  + '<h1>' + geography.properties.name + '</h1>'
+                                          //
+                                          // + '<div class="divTable">'
+                                          // +   '<div class="divRow">'
+                                          // +     '<div class="divCell textRight"><p>Cost</p></div> <!-- divCell -->'
+                                          // +     '<div class="divCell"><p>' + JSONgame[0].currency + defThousandsDelimiter(data.cost) + '</p></div> <!-- divCell -->'
+                                          // +   '</div> <!-- divRow -->'
+                                          // +   '<div class="divRow">'
+                                          // +     '<div class="divCell textRight"><p>Distance</p></div> <!-- divCell -->'
+                                          // +     '<div class="divCell"><p>' + defThousandsDelimiter(travCalcDistance(JSONgame[0].homeLatitude, JSONgame[0].homeLongitude, data.latitude, data.longitude, JSONgame[0].measure)) + ' ' + JSONgame[0].measure + '</p></div> <!-- divCell -->'
+                                          // +   '</div> <!-- divRow -->'
+                                          // +   '<div class="divRow">'
+                                          // +     '<div class="divCell textRight"><p>Happiness</p></div> <!-- divCell -->'
+                                          // +     '<div class="divCell"><p>' + data.happiness + '</p></div> <!-- divCell -->'
+                                          // +   '</div> <!-- divRow -->'
+                                          // +   '<div class="divRow">'
+                                          // +     '<div class="divCell textRight"><p>Days</p></div> <!-- divCell -->'
+                                          // +     '<div class="divCell"><p>' + data.days + '</p></div> <!-- divCell -->'
+                                          // +   '</div> <!-- divRow -->'
+                                          // + '</div> <!-- divTable -->'
+
+                                          + '</div> <!-- hoverinfo -->';
+      } //popupTemplate
     } //geographyConfig
     ,bubblesConfig: {
       popupOnHover: true
@@ -69,43 +93,56 @@ function mapCreate() {
 
   //bubble callback
   map.svg.selectAll('.datamaps-bubble').on('click', function(e, data) {
-    arrMapArcs.push({
-      origin: {
-        latitude: JSONgame[0].homeLatitude
-        ,longitude: JSONgame[0].homeLongitude
-      }
-      ,destination: {
-        latitude: JSONdestination[data].latitude
-        ,longitude: JSONdestination[data].longitude
-      }
-    });
-    map.arc(arrMapArcs);
     travel(data);
   });
 
   //country double click
-  map.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
-    map.svg.call(d3.behavior.zoom().on("zoom", mapZoomIn));
+  map.svg.selectAll('.datamaps-subunit').on('click', function(geography, data) {
+    map.svg.call(d3.behavior.zoom().on("zoom", mapRedraw));
+    // alert(data);
+    // alert(geography.properties.name);
   });
 
-} //mapCreate
+} //function mapCreate
 
 
+function mapArcAdd(intDestination) {
+  arrMapArcs.push({
+    origin: {
+      latitude: JSONgame[0].homeLatitude
+      ,longitude: JSONgame[0].homeLongitude
+    }
+    ,destination: {
+      latitude: JSONdestination[intDestination].latitude
+      ,longitude: JSONdestination[intDestination].longitude
+    }
+  });
+  map.arc(arrMapArcs);
+} //function 
+
+
+
+
+function mapRedraw() {
+  map.svg.selectAll("g").transition().duration(750).attr("transform", "translate(0, 0)scale(1." + intScale + ")");
+} //function
 // MAP CONTROLS
 var intScale = 1; //TODO: why not increment?!
 function mapZoomIn() {
-  map.svg.selectAll("g").attr("transform", "translate(0,0)scale(1." + (intScale + 1) + ")");
-console.log("mapZoomIn: " + intScale);
+  intScale++;
+  mapRedraw();
 } //function
 function mapZoomOut() {
-  //alert(d3.behavior.zoom().scale());
-  map.svg.selectAll("g").attr("transform", "translate(0,0)scale(1." + (intScale - 1) + ")");
-console.log("mapZoomOut: " + intScale);
+  intScale--;
+  mapRedraw();
 } //function
 function mapReset() {
-  map.svg.selectAll("g").attr("transform", "translate(0,0)scale(1.0)");
+  intScale = 1;
+  mapRedraw();
 } //function
-
+function mapGoTo(int1, int2) {
+  map.svg.selectAll("g").transition().duration(750).attr("transform", "scale(1.5)translate(" + int1 + "," + int2 + ")");
+} //function
 
 function mapUpdateCountryVisited(intDestination) {
   //updates map with country visited
@@ -118,6 +155,10 @@ function mapUpdateCountryVisited(intDestination) {
   arrMapData[strCountryCode] = JSONconfig[0].mapCountryVisited; //set colour
   map.updateChoropleth(arrMapData);
 } //function
+
+
+
+
 
 
 //////////////////////////
