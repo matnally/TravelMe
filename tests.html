@@ -50,23 +50,43 @@
   <script type="text/javascript" src="jasmine/jasmine.js"></script>
   <script type="text/javascript" src="jasmine/jasmine-html.js"></script>
   <script type="text/javascript" src="jasmine/boot.js"></script>
-  <script type="text/javascript" src="jasmine/testsUnit.js"></script>
+  <script type="text/javascript" src="jasmine/jasmineTests.js"></script>
 
-  <!-- END TO END TESTS -->
-  <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.9.2.css">
-  <script src="https://code.jquery.com/qunit/qunit-2.9.2.js"></script>
-  <script type="text/javascript" src="qunit/testsE2E.js"></script>
+  <!-- TESTS -->
+  <link rel="stylesheet" href="qunit/qunit-2.9.2.css">
+  <script src="qunit/qunit-2.9.2.js"></script>
+  <script type="text/javascript" src="qunit/qunitTests.js"></script>
+
+
+  <script>
+
+QUnit.config.autostart = false;
+$('#qunit-fixture').load("index.html #secSettings");
+QUnit.start();  // ...tell QUnit you're ready to go
+
+  </script>
+
 
 </head>
 <body>
 
-  <!-- FOR UNIT TESTS -->
-  <span id="spnTest"></span>
+  <div hidden>
+    <!-- TEST ELEMENTS -->
+    <span id="spnTest"></span>
+    <iframe id="iFrame" src="index.html"></iframe>
+  </div>
 
-  <!-- END TO END TESTS -->
+  <!-- QUNIT ELEMENTS -->
   <div id="qunit"></div>
-  <div id="qunit-fixture">
+  <div id="qunit-fixture"></div>
 
-</div>
+
+  <script>
+    $(document).ready(function() {
+      // alert(document.getElementById('qunit-fixture').innerHTML);
+    });
+  </script>
+
+
 </body>
 </html>
