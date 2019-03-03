@@ -1,3 +1,38 @@
+function gameEmulate() {
+  gameStart();
+  gameChooseTurn();
+} //function
+function gameChooseTurn() {
+
+  var intTemp = 0;
+
+  intTemp = Math.floor(Math.random() * 3);
+
+  switch (intTemp) {
+    case 1:
+      //travel
+      intTemp = Math.random() * JSONdestination.length - 1;
+      travel(intTemp);
+    break;
+    case 2:
+      //work
+      intTemp = Math.random() * 10;
+      work(intTemp);
+    break;
+    case 3:
+      //luxury buy
+      intTemp = Math.random() * JSONluxury.length - 1;
+      luxuryBuy(intTemp);
+    break;
+    default:
+      alert("gameChooseTurnERROR: intTemp " + intTemp);
+  } //switch
+
+} //function
+
+
+
+
 
 function gameInit() {
 
@@ -7,7 +42,11 @@ function gameInit() {
   defUpdateElement("spnSelDays", guiCreateHTMLComboBoxSettings(JSONconfig[0].days, "selDays"));
   defUpdateElement("spnSelHomeLocation", guiCreateHTMLComboBoxSettings(JSONconfig[0].homeLocation, "selHomeLocation"));
 
-  defUpdateElement("spnSelDestinations", guiCreateHTMLComboBoxSettings(JSONconfig[0].destinations, "selDestinations"));
+  defUpdateElement("spnSelMaps", guiCreateHTMLComboBoxSettings(JSONconfig[0].maps, "selMaps"));
+  document.getElementById("selMaps").addEventListener("change",function(event){
+    mapChoose(parseInt(this.value));
+  }, { passive: true }); //addEventListener
+  mapChoose(parseInt(document.getElementById("selMaps").value));
 
   defUpdateElement("spnSelDifficulty", guiCreateHTMLComboBoxSettings(JSONconfig[0].difficulty, "selDifficulty"));
   $("#selDifficulty [value='1']").attr("selected","selected"); //default to normal option for difficulty
@@ -29,7 +68,7 @@ function gameInit() {
 
 function gameStart() {
 
-  var strJSONtoUse = JSONconfig[0].destinationsJSON[document.getElementById("selDestinations").value];
+  var strJSONtoUse = JSONconfig[0].mapsJSON[document.getElementById("selMaps").value][document.getElementById("selDestinations").value][1];
   JSONdestination = window[strJSONtoUse];
 
   //create dynamic stats
@@ -65,7 +104,7 @@ function gameEnd(strReason) {
       strFail = "You can't perform an action (too little happiness and money)";
     break;
     default:
-      alert("gameEnd-ERROR");
+      alert("gameEnd-ERROR: Forced Game End?");
   } //switch
 
   //TODO: something more substancial
@@ -139,6 +178,8 @@ function gamApplyDefaults() {
   //apply defaults and player choices
 
   var tmpElem;
+  var strSelMaps = 0;
+  var strSelHomeLocation = 0;
 
   tmpElem = document.getElementById("selCurrency");
   JSONgame[0].currency = JSONconfig[0].currency[tmpElem[tmpElem.selectedIndex].value];
@@ -149,14 +190,18 @@ function gamApplyDefaults() {
   tmpElem = document.getElementById("selDays");
   JSONgame[0].days = JSONconfig[0].days[tmpElem[tmpElem.selectedIndex].value];
 
-  tmpElem = document.getElementById("selHomeLocation");
-  JSONgame[0].homeLatitude = JSONconfig[0].homeLocationLatLong[tmpElem[tmpElem.selectedIndex].value][0];
-  JSONgame[0].homeLongitude = JSONconfig[0].homeLocationLatLong[tmpElem[tmpElem.selectedIndex].value][1];
+  //sourced from chosen MAP and HOME
+  strSelMaps = document.getElementById("selMaps").value;
+  strSelHomeLocation = document.getElementById("selHomeLocation").value;
+  JSONgame[0].homeLatitude = JSONconfig[0].mapsHomeLocationLatLong[strSelMaps][strSelHomeLocation][0];
+  JSONgame[0].homeLongitude = JSONconfig[0].mapsHomeLocationLatLong[strSelMaps][strSelHomeLocation][1];
 
   JSONgame[0].day = JSONconfig[0].startingDay; //what day to begin with
 
   //set the max value of the work days input
   document.getElementById("inpWorkDays").max = JSONconfig[0].days[tmpElem[tmpElem.selectedIndex].value];
+
+  JSONgame[0].map = $("#selMaps option:selected").text().toLowerCase(); //map to use
 
   tmpElem = document.getElementById("selDifficulty");
   gameSetDifficultyDefaults(tmpElem.selectedIndex);

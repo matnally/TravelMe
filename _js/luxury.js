@@ -53,7 +53,12 @@ function luxuryDiscard(intLuxury) {
   intTotal = (JSONplayer[0].happiness - JSONluxury[intLuxury].happiness); //CALC
   JSONplayer[0].happiness = intTotal; //UPDATE
 
-  JSONplayer[0].luxury.splice(intLuxury, 1); //remove luxury from player
+  //remove luxury from player
+  for (l in JSONluxury) {
+    if (intLuxury == JSONplayer[0].luxury[l])
+      JSONplayer[0].luxury.splice(l, 1);
+  } //for
+
   $("#selLuxury option[value="+intLuxury+"]").toggle(); //show in dropdown
 } //function
 
@@ -61,6 +66,15 @@ function luxuryDiscard(intLuxury) {
 //////////////////////////
 //// SUPPORTING LOGIC ////
 //////////////////////////
+
+function luxGetLuxuryFromName(elem) {
+  var intTemp = 0;
+  for (l in JSONluxury) {
+    if (elem.options[elem.selectedIndex].text == JSONluxury[l].name)
+      intTemp = l;
+  } //for
+  return intTemp;
+} //function
 
 function luxBrokenCheck() {
 

@@ -10,21 +10,28 @@ var JSONconfig = [{
   ,"happiness"            : 100 //starting value
   ,"days"                 : [365,730,1095,1460]
   ,"startingDay"          : 0 //what day to begin with
-  ,"homeLocation"         : ["Newcastle upon Tyne", "London"]
-  ,"homeLocationLatLong"  : [ [54.97328,-1.61396], [51.5074,0.1278] ]
-  ,"destinations"         : ["RTW Trip", "Countries", "Capital Cities"]
-  ,"destinationsJSON"     : ["JSONRTWTrip", "JSONcountries", "JSONcapitals"]
-
-  //OFFSETS
-  ,"workHappiness"                      : -50 //happiness to take away
-  ,"luxuryBrokenCheckChancePercentage"  : 10 //% chance
-  ,"eventCheckChancePercentage"         : 10 //% chance
-  ,"eventGetEventTypeOffsetDestination" : 2 //if (player destinations > (destinations / THIS))
-  ,"eventGetEventTypeOffsetDistance"    : 2 //if (player distance > total distance / THIS)
 
   //MAP
-  // ,"mapCountryOutline"          : "#FFF" // AT WORK
-  // ,"mapCountryBackground"       : "#FFF" // AT WORK
+  ,"maps"                     : [ "World", "USA"]
+  ,"mapsHomeJSON"             : [ ["Newcastle upon Tyne", "Bangkok"] //world
+                                  ,["Tannersville", "Venice Beach"] //usa
+                                ] //mapsHomeJSON
+  ,"mapsHomeLocationLatLong"  : [
+                                  [[54.97328, -1.61396], [13.7563, 100.5018]] //world
+                                  ,[[42.217312, -73.864571], [33.9850, -118.4695] ] //usa
+                                ] //mapsHomeLocationLatLong
+  ,"mapsJSON"                 : [
+                                  [
+                                    ["RTW Trip","JSONRTWTrip"]
+                                    ,["Countries","JSONcountries"]
+                                    ,["Capital Cities","JSONcapitals"]
+                                  ] //world
+                                  ,[
+                                    ["Trips","JSONRTWTrip"]
+                                    ,["State Capitals","JSONcapitals"]
+                                  ] //USA
+                                ] //mapsJSON
+  //MAP COLOURS
   ,"mapCountryOutline"          : "#000"
   ,"mapCountryBackground"       : "#CCC"
   ,"mapCountryVisited"          : "#006600"
@@ -32,6 +39,12 @@ var JSONconfig = [{
   ,"mapDestinationBorderColor"  : "#000"
   ,"mapArcColour"               : "#00F"
 
+  //OFFSETS
+  ,"workHappiness"                      : -50 //happiness to take away
+  ,"luxuryBrokenCheckChancePercentage"  : 10 //% chance
+  ,"eventCheckChancePercentage"         : 10 //% chance
+  ,"eventGetEventTypeOffsetDestination" : 2 //if (player destinations > (destinations / THIS))
+  ,"eventGetEventTypeOffsetDistance"    : 2 //if (player distance > total distance / THIS)
 
   //START JSON CREATION OFFSETS
   // NOTE: include and change in gameSetDifficultyDefaults()
@@ -52,8 +65,11 @@ var JSONconfig = [{
   ,"JSONeventHappinessOffset" : 2
   //END JSON CREATION OFFSETS
 
+  //IMAGES
+  ,"imgEventWork"   : "_images/eventWork.png"
+  ,"imgEventTravel" : "_images/eventTravel.png"
 
-  //TEXT INGAME
+  //START TEXT INGAME
   ////////////////////////////////
   //GAME
   ,"gameDayPrefix"        : "Day&nbsp;"
@@ -74,10 +90,11 @@ var JSONconfig = [{
   ,"txtDialogEventCost"       : "It cost"
   ,"txtDialogEventHappiness"  : "Happiness was affected by"
   //LUXURY
-  ,"txtDialogLuxuryTitle"     : "Luxury bought"
-  ,"txtDialogLuxuryCost"      : "It cost"
-  ,"txtDialogLuxuryHappiness" : "Happiness was increased by"
-  ,"txtLuxurySelectPrompt"    : "Choose A Luxury"
+  ,"txtDialogLuxuryTitle"       : "Luxury bought"
+  ,"txtDialogLuxuryCost"        : "It cost"
+  ,"txtDialogLuxuryHappiness"   : "Happiness was increased by"
+  ,"txtLuxurySelectPrompt"      : "Choose A Luxury"
+  ,"txtLuxurySelectPromptOwned" : "Luxury Owned"
   //LUXURY BROKEN
   ,"txtDialogLuxuryBrokenTitle"       : "Luxury Broken"
   ,"txtDialogLuxuryBrokenDescription" : "has become broken"
@@ -94,9 +111,7 @@ var JSONconfig = [{
   //PROMOTION
   ,"txtPromotionTitle"  : "You have been promoted"
   ,"txtPromotionWage"   : "Your new wage is"
-
-  //IMAGES
-  ,"imgEventWork"   : "_images/eventWork.png"
-  ,"imgEventTravel" : "_images/eventTravel.png"
+  ////////////////////////////////
+  //END TEXT INGAME
 
 }];

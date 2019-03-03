@@ -15,11 +15,28 @@ function guiUpdateHTMLPlayer() {
   defUpdateElement("spnWagePerDay", JSONgame[0].currency + defThousandsDelimiter((JSONjob[JSONplayer[0].job].wage/365).toFixed(0)) + " " + JSONconfig[0].gameWagePerDay);
   defUpdateElement("spnHappinessPerDay", JSONgame[0].workHappiness + " " +  JSONconfig[0].gameHappinessPerDay);
   defUpdateElement("spnDistanceTravelled", defThousandsDelimiter(JSONplayer[0].distanceTravelled) + " " + JSONgame[0].measure);
+
+
+  //LUXURY
+  var strTemp = "";
+  var arrTemp = [];
+  for (l in JSONplayer[0].luxury) {
+    strTemp += JSONluxury[JSONplayer[0].luxury[l]].name + "<br>";
+    arrTemp.push(JSONluxury[JSONplayer[0].luxury[l]].name);
+  } //for
+  defUpdateElement("spnLuxuryOwned", strTemp);
+  defUpdateElement("spnLuxuryOwned", guiCreateHTMLComboBoxSettings(arrTemp, "selLuxuryOwned"));
+  $('#selLuxuryOwned').prepend($("<option value='DEFAULT'>" + JSONconfig[0].txtLuxurySelectPromptOwned + "</option>")); //do after sort dropdown
+  document.getElementById("selLuxuryOwned").value = "DEFAULT";
+  document.getElementById("selLuxuryOwned").addEventListener("change",function(event){
+    guiUpdateHTMLLuxury(luxGetLuxuryFromName(document.getElementById("selLuxuryOwned")));
+  }, { passive: true }); //addEventListener
+
+
 } //function
 
 function guiReset() {
   document.getElementById("inpWorkDays").value = 1;
-  document.getElementById("selLuxury").value = "DEFAULT";
   guiUpdateHTMLLuxuryReset();
 } //function
 
@@ -39,6 +56,8 @@ function guiUpdateHTMLLuxury(intLuxury) {
 } //function
 
 function guiUpdateHTMLLuxuryReset() {
+  document.getElementById("selLuxury").value = "DEFAULT";
+  document.getElementById("selLuxuryOwned").value = "DEFAULT";
   defUpdateElement("spnLuxuryDescription", "");
   defUpdateElement("spnLuxuryCost", "");
   defUpdateElement("spnLuxuryHappiness", "");
@@ -87,7 +106,15 @@ function guiCreateHTMLComboBox(tmpArray, strID) {
   return strTemp;
 } //function
 
-
+function guiCreateHTMLComboBoxMulti(tmpArray, strID) {
+  var strTemp = "";
+  strTemp += "<select id='"+strID+"' onChange=''>";
+  for (i in tmpArray) {
+    strTemp += "<option value='" + i + "'>" + tmpArray[i][0] + "</option>";
+  }
+  strTemp += "</select>";
+  return strTemp;
+} //function
 
 /////////////////////////////////
 //// UNUSED AS DIALOG STACKS ////

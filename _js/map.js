@@ -1,13 +1,37 @@
 
+function mapChoose(intMap) {
+  defUpdateElement("spnSelDestinations", guiCreateHTMLComboBoxMulti(JSONconfig[0].mapsJSON[intMap], "selDestinations"));
+  defUpdateElement("spnSelHomeLocation", guiCreateHTMLComboBoxSettings(JSONconfig[0].mapsHomeJSON[intMap], "selHomeLocation"));
+} //function
+
+
+
+
 var map = []; //global so function as use MAP instance
 var arrMapArcs = []; //global so maintain history
 
 function mapCreate(strMapElem) {
 
   map = new Datamap({
-    scope: 'world'
+    scope: JSONgame[0].map
     ,responsive: false
     ,projection: 'mercator'
+
+
+// //Africa
+// ,setProjection: function(element) {
+//   var projection = d3.geo.equirectangular()
+//     .center([23, -3])
+//     .rotate([4.4, 0])
+//     .scale(400)
+//     .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
+//   var path = d3.geo.path()
+//     .projection(projection);
+//   return {path: path, projection: projection};
+// } //setProjection
+
+
+    // ,projection: 'orthographic'
     ,element: document.getElementById(strMapElem)
     ,fills: {
       defaultFill: JSONconfig[0].mapCountryBackground
@@ -118,7 +142,7 @@ function mapArcAdd(intDestination) {
     }
   });
   map.arc(arrMapArcs);
-} //function 
+} //function
 
 
 

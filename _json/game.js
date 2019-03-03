@@ -5,7 +5,8 @@ var JSONgame = [{
   ,"day"              : 0
   ,"days"             : 0
   ,"difficultyOffset" : 0
-  ,"workHappiness"    : 0 //minus number 
+  ,"workHappiness"    : 0 //minus number
   ,"homeLatitude"     : 0
   ,"homeLongitude"    : 0
+  ,"map"              : ""
 }];

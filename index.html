@@ -41,7 +41,8 @@
   <!-- DATAMAPS -->
   <script src="_js/datamaps/d3.min.js"></script>
   <script src="_js/datamaps/topojson.js"></script>
-  <script src="_js/datamaps/datamaps.world.hires.min.js"></script>
+  <script src="_js/datamaps/datamaps.all.min.js"></script>
+  <!-- <script src="_js/datamaps/datamaps.world.hires.min.js"></script> -->
 
 </head>
 <body>
@@ -63,6 +64,10 @@
       <div class="divRow">
         <div class="divCell textRight"><p>Difficulty</p></div> <!-- divCell -->
         <div class="divCell"><span id="spnSelDifficulty"></span></div> <!-- divCell -->
+      </div> <!-- divRow -->
+      <div class="divRow">
+        <div class="divCell textRight"><p>Map</p></div> <!-- divCell -->
+        <div class="divCell"><span id="spnSelMaps"></span></div> <!-- divCell -->
       </div> <!-- divRow -->
       <div class="divRow">
         <div class="divCell textRight"><p>Home</p></div> <!-- divCell -->
@@ -152,6 +157,23 @@
               <div class="divCell"><span id="spnLuxury"></span></div> <!-- divCell -->
             </div> <!-- divRow -->
             <div class="divRow">
+              <div class="divCell textRight"></div> <!-- divCell -->
+              <div class="divCell">
+                <button onClick="luxuryBuy(parseInt(document.getElementById('selLuxury').value));">Buy Luxury</button>
+              </div> <!-- divCell -->
+            </div> <!-- divRow -->
+            <div class="divRow">
+              <div class="divCell textRight"><p>Owned</p></div> <!-- divCell -->
+              <div class="divCell"><span id="spnLuxuryOwned"></span></div> <!-- divCell -->
+            </div> <!-- divRow -->
+            <div class="divRow">
+              <div class="divCell textRight"></div> <!-- divCell -->
+              <div class="divCell">
+                <button onClick="">Sell</button>
+                <button onClick="">Repair</button>
+              </div> <!-- divCell -->
+            </div> <!-- divRow -->
+            <div class="divRow">
               <div class="divCell textRight"><p>Cost</p></div> <!-- divCell -->
               <div class="divCell"><span id="spnLuxuryCost"></span></div> <!-- divCell -->
             </div> <!-- divRow -->
@@ -162,12 +184,6 @@
             <div class="divRow">
               <div class="divCell textRight"><p>Description</p></div> <!-- divCell -->
               <div class="divCell"><span id="spnLuxuryDescription"></span></div> <!-- divCell -->
-            </div> <!-- divRow -->
-            <div class="divRow">
-              <div class="divCell textRight"></div> <!-- divCell -->
-              <div class="divCell">
-                <button onClick="luxuryBuy(parseInt(document.getElementById('selLuxury').value));">Buy Luxury</button>
-              </div> <!-- divCell -->
             </div> <!-- divRow -->
           </div> <!-- divTable -->
 
@@ -327,6 +343,7 @@
 
 
   <!-- ADMIN -->
+  <br><br>
   <select id="selJSON">
     <option value="JSONconfig">Config</option>
     <option value="JSONdestination">Destination</option>
@@ -337,8 +354,10 @@
     <option value="JSONplayer">Player</option>
   </select>
   <button onClick="defJSONshow(document.getElementById('selJSON').value);">Show JSON</button>
-  <br>
-  <button id="" onClick="gameEnd();">Game End</button>
+  <br><br>
+  <button id="" onClick="gameEnd();">Force Game End</button>
+  <br><br>
+  <button id="" onClick="gameEmulate();">Emulate</button>
 
 
   <script>
