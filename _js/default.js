@@ -16,7 +16,8 @@ function defCalcPercentage(intValue, intTotal) {
 function defRemoveDuplicatesArray(arrTemp) {
   return arrTemp.filter(function(value, index){ return arrTemp.indexOf(value) == index }); //remove duplicates
 } //function
-function defRemoveDuplicatesArrayByProperty(originalArray, prop) {
+function defRemoveDuplicatesArrayByPropertyName(originalArray, prop) {
+  //removes all but last duplicate of prop
   var newArray = [];
   var lookupObject  = {};
   for(var i in originalArray) {
@@ -54,6 +55,6 @@ function defGetCheapest(JSONtoUse) {
   return parseInt(JSONtoUse[intI].cost);
 } //function
 
-function defJSONshow(strJSON) {
+function defJSONshow(strJSON) { //ADMIN
   console.log(JSON.stringify(window[strJSON]));
 } //function

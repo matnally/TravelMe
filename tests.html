@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-  <title>TravelMe</title>
+  <title>TravelMe Tests</title>
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -53,19 +53,9 @@
   <script type="text/javascript" src="jasmine/jasmineTests.js"></script>
 
   <!-- TESTS -->
-  <link rel="stylesheet" href="qunit/qunit-2.9.2.css">
+  <!-- <link rel="stylesheet" href="qunit/qunit-2.9.2.css">
   <script src="qunit/qunit-2.9.2.js"></script>
-  <script type="text/javascript" src="qunit/qunitTests.js"></script>
-
-
-  <script>
-
-QUnit.config.autostart = false;
-$('#qunit-fixture').load("index.html #secSettings");
-QUnit.start();  // ...tell QUnit you're ready to go
-
-  </script>
-
+  <script type="text/javascript" src="qunit/qunitTests.js"></script> -->
 
 </head>
 <body>
@@ -73,20 +63,11 @@ QUnit.start();  // ...tell QUnit you're ready to go
   <div hidden>
     <!-- TEST ELEMENTS -->
     <span id="spnTest"></span>
-    <iframe id="iFrame" src="index.html"></iframe>
   </div>
 
   <!-- QUNIT ELEMENTS -->
   <div id="qunit"></div>
   <div id="qunit-fixture"></div>
-
-
-  <script>
-    $(document).ready(function() {
-      // alert(document.getElementById('qunit-fixture').innerHTML);
-    });
-  </script>
-
 
 </body>
 </html>

@@ -44,29 +44,6 @@ function eventGetEventRandom() {
   return Math.round(Math.random() * (JSONevent.length - 1) + 0); //choose a random event
 } //function
 
-function eventGetEventType() {
-//NEED ANYMORE????
-  var strType = "";
-
-  switch (true) {
-    case (JSONplayer[0].destination.length  > (JSONdestination.length / JSONconfig[0].eventGetEventTypeOffsetDestination)):
-      strType = "work";
-    break;
-    case (JSONplayer[0].distanceTravelled  > (travCalcDistanceTotal() / JSONconfig[0].eventGetEventTypeOffsetDistance)):
-      strType = "travel";
-    break;
-    case ((JSONplayer[0].distanceTravelled  > (travCalcDistanceTotal() / JSONconfig[0].eventGetEventTypeOffsetDistance)) && (JSONplayer[0].destination.length  > (JSONdestination.length / JSONconfig[0].eventGetEventTypeOffsetDestination))):
-      //both
-      strType = "";
-    break;
-    default:
-      alert("eventGetEventType-ERROR");
-  } //switch
-
-  return strType;
-
-} //function
-
 function eventCreateStats() {
 
   var intCost = 0;

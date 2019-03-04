@@ -117,7 +117,7 @@ function resShowResult() {
     intCountriesCompleted++;
   } //for
   var intCountries = 0;
-  intCountries = defRemoveDuplicatesArrayByProperty(JSONdestination, "country");
+  intCountries = defRemoveDuplicatesArrayByPropertyName(JSONdestination, "country");
   defUpdateElement("spnCountryVisitedTotal", intCountriesCompleted);
   defUpdateElement("spnCountryTotal", intCountries.length);
   defUpdateElement("spnCountryVisitedPercentage", defCalcPercentage(intCountriesCompleted, intCountries.length).toFixed(0) + "%");

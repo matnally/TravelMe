@@ -18,7 +18,7 @@ function mapCreate(strMapElem) {
     ,projection: 'mercator'
 
 
-// //Africa
+// //Africa MAP
 // ,setProjection: function(element) {
 //   var projection = d3.geo.equirectangular()
 //     .center([23, -3])
@@ -148,6 +148,7 @@ function mapArcAdd(intDestination) {
 
 
 function mapRedraw() {
+  var elem = document.getElementById("divDatamapGame");
   map.svg.selectAll("g").transition().duration(750).attr("transform", "translate(0, 0)scale(1." + intScale + ")");
 } //function
 // MAP CONTROLS
