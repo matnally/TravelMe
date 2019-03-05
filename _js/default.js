@@ -55,6 +55,6 @@ function defGetCheapest(JSONtoUse) {
   return parseInt(JSONtoUse[intI].cost);
 } //function
 
-function defJSONshow(strJSON) { //ADMIN
+function defJSONshow(strJSON) { //ADMIN  
   console.log(JSON.stringify(window[strJSON]));
 } //function

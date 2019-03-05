@@ -120,14 +120,24 @@ function travCalcDistanceTotal() {
 
 
 
+function travGetNoOfDestinationsInCountryFromCountry(strCountry) {
+  var intTemp = 0;
+  for (c in JSONdestination) {
+    if (JSONdestination[c].country == strCountry)
+      intTemp++;
+  } //for
+  return intTemp;
+} //function
 
-
-
-
-
-
-
-
+function travGetNoOfDestinationsInCountryVisited(strCountry) {
+  var intTemp = 0;
+  var arrTemp = defRemoveDuplicatesArray(JSONplayer[0].destination);
+  for (c in arrTemp) {
+    if (JSONdestination[arrTemp[c]].country == strCountry)
+      intTemp++;
+  } //for
+  return intTemp;
+} //function
 
 function travGetCountryComplete(JSONtoUse) {
   var arrTemp = [];

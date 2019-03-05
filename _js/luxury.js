@@ -63,18 +63,28 @@ function luxuryDiscard(intLuxury) {
 } //function
 
 function luxurySell(intLuxury) {
-  //sells luxury for half the price and loser any benefits
+  //sells luxury for half the price and loose any benefits (happiness)
 
-  //TODO are you sure? prompt
+  if (!isNaN(intLuxury)) {
 
-  var intTotal = 0;
-  //MONEY
-  intTotal = (JSONplayer[0].money + (JSONluxury[intLuxury].cost / 2)); //CALC TODO: resell offset
-  JSONplayer[0].money = intTotal; //UPDATE
+    var strTemp = (JSONconfig[0].txtDialogLuxurySellTitle
+          + "\n\n" +  JSONconfig[0].txtDialogLuxurySellDescription + " " + JSONluxury[intLuxury].name
+          + "\n\n" + JSONconfig[0].txtDialogLuxurySellCost + " " + JSONgame[0].currency + defThousandsDelimiter(Math.round(JSONluxury[intLuxury].cost / JSONconfig[0].JSONluxurySellOffset))
+          + "\n\n" + JSONconfig[0].txtDialogLuxurySellHappiness + " -" + defThousandsDelimiter(JSONluxury[intLuxury].happiness)
+    );
+    boolAsk = confirm( $('<span/>').html(strTemp).text());
+    // guiCreateDialogConfirmLuxury(JSONconfig[0].txtDialogLuxurySellTitle, strTemp, intLuxury);
 
-  luxuryDiscard(intLuxury);
+    if (boolAsk == true) {
+      var intTotal = 0;
+      //MONEY
+      intTotal = (JSONplayer[0].money + Math.round((JSONluxury[intLuxury].cost / JSONconfig[0].JSONluxurySellOffset))); //CALC TODO: resell offset
+      JSONplayer[0].money = intTotal; //UPDATE
+      luxuryDiscard(intLuxury);
+      gameTurnEnd("luxury");
+    } //if
 
-  alert("luxury sold");
+  } //if
 
 } //function
 
@@ -84,10 +94,14 @@ function luxurySell(intLuxury) {
 
 function luxGetLuxuryFromName(elem) {
   var intTemp = 0;
-  for (l in JSONluxury) {
-    if (elem.options[elem.selectedIndex].text == JSONluxury[l].name)
-      intTemp = l;
-  } //for
+  if (elem.options[elem.selectedIndex].value == "DEFAULT")
+    intTemp = "DEFAULT"
+  else {
+    for (l in JSONluxury) {
+      if (elem.options[elem.selectedIndex].text == JSONluxury[l].name)
+        intTemp = l;
+    } //for
+  } //if
   return intTemp;
 } //function
 

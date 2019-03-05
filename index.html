@@ -158,7 +158,7 @@
             <div class="divRow">
               <div class="divCell textRight"></div> <!-- divCell -->
               <div class="divCell">
-                <button onClick="luxuryBuy(parseInt(document.getElementById('selLuxury').value));">Buy Luxury</button>
+                <button onClick="luxuryBuy(parseInt(document.getElementById('selLuxury').value));">Buy</button>
               </div> <!-- divCell -->
             </div> <!-- divRow -->
             <div class="divRow">
@@ -168,8 +168,7 @@
             <div class="divRow">
               <div class="divCell textRight"></div> <!-- divCell -->
               <div class="divCell">
-                <button onClick="luxurySell(parseInt(document.getElementById('selLuxuryOwned').value));">Sell TEST</button>
-                <button onClick="">Repair TODO</button>
+                <button onClick="luxurySell(luxGetLuxuryFromName(document.getElementById('selLuxuryOwned')));">Sell</button>
               </div> <!-- divCell -->
             </div> <!-- divRow -->
             <div class="divRow">

@@ -1,7 +1,9 @@
 function gameEmulate() {
-  gameStart();
-  gameChooseTurn();
+  // gameStart();
+  // gameChooseTurn();
 } //function
+
+
 function gameChooseTurn() {
 
   var intTemp = 0;
@@ -165,11 +167,12 @@ function gamCheckEndGame() {
       strTemp = "action"; //CANT GENERATE HAPPINESS & MONEY (i.e. can't perform an action)
     break;
     default:
-      alert("gamCheckEndGame-: Forced Game End?");
+      // alert("gamCheckEndGame-: Forced Game End?");
       // strTemp = "action"; //default fail
   } //switch
 
-  gameEnd(strTemp);
+  if (!strTemp == "")
+    gameEnd(strTemp);
 
 } //function
 
@@ -234,6 +237,7 @@ function gameSetDifficultyDefaults(intDifficulty) {
   JSONconfig[0].JSONluxuryCostOffset = parseInt(JSONconfig[0].JSONluxuryCostOffset / JSONgame[0].difficultyOffset);
   JSONconfig[0].JSONluxuryCostRepairOffset = parseInt(JSONconfig[0].JSONluxuryCostRepairOffset / JSONgame[0].difficultyOffset);
   JSONconfig[0].JSONluxuryHappinessOffset = parseInt(JSONconfig[0].JSONluxuryHappinessOffset / JSONgame[0].difficultyOffset);
+  JSONconfig[0].JSONluxurySellOffset = parseInt(JSONconfig[0].JSONluxurySellOffset / JSONgame[0].difficultyOffset);
   //EVENT
   JSONconfig[0].JSONeventBaseValueMin = parseInt(JSONconfig[0].JSONeventBaseValueMin / JSONgame[0].difficultyOffset);
   JSONconfig[0].JSONeventBaseValueMax = parseInt(JSONconfig[0].JSONeventBaseValueMax / JSONgame[0].difficultyOffset);

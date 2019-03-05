@@ -5,7 +5,6 @@ http://bl.ocks.org/johan/1392488
 
 General
 --------------
-Choose different maps (which have different destinations [USA - home = Catskills, SE Asia  - home = BKK])
 The more-luxuries-bought / more-travelled the less happiness they give
 Improve Alert boxes
 World wonders at destination. Happiness bonus (also checklist at Endgame)
@@ -18,7 +17,7 @@ Colour to indicate GOOD / BAD for values
 IMPROVE when events are triggered
 SELL LUXURY FOR MONEY DISCOUNTED?????
 Starting HOME bubbles
-
+BONUS when country completed (more than 1 destination though)
 
 Map
 --------------

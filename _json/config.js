@@ -58,6 +58,7 @@ var JSONconfig = [{
   ,"JSONluxuryCostOffset"       : 1
   ,"JSONluxuryCostRepairOffset" : 2
   ,"JSONluxuryHappinessOffset"  : 3
+  ,"JSONluxurySellOffset"       : 2
   //EVENT
   ,"JSONeventBaseValueMin"    : -500
   ,"JSONeventBaseValueMax"    : 500
@@ -94,11 +95,15 @@ var JSONconfig = [{
   ,"txtDialogEventCost"       : "It cost"
   ,"txtDialogEventHappiness"  : "Happiness was affected by"
   //LUXURY
-  ,"txtDialogLuxuryTitle"       : "Luxury bought"
-  ,"txtDialogLuxuryCost"        : "It cost"
-  ,"txtDialogLuxuryHappiness"   : "Happiness was increased by"
-  ,"txtLuxurySelectPrompt"      : "Choose A Luxury"
-  ,"txtLuxurySelectPromptOwned" : "Luxury Owned"
+  ,"txtDialogLuxurySellTitle"       : "Sell Luxury"
+  ,"txtDialogLuxurySellDescription" : "Are you sure you want to sell"
+  ,"txtDialogLuxurySellCost"        : "You will recieve cashback of"
+  ,"txtDialogLuxurySellHappiness"   : "Happiness lost will be"
+  ,"txtDialogLuxuryTitle"           : "Luxury bought"
+  ,"txtDialogLuxuryCost"            : "It cost"
+  ,"txtDialogLuxuryHappiness"       : "Happiness was increased by"
+  ,"txtLuxurySelectPrompt"          : "Choose A Luxury"
+  ,"txtLuxurySelectPromptOwned"     : "Luxury Owned"
   //LUXURY BROKEN
   ,"txtDialogLuxuryBrokenTitle"       : "Luxury Broken"
   ,"txtDialogLuxuryBrokenDescription" : "has become broken"

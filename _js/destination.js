@@ -18,13 +18,6 @@ function destCreateStats() {
     JSONdestination[d].happiness = parseInt(intHappiness);
     JSONdestination[d].days = parseInt(intDays);
 
-    //TODO: standardise Alpha2 and Alpha3
-    if (JSONdestination[d].country.length == 2) {
-      JSONdestination[d].description = mapGetCountryName(JSONcountryNames, JSONdestination[d].country);
-    } else {
-      JSONdestination[d].description = mapGetCountryName(JSONcountryNames, mapGetCountryCodeAlpha2Code(JSONcountryCodes, JSONdestination[d].country));
-    } //if
-
   } //for
 
 } //function
