@@ -92,16 +92,16 @@ function gameEnd(strReason) {
 
   switch (strReason) { //get appropiate message
     case "money":
-      strFail = "You've run out of money";
+      strFail = JSONconfig[0].gameEndReasonMoney;
     break;
     case "happiness":
-      strFail = "You're too unhappy";
+      strFail = JSONconfig[0].gameEndReasonHappiness;
     break;
     case "days":
-      strFail = "End of days";
+      strFail = JSONconfig[0].gameEndReasonDays;
     break;
     case "action":
-      strFail = "You can't perform an action (too little happiness and money)";
+      strFail = JSONconfig[0].gameEndReasonAction;
     break;
     default:
       alert("gameEnd-ERROR: Forced Game End?");
@@ -119,7 +119,7 @@ function gameEnd(strReason) {
 } //function
 
 function gameTurnEnd(strAction) {
-  //a turn has happened (bought luxury, worked, travelled)
+  //turn has happened (bought luxury, worked, travelled)
 
   switch (strAction) {
     case "work":
@@ -140,7 +140,7 @@ function gameTurnEnd(strAction) {
       // alert("gameTurnEnd-ERROR"); //TODO
   } //switch
 
-  //do common functions to all
+  //do common functions for all
   guiUpdateAndReset();
   gamCheckEndGame();
 
@@ -149,23 +149,27 @@ function gameTurnEnd(strAction) {
 function gamCheckEndGame() {
   //check for any failing factors
 
+  var strTemp = "";
+
   switch (true) { //if fail, send gameEnd appropiate factor
     case (JSONplayer[0].money <= 0):
-      gameEnd("money");
+      strTemp = "money";
     break;
     case (JSONplayer[0].happiness <= 0):
-      gameEnd("happiness");
+      strTemp = "happiness";
     break;
     case (JSONgame[0].day == JSONgame[0].days):
-      gameEnd("days"); //reached max days
+      strTemp = "days"; //reached max days
     break;
     case ((JSONplayer[0].happiness + JSONgame[0].workHappiness <= 0) && (JSONplayer[0].money - defGetCheapest(JSONdestination) <= 0) && (JSONplayer[0].money - defGetCheapest(JSONluxury) <= 0)):
-      //CANT GENERATE HAPPINESS & MONEY (i.e. can't perform an action)
-      gameEnd("action");
+      strTemp = "action"; //CANT GENERATE HAPPINESS & MONEY (i.e. can't perform an action)
     break;
     default:
-      // alert("gamCheckEndGame-ERROR"); //TODO
+      alert("gamCheckEndGame-: Forced Game End?");
+      // strTemp = "action"; //default fail
   } //switch
+
+  gameEnd(strTemp);
 
 } //function
 
@@ -235,8 +239,6 @@ function gameSetDifficultyDefaults(intDifficulty) {
   JSONconfig[0].JSONeventBaseValueMax = parseInt(JSONconfig[0].JSONeventBaseValueMax / JSONgame[0].difficultyOffset);
   JSONconfig[0].JSONeventCostOffset = parseInt(JSONconfig[0].JSONeventCostOffset / JSONgame[0].difficultyOffset);
   JSONconfig[0].JSONeventHappinessOffset = parseInt(JSONconfig[0].JSONeventHappinessOffset / JSONgame[0].difficultyOffset);
-
-// console.log(JSON.stringify(JSONconfig));
 
 } //function
 

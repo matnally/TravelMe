@@ -1,4 +1,4 @@
-Examples
+Map examples
 https://observablehq.com/@mbostock/world-tour
 http://bl.ocks.org/johan/1392488
 
@@ -17,6 +17,7 @@ Travel bag more happiness from travelling
 Colour to indicate GOOD / BAD for values
 IMPROVE when events are triggered
 SELL LUXURY FOR MONEY DISCOUNTED?????
+Starting HOME bubbles
 
 
 Map

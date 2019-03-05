@@ -62,6 +62,21 @@ function luxuryDiscard(intLuxury) {
   $("#selLuxury option[value="+intLuxury+"]").toggle(); //show in dropdown
 } //function
 
+function luxurySell(intLuxury) {
+  //sells luxury for half the price and loser any benefits
+
+  //TODO are you sure? prompt
+
+  var intTotal = 0;
+  //MONEY
+  intTotal = (JSONplayer[0].money + (JSONluxury[intLuxury].cost / 2)); //CALC TODO: resell offset
+  JSONplayer[0].money = intTotal; //UPDATE
+
+  luxuryDiscard(intLuxury);
+
+  alert("luxury sold");
+
+} //function
 
 //////////////////////////
 //// SUPPORTING LOGIC ////

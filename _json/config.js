@@ -72,12 +72,16 @@ var JSONconfig = [{
   //START TEXT INGAME
   ////////////////////////////////
   //GAME
-  ,"gameDayPrefix"        : "Day&nbsp;"
-  ,"gameDaysPrefix"       : "&nbsp;of&nbsp;"
-  ,"gameEnd"              : "You failed"
-  ,"gameResult"           : "Your result is"
-  ,"gameWagePerDay"       : "per day"
-  ,"gameHappinessPerDay"  : "Happiness per day"
+  ,"gameDayPrefix"          : "Day&nbsp;"
+  ,"gameDaysPrefix"         : "&nbsp;of&nbsp;"
+  ,"gameEnd"                : "You failed"
+  ,"gameResult"             : "Your result is"
+  ,"gameWagePerDay"         : "per day"
+  ,"gameHappinessPerDay"    : "Happiness per day"
+  ,"gameEndReasonMoney"     : "You've run out of money"
+  ,"gameEndReasonHappiness" : "You're too unhappy"
+  ,"gameEndReasonDays"      : "End of days"
+  ,"gameEndReasonAction"    : "You can't perform an action (too little happiness and money)"
   //WORK
   ,"txtDialogWorkTitle"               : "Nice day at work, dear?"
   ,"txtDialogWorkCost"                : "You earned"

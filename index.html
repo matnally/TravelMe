@@ -42,7 +42,6 @@
   <script src="_js/datamaps/d3.min.js"></script>
   <script src="_js/datamaps/topojson.js"></script>
   <script src="_js/datamaps/datamaps.all.min.js"></script>
-  <!-- <script src="_js/datamaps/datamaps.world.hires.min.js"></script> -->
 
 </head>
 <body>
@@ -90,7 +89,7 @@
         <div class="divCell">
           <!-- map cell -->
 
-          <div id="divDatamapGame" style="position: relative; width: 600px; height: 400px;"></div>
+          <div id="divDatamapGame"></div>
 
           <button onClick="mapZoomIn();">+</button>
           <button onClick="mapReset();">Reset</button>
@@ -169,8 +168,8 @@
             <div class="divRow">
               <div class="divCell textRight"></div> <!-- divCell -->
               <div class="divCell">
-                <button onClick="">Sell</button>
-                <button onClick="">Repair</button>
+                <button onClick="luxurySell(parseInt(document.getElementById('selLuxuryOwned').value));">Sell TEST</button>
+                <button onClick="">Repair TODO</button>
               </div> <!-- divCell -->
             </div> <!-- divRow -->
             <div class="divRow">

@@ -56,3 +56,11 @@ button {
 #secGame {
 }
 /* END SECTIONS */
+
+/* START DATAMAPS */
+#divDatamapGame {
+  position: relative;
+  width: 600px;
+  height: 400px;
+}
+/* END DATAMAPS */
