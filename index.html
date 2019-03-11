@@ -17,13 +17,15 @@
   <link rel="stylesheet" href="_css/jquery-ui.css">
 
   <!-- LOGIC -->
+  <script src="_js/chart.js"></script>
   <script src="_js/destination.js"></script>
   <script src="_js/event.js"></script>
   <script src="_js/game.js"></script>
   <script src="_js/gui.js"></script>
+  <script src="_js/job.js"></script>
   <script src="_js/luxury.js"></script>
   <script src="_js/map.js"></script>
-  <script src="_js/job.js"></script>
+  <script src="_js/milestone.js"></script>
   <script src="_js/player.js"></script>
   <script src="_js/result.js"></script>
   <script src="_js/travel.js"></script>
@@ -42,6 +44,13 @@
   <script src="_js/datamaps/d3.min.js"></script>
   <script src="_js/datamaps/topojson.js"></script>
   <script src="_js/datamaps/datamaps.all.min.js"></script>
+
+  <!-- CHARTS -->
+	<script src="_js/elycharts/raphael.min.js"></script>
+	<script src="_js/elycharts/elycharts.min.js"></script>
+
+  <!-- CELEBRATE -->
+	<script src="_js/celebrate/celebrate.js"></script>
 
 </head>
 <body>
@@ -94,8 +103,35 @@
           <button onClick="mapZoomIn();">+</button>
           <button onClick="mapReset();">Reset</button>
           <button onClick="mapZoomOut();">-</button>
-
           <button onClick="mapGoTo(-400,-100);">Go somewhere</button>
+
+          <div class="divTable">
+            <div class="divRow">
+              <div class="divCell textRight"><p>Total Destinations</p></div> <!-- divCell -->
+              <div class="divCell"><span id="spnTotalDestinations"></span></span></div> <!-- divCell -->
+            </div> <!-- divRow -->
+            <div class="divRow">
+              <div class="divCell textRight"><p>Total Countries</p></div> <!-- divCell -->
+              <div class="divCell"><span id="spnTotalCountries"></span></span></div> <!-- divCell -->
+            </div> <!-- divRow -->
+          </div> <!-- divTable -->
+
+
+          <!-- ADMIN -->
+          <p>Admin</p>
+          <select id="selJSON">
+            <option value="JSONconfig">Config</option>
+            <option value="JSONdestination">Destination</option>
+            <option value="JSONevent">Event</option>
+            <option value="JSONgame">Game</option>
+            <option value="JSONjob">Job</option>
+            <option value="JSONluxury">Luxury</option>
+            <option value="JSONplayer">Player</option>
+          </select>
+          <button onClick="defJSONshow(document.getElementById('selJSON').value);">Show JSON</button>
+          <br><br>
+          <button id="" onClick="gameEnd();">Force Game End</button>
+
 
         </div> <!-- divCell -->
         <div class="divCell">
@@ -183,6 +219,32 @@
               <div class="divCell textRight"><p>Description</p></div> <!-- divCell -->
               <div class="divCell"><span id="spnLuxuryDescription"></span></div> <!-- divCell -->
             </div> <!-- divRow -->
+
+          </div> <!-- divTable -->
+
+          <div class="divTable">
+
+            <div class="divRow">
+              <div class="divCell textRight"><p>Milestones</p></div> <!-- divCell -->
+              <div class="divCell"></div> <!-- divCell -->
+            </div> <!-- divRow -->
+            <div class="divRow">
+              <div class="divCell textRight"><p>Luxuries Owned</p></div> <!-- divCell -->
+              <div class="divCell"><p><span id="spnMilestoneLuxury"></span></p></div> <!-- divCell -->
+            </div> <!-- divRow -->
+            <div class="divRow">
+              <div class="divCell textRight"><p>Distance Travelled</p></div> <!-- divCell -->
+              <div class="divCell"><p><span id="spnMilestoneDistance"></span></p></div> <!-- divCell -->
+            </div> <!-- divRow -->
+            <div class="divRow">
+              <div class="divCell textRight"><p>Destinations Visited</p></div> <!-- divCell -->
+              <div class="divCell"><p><span id="spnMilestoneDestination"></span></p></div> <!-- divCell -->
+            </div> <!-- divRow -->
+            <div class="divRow">
+              <div class="divCell textRight"><p>Countries Visited</p></div> <!-- divCell -->
+              <div class="divCell"><p><span id="spnMilestoneCountryVisited"></span></p></div> <!-- divCell -->
+            </div> <!-- divRow -->
+
           </div> <!-- divTable -->
 
         </div> <!-- divCell -->
@@ -192,9 +254,21 @@
 
   <section id="secGameEnd">
 
-    <div id="divDatamapResult" style="position: relative; width: 300px; height: 200px;"></div>
+    <div id="divDatamapResult"></div>
     <button onClick="mapCreateResultArcs();">Show animation</button>
     <button onClick="mapCreateResultArcsReset();">Reset</button>
+
+    <br><br>
+
+    <select id="selChart" onchange="chartCreate(this);">
+      <option value="historyMoney">Money</option>
+      <option value="historyDistance">Distance</option>
+      <option value="historyHappiness">Happiness</option>
+      <option value="historyWage">Wage</option>
+    </select>
+    <div id="divChart"></div>
+
+    <br>
 
     <h1>Results</h1>
     <p>Work</p>
@@ -338,25 +412,6 @@
     </div> <!-- divTable -->
 
   </section>
-
-
-  <!-- ADMIN -->
-  <br><br>
-  <select id="selJSON">
-    <option value="JSONconfig">Config</option>
-    <option value="JSONdestination">Destination</option>
-    <option value="JSONevent">Event</option>
-    <option value="JSONgame">Game</option>
-    <option value="JSONjob">Job</option>
-    <option value="JSONluxury">Luxury</option>
-    <option value="JSONplayer">Player</option>
-  </select>
-  <button onClick="defJSONshow(document.getElementById('selJSON').value);">Show JSON</button>
-  <br><br>
-  <button id="" onClick="gameEnd();">Force Game End</button>
-  <br><br>
-  <button id="" onClick="gameEmulate();">Emulate</button>
-
 
   <script>
     $(document).ready(function() {

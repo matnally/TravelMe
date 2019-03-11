@@ -19,8 +19,7 @@ function jobPromotionCheck() {
       + "\n" + JSONjob[intPercent].description
       + "\n\n" + JSONconfig[0].txtPromotionWage + " " + JSONgame[0].currency + defThousandsDelimiter(JSONjob[intPercent].wage)
     );
-    alert( $('<span/>').html(strTemp).text());
-    // guiCreateDialog(JSONconfig[0].txtPromotionTitle, strTemp);
+    guiDisplayMessage(strTemp);
 
   } //if
 

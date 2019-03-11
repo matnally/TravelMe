@@ -105,6 +105,26 @@ function mapCreate(strMapElem) {
     } //arcConfig
   }); //map = new Datamap({
 
+
+
+//TODO make work!
+// zoom and pan
+var zoom = d3.behavior.zoom()
+  .on("zoom",function() {
+
+console.log("d3.event.translate[0]: " + d3.event.translate[0]);
+console.log("d3.event.translate[1]: " + d3.event.translate[1]);
+console.log("d3.event.scale: " + d3.event.scale);
+
+    map.svg.attr("transform","translate("+d3.event.translate.join(",")+")scale("+d3.event.scale+")");
+    // map.svg.selectAll("circle").attr("d", path.projection(projection));
+    // map.svg.selectAll("path").attr("d", path.projection(projection));
+});
+map.svg.call(zoom);
+
+
+
+
   //load bubble data
   map.bubbles(JSONdestination); //variable from JSON file
 
@@ -115,9 +135,7 @@ function mapCreate(strMapElem) {
 
   //country double click
   map.svg.selectAll('.datamaps-subunit').on('click', function(geography, data) {
-    map.svg.call(d3.behavior.zoom().on("zoom", mapRedraw));
-    // alert(data);
-    // alert(geography.properties.name);
+    // map.svg.call(d3.behavior.zoom().on("zoom", mapRedraw)); //zooms
   });
 
 } //function mapCreate
@@ -142,7 +160,7 @@ function mapArcAdd(intDestination) {
 
 function mapRedraw() {
   var elem = document.getElementById("divDatamapGame");
-  map.svg.selectAll("g").transition().duration(750).attr("transform", "translate(0, 0)scale(1." + intScale + ")");
+  map.svg.selectAll("g").transition().duration(750).attr("transform", "translate(0, 0)scale(1." + intScale + ")"); //TODO: proper scales and limits
 } //function
 // MAP CONTROLS
 var intScale = 1; //TODO: why not increment?!
@@ -187,6 +205,8 @@ function mapGetCountryName(JSONtoUse, strCountryCode) {
 } //function
 
 
+
+//////////////////////////
 //JUST IN CASE YOU NEED...
 function mapGetCountryCodeAlpha3Code(JSONtoUse, strCountryCode) {
   //converts Alpha2 country codes to Alpha3

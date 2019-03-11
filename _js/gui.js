@@ -6,6 +6,10 @@ function guiUpdateAndReset() {
 } //function
 
 function guiUpdateHTMLPlayer() {
+
+  var strTemp = "";
+  var arrTemp = [];
+
   defUpdateElement("spnMoney", JSONgame[0].currency + defThousandsDelimiter(JSONplayer[0].money));
   defUpdateElement("spnHappiness", defThousandsDelimiter(JSONplayer[0].happiness));
   defUpdateElement("spnDaysWorked", defThousandsDelimiter(JSONplayer[0].daysWorked));
@@ -16,10 +20,7 @@ function guiUpdateHTMLPlayer() {
   defUpdateElement("spnHappinessPerDay", JSONgame[0].workHappiness + " " +  JSONconfig[0].gameHappinessPerDay);
   defUpdateElement("spnDistanceTravelled", defThousandsDelimiter(JSONplayer[0].distanceTravelled) + " " + JSONgame[0].measure);
 
-
   //LUXURY
-  var strTemp = "";
-  var arrTemp = [];
   for (l in JSONplayer[0].luxury) {
     strTemp += JSONluxury[JSONplayer[0].luxury[l]].name + "<br>";
     arrTemp.push(JSONluxury[JSONplayer[0].luxury[l]].name);
@@ -32,6 +33,27 @@ function guiUpdateHTMLPlayer() {
     guiUpdateHTMLLuxury(luxGetLuxuryFromName(document.getElementById("selLuxuryOwned")));
   }, { passive: true }); //addEventListener
 
+  //MILESTONES
+  if (JSONgame[0].milestoneLuxury != true)
+    strTemp = JSONplayer[0].luxury.length + " / " + JSONgame[0].milestoneLuxury;
+  else
+    strTemp = "Complete";
+  defUpdateElement("spnMilestoneLuxury", strTemp);
+  if (JSONgame[0].milestoneDistance != true)
+    strTemp = defThousandsDelimiter(JSONplayer[0].distanceTravelled) + " / " + defThousandsDelimiter(JSONgame[0].milestoneDistance);
+  else
+    strTemp = "Complete";
+  defUpdateElement("spnMilestoneDistance", strTemp);
+  if (JSONgame[0].milestoneDestination != true)
+    strTemp = defThousandsDelimiter(defRemoveDuplicatesArray(JSONplayer[0].destination).length) + " / " + defThousandsDelimiter(JSONgame[0].milestoneDestination);
+  else
+    strTemp = "Complete";
+  defUpdateElement("spnMilestoneDestination", strTemp);
+  if (JSONgame[0].milestoneCountryVisited != true)
+    strTemp = defRemoveDuplicatesArray(defGetCountriesVisited()).length + " / " + defRemoveDuplicatesArrayByPropertyName(JSONdestination, "country").length;
+  else
+    strTemp = "Complete";
+  defUpdateElement("spnMilestoneCountryVisited", strTemp);
 
 } //function
 
@@ -61,6 +83,24 @@ function guiUpdateHTMLLuxuryReset() {
   defUpdateElement("spnLuxuryDescription", "");
   defUpdateElement("spnLuxuryCost", "");
   defUpdateElement("spnLuxuryHappiness", "");
+} //function
+
+function guiCelebrate(elem) {
+  $(elem).celebrate({unicode: '\u2B50', color: 'gold'});
+  // $(elem).celebrate({unicode: '\u2605', color: 'gold', particles:3});
+} //function
+
+function guiAddCelebrate() { //adds celebrate functionality to all buttons
+  var elemButtons = document.getElementsByTagName('button');
+  for (var i=0; i<elemButtons.length; i++) {
+    elemButtons[i].addEventListener("click",function(){
+      guiCelebrate(this);
+    }, { passive: true }); //addEventListener
+  } //for
+} //function
+
+function guiDisplayMessage(strTemp) {
+  alert($('<span/>').html(strTemp).text());
 } //function
 
 
@@ -115,6 +155,8 @@ function guiCreateHTMLComboBoxMulti(tmpArray, strID) {
   strTemp += "</select>";
   return strTemp;
 } //function
+
+
 
 /////////////////////////////////
 //// UNUSED AS DIALOG STACKS ////

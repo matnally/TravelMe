@@ -1,13 +1,7 @@
-function gameEmulate() {
-  // gameStart();
-  // gameChooseTurn();
-} //function
-
 
 function gameChooseTurn() {
 
   var intTemp = 0;
-
   intTemp = Math.floor(Math.random() * 3);
 
   switch (intTemp) {
@@ -27,7 +21,7 @@ function gameChooseTurn() {
       luxuryBuy(intTemp);
     break;
     default:
-      alert("gameChooseTurnERROR: intTemp " + intTemp);
+      guiDisplayMessage("gameChooseTurnERROR: intTemp " + intTemp);
   } //switch
 
 } //function
@@ -62,8 +56,9 @@ function gameInit() {
     guiUpdateHTMLLuxury(parseInt(this.value));
   }, { passive: true }); //addEventListener
 
-  $("#btnStartGame").focus();
+  guiAddCelebrate(); //adds celebrate functionality to all buttons
 
+  $("#btnStartGame").focus();
   guiSectionShow("#secSettings");
 
 } //function
@@ -79,6 +74,8 @@ function gameStart() {
   destCreateStats();
 
   gamApplyDefaults();
+  milestoneCreate();
+
   gamSetGameText();
   guiUpdateAndReset();
 
@@ -106,21 +103,20 @@ function gameEnd(strReason) {
       strFail = JSONconfig[0].gameEndReasonAction;
     break;
     default:
-      alert("gameEnd-ERROR: Forced Game End?");
+      guiDisplayMessage("gameEnd-ERROR: Forced Game End?");
   } //switch
 
   //TODO: something more substancial
   var strTemp = (JSONconfig[0].gameEnd
     + "\n\n" + strFail
   );
-  alert( $('<span/>').html(strTemp).text());
-  // guiCreateDialog(JSONconfig[0].gameEnd, strFail);
+  guiDisplayMessage(strTemp);
 
   resShowResult(); //show end game stats
 
 } //function
 
-function gameTurnEnd(strAction) {
+function gameTurnEnd(strAction, intDays) {
   //turn has happened (bought luxury, worked, travelled)
 
   switch (strAction) {
@@ -139,10 +135,15 @@ function gameTurnEnd(strAction) {
       //do nothing
     break;
     default:
-      // alert("gameTurnEnd-ERROR"); //TODO
+      // guiDisplayMessage("gameTurnEnd-ERROR"); //TODO
   } //switch
 
   //do common functions for all
+
+  // for (var i=0;i<intDays;i++) {
+    chartStatsUpdate();
+  // } //for
+  milestoneCheck();
   guiUpdateAndReset();
   gamCheckEndGame();
 
@@ -167,7 +168,7 @@ function gamCheckEndGame() {
       strTemp = "action"; //CANT GENERATE HAPPINESS & MONEY (i.e. can't perform an action)
     break;
     default:
-      // alert("gamCheckEndGame-: Forced Game End?");
+      // guiDisplayMessage("gamCheckEndGame-: Forced Game End?");
       // strTemp = "action"; //default fail
   } //switch
 
@@ -247,8 +248,11 @@ function gameSetDifficultyDefaults(intDifficulty) {
 } //function
 
 function gamSetGameText() {
-
+  //text that will not change throughout game
   defUpdateElement("spnDayPrefix", JSONconfig[0].gameDayPrefix);
   defUpdateElement("spnDaysPrefix", JSONconfig[0].gameDaysPrefix);
+
+  defUpdateElement("spnTotalDestinations", JSONdestination.length);
+  defUpdateElement("spnTotalCountries", defRemoveDuplicatesArrayByPropertyName(JSONdestination, "country").length);
 
 } //function

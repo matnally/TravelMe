@@ -28,10 +28,9 @@ function work(intDays) {
       + "\n\n" + JSONconfig[0].txtDialogWorkCost + " " + JSONgame[0].currency + defThousandsDelimiter(Math.round(JSONjob[JSONplayer[0].job].wage / 365) * intDays)
       + "\n" + JSONconfig[0].txtDialogWorkHappiness + " " + defThousandsDelimiter(JSONgame[0].workHappiness * intDays)
     );
-    alert( $('<span/>').html(strTemp).text());
-    // guiCreateDialog(JSONconfig[0].txtDialogWorkTitle, strTemp);
+    guiDisplayMessage(strTemp);
 
-    gameTurnEnd("work");
+    gameTurnEnd("work", intDays);
 
   } else {
 
@@ -41,8 +40,7 @@ function work(intDays) {
     var strTemp = (JSONconfig[0].txtDialogWorkHappinessNotAfford
       + "\n\n" + JSONconfig[0].txtDialogWorkDaysMax + " " + intDaysCanWork
     );
-    alert( $('<span/>').html(strTemp).text());
-    // guiCreateDialog(JSONconfig[0].txtDialogWorkHappinessNotAfford, strTemp);
+    guiDisplayMessage(strTemp);
 
   } //if
 

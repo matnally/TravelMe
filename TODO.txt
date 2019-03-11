@@ -7,22 +7,18 @@ General
 --------------
 The more-luxuries-bought / more-travelled the less happiness they give
 Improve Alert boxes
-World wonders at destination. Happiness bonus (also checklist at Endgame)
-Milestones : distance travelled / days worked / destinations travelled to - If achieve X by turn X then bonus
+World wonders at destination
 Event specific to Destination
-luxuries associated with travel or work event
+Luxuries associated with travel or work event
 Buy car (commute is shorter so Happier when working)
 Travel bag more happiness from travelling
 Colour to indicate GOOD / BAD for values
 IMPROVE when events are triggered
-SELL LUXURY FOR MONEY DISCOUNTED?????
-Starting HOME bubbles
-BONUS when country completed (more than 1 destination though)
 
 Map
 --------------
 Different colour of destinations visited
-On hover of Country, details of where visited already
+Starting HOME bubbles
 
 Luxuries
 --------------
@@ -78,28 +74,12 @@ missed stop (extra days)
 
 travel
 ======
-
-no reservation
-lost passport
-no visa
-bad weather experience
-met good travel buddy
 gain / lose a day due to time diff
-ill, something does agree with you
 
 
 work
 ====
 car breakdown
 demoted for something (linked to limit of happiness, money)
-night out
-conference
-work romance
-leaving party
-someones bday brought in cake
-bake sale at work
 CEO visiting (or you superior is visiting so less happiness)
 training (extra work days)
-stolen milk. so no milk in coffee (minus happines)
-run out of coffee
-hungover at work

@@ -33,7 +33,7 @@ function mapCreateResultArcs() {
   }); //map.arc
 
   map.svg.selectAll('.datamaps-bubble').on('click', function(e, data) {
-    alert("nothing"); //override so don't travel
+    guiDisplayMessage("nothing"); //override so don't travel
   }); //map.svg.selectAll
 
 } //function
@@ -50,7 +50,7 @@ function mapCreateResultArcs() {
 
 
 function resShowResult() {
-  //TODO: clean upu
+  //TODO: clean up
 
   //WORK
   defUpdateElement("spnWorkTotalDays", defThousandsDelimiter(JSONplayer[0].daysWorked) + " ");
@@ -159,7 +159,7 @@ function resShowResult() {
       strWorkTravelPreference = "Same!";
     break;
     default:
-      alert("strWorkTravelPreference-ERROR");
+      guiDisplayMessage("strWorkTravelPreference-ERROR");
   } //switch
   defUpdateElement("spnPlayerLifeBalance", strWorkTravelPreference);
   defUpdateElement("spnPlayerTotalMoneySpent", JSONgame[0].currency + defThousandsDelimiter(intTravelTotalSpent + intLuxuryTotalSpend));
@@ -174,7 +174,7 @@ function resShowResult() {
   defUpdateElement("spnPlayerEndingDistanceTravelled", defThousandsDelimiter(JSONplayer[0].distanceTravelled));
   defUpdateElement("spnPlayerEndingJob", JSONjob[JSONplayer[0].job].name);
 
-
+  chartCreate(document.getElementById('selChart'));
 
   guiSectionShow("#secGameEnd");
 

@@ -24,15 +24,13 @@ function luxuryBuy(intLuxury) {
         + "\n\n" + JSONconfig[0].txtDialogLuxuryCost + " " + JSONgame[0].currency + defThousandsDelimiter(JSONluxury[intLuxury].cost)
         + "\n" + JSONconfig[0].txtDialogLuxuryHappiness + " " + defThousandsDelimiter(JSONluxury[intLuxury].happiness)
       );
-      alert( $('<span/>').html(strTemp).text());
-      // guiCreateDialog(JSONconfig[0].txtDialogLuxuryTitle, strTemp);
+      guiDisplayMessage(strTemp);
 
-      gameTurnEnd("luxury");
+      gameTurnEnd("luxury", 0);
 
     } else {
 
-      alert(JSONconfig[0].txtDialogLuxuryNotAfford + " " + JSONluxury[intLuxury].name);
-      // guiCreateDialog(JSONconfig[0].txtDialogLuxuryNotAfford, JSONconfig[0].txtDialogLuxuryNotAfford + " " + JSONluxury[intLuxury].name);
+      guiDisplayMessage(JSONconfig[0].txtDialogLuxuryNotAfford + " " + JSONluxury[intLuxury].name);
 
     } //if
 
@@ -72,8 +70,7 @@ function luxurySell(intLuxury) {
           + "\n\n" + JSONconfig[0].txtDialogLuxurySellCost + " " + JSONgame[0].currency + defThousandsDelimiter(Math.round(JSONluxury[intLuxury].cost / JSONconfig[0].JSONluxurySellOffset))
           + "\n\n" + JSONconfig[0].txtDialogLuxurySellHappiness + " -" + defThousandsDelimiter(JSONluxury[intLuxury].happiness)
     );
-    boolAsk = confirm( $('<span/>').html(strTemp).text());
-    // guiCreateDialogConfirmLuxury(JSONconfig[0].txtDialogLuxurySellTitle, strTemp, intLuxury);
+    boolAsk = confirm(strTemp);
 
     if (boolAsk == true) {
       var intTotal = 0;
@@ -81,7 +78,7 @@ function luxurySell(intLuxury) {
       intTotal = (JSONplayer[0].money + Math.round((JSONluxury[intLuxury].cost / JSONconfig[0].JSONluxurySellOffset))); //CALC TODO: resell offset
       JSONplayer[0].money = intTotal; //UPDATE
       luxuryDiscard(intLuxury);
-      gameTurnEnd("luxury");
+      gameTurnEnd("luxury", 0);
     } //if
 
   } //if
@@ -124,8 +121,7 @@ function luxBrokenCheck() {
           + "\n\n" + JSONconfig[0].txtDialogLuxuryBrokenCost + " " + JSONgame[0].currency + defThousandsDelimiter(JSONluxury[intLuxury].cost)
           + "\n\n" + JSONconfig[0].txtDialogLuxuryBrokenHappiness + " " + defThousandsDelimiter(JSONluxury[intLuxury].happiness)
     );
-    boolAsk = confirm( $('<span/>').html(strTemp).text());
-    // guiCreateDialogConfirmLuxury(JSONconfig[0].txtDialogLuxuryBrokenTitle, strTemp, intLuxury);
+    boolAsk = confirm(strTemp);
 
     if (boolAsk == true) {
       luxuryRepair(intLuxury);

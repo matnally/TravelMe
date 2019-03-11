@@ -63,4 +63,15 @@ button {
   width: 600px;
   height: 400px;
 }
+#divDatamapResult {
+  width: 600px;
+  height: 400px;
+}
 /* END DATAMAPS */
+
+/* START GRAPH */
+#divChart {
+  width: 600px;
+  height: 400px;
+}
+/* END GRAPH */

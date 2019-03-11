@@ -9,4 +9,10 @@ var JSONplayer = [{
   ,"distanceTravelled"  : 0
   ,"job"                : 0
   ,"moneyEarned"        : 0
+
+  //GRAPH
+  ,"historyMoney"       : []
+  ,"historyDistance"    : []
+  ,"historyHappiness"   : []
+  ,"historyWage"        : []
 }];

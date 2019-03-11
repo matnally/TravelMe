@@ -10,7 +10,7 @@ function defUpdateElement(elemName, strTemp) {
 } //function
 
 function defCalcPercentage(intValue, intTotal) {
-   return ((100 * intValue) / intTotal); //TODO: toFixed ? Round up ?
+   return Math.floor((100 * intValue) / intTotal); //TODO: toFixed ? Round up ?
 } //function
 
 function defRemoveDuplicatesArray(arrTemp) {
@@ -55,6 +55,14 @@ function defGetCheapest(JSONtoUse) {
   return parseInt(JSONtoUse[intI].cost);
 } //function
 
-function defJSONshow(strJSON) { //ADMIN  
+function defJSONshow(strJSON) { //ADMIN
   console.log(JSON.stringify(window[strJSON]));
+} //function
+
+function defGetCountriesVisited() {
+  var arrTemp = [];
+  for (d in JSONplayer[0].destination) {
+    arrTemp.push(JSONdestination[JSONplayer[0].destination[d]].country);
+  } //for
+  return arrTemp;
 } //function

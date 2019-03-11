@@ -60,7 +60,7 @@ var JSONconfig = [{
   ,"JSONluxuryHappinessOffset"  : 3
   ,"JSONluxurySellOffset"       : 2
   //EVENT
-  ,"JSONeventBaseValueMin"    : -500
+  ,"JSONeventBaseValueMin"    : 50
   ,"JSONeventBaseValueMax"    : 500
   ,"JSONeventCostOffset"      : 1
   ,"JSONeventHappinessOffset" : 2
@@ -120,6 +120,22 @@ var JSONconfig = [{
   //PROMOTION
   ,"txtPromotionTitle"  : "You have been promoted"
   ,"txtPromotionWage"   : "Your new wage is"
+
+  //MILESTONES
+  ,"txtMilestoneLuxury"         : "You have achieved the Luxury milestone"
+  ,"txtMilestoneDistance"       : "You have achieved the Distance Travelled milestone"
+  ,"txtMilestoneDestination"    : "You have achieved the Destinations Visited milestone"
+  ,"txtMilestoneCountryVisited" : "You have achieved the Countries Visited milestone"
+  //MILESTONE BONUS
+  ,"BonusMilestoneLuxuryMoney"              : 0
+  ,"BonusMilestoneLuxuryHappiness"          : 0
+  ,"BonusMilestoneDistanceMoney"            : 0
+  ,"BonusMilestoneDistanceHappiness"        : 0
+  ,"BonusMilestoneDestinationMoney"         : 0
+  ,"BonusMilestoneDestinationHappiness"     : 0
+  ,"BonusMilestoneCountryVisitedMoney"      : 0
+  ,"BonusMilestoneCountryVisitedHappiness"  : 0
+
   ////////////////////////////////
   //END TEXT INGAME
 

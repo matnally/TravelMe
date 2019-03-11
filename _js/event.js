@@ -4,13 +4,11 @@ function eventCheck(strAction) {
   var intRandomChancePercentage = 0;
   var intEvent = 0;
   var intTotal = 0;
-  // var strType = "";
 
   intRandomChancePercentage = Math.random() * 100;
 
   if (intRandomChancePercentage <= JSONconfig[0].eventCheckChancePercentage) {
 
-    // strType = eventGetEventType(); //get appropiate event type
     do {
       intEvent = eventGetEventRandom(); //get event related to the chosen event type
     } while (JSONevent[intEvent].type != strAction);
@@ -28,8 +26,7 @@ function eventCheck(strAction) {
       + "\n\n" + JSONconfig[0].txtDialogEventCost + " " + JSONgame[0].currency + defThousandsDelimiter(JSONevent[intEvent].cost)
       + "\n" + JSONconfig[0].txtDialogEventHappiness + " " + defThousandsDelimiter(JSONevent[intEvent].happiness)
     );
-    alert( $('<span/>').html(strTemp).text());
-    //guiCreateDialog(JSONconfig[0].txtDialogEventTitle, strTemp);
+    guiDisplayMessage(strTemp);
 
   } //if
 
@@ -57,7 +54,11 @@ function eventCreateStats() {
     intCost = (intBaseValue / JSONconfig[0].JSONeventCostOffset).toFixed(0);
     intHappiness = (intBaseValue / JSONconfig[0].JSONeventHappinessOffset).toFixed(0);
 
-    JSONevent[e].name = JSONevent[e].name + " " + e;
+    if (JSONevent[e].outcome == "negative") { //turn negative if outcome
+      intCost = -Math.abs(intCost);
+      intHappiness = -Math.abs(intHappiness);
+    } //if
+
     JSONevent[e].cost = parseInt(intCost);
     JSONevent[e].happiness = parseInt(intHappiness);
 

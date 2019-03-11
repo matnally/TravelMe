@@ -13,7 +13,7 @@ function travel(intDestination) {
     JSONplayer[0].happiness = intTotal; //UPDATE
     //DISTANCE TRAVELLED
     intTotal = JSONplayer[0].distanceTravelled + travCalcDistance(JSONgame[0].homeLatitude, JSONgame[0].homeLongitude, JSONdestination[intDestination].latitude, JSONdestination[intDestination].longitude, JSONgame[0].measure); //CALC
-    JSONplayer[0].distanceTravelled = JSONplayer[0].distanceTravelled + intTotal; //UPDATE
+    JSONplayer[0].distanceTravelled = intTotal; //UPDATE
     //DAYS TRAVELLED
     intTotal = JSONplayer[0].daysTravelled +  JSONdestination[intDestination].days; //CALC
     JSONplayer[0].daysTravelled = intTotal; //UPDATE
@@ -38,16 +38,14 @@ function travel(intDestination) {
       + "\n" + JSONconfig[0].txtDialogTravelCost + " " + JSONgame[0].currency + defThousandsDelimiter(JSONdestination[intDestination].cost)
       + "\n" + JSONconfig[0].txtDialogTravelDistance + " " + defThousandsDelimiter(travCalcDistance(JSONgame[0].homeLatitude, JSONgame[0].homeLongitude, JSONdestination[intDestination].latitude, JSONdestination[intDestination].longitude, JSONgame[0].measure)) + " " + JSONgame[0].measure
     );
-    alert( $('<span/>').html(strTemp).text());
-    // guiCreateDialog(JSONconfig[0].txtDialogTravelTitle, strTemp);
+    guiDisplayMessage(strTemp);
 
-    gameTurnEnd("travel");
+    gameTurnEnd("travel", JSONdestination[intDestination].days);
 
   } else {
 
     var strTemp = (JSONconfig[0].txtDialogTravelNotAfford + " " + JSONdestination[intDestination].name);
-    alert( $('<span/>').html(strTemp).text());
-    // guiCreateDialog(JSONconfig[0].txtDialogTravelNotAfford, strTemp);
+    guiDisplayMessage(strTemp);
 
   } //if
 
