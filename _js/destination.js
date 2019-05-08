@@ -1,4 +1,9 @@
 
+
+//////////////////////////
+//// SUPPORTING LOGIC ////
+//////////////////////////
+
 function destCreateStats() {
   //create dynamic stats for destinations
 

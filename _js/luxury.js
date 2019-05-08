@@ -85,6 +85,7 @@ function luxurySell(intLuxury) {
 
 } //function
 
+
 //////////////////////////
 //// SUPPORTING LOGIC ////
 //////////////////////////

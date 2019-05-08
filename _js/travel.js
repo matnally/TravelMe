@@ -25,6 +25,7 @@ function travel(intDestination) {
 
     //map changes
     mapArcAdd(intDestination); //add arc to map
+
     if (travDestinationsInCountryVisited(intDestination).length === travDestinationsInCountry(intDestination).length) {
       //player has visited all the destinations in the country - PUSH before this
       mapUpdateCountryVisited(intDestination); //update colour of country
@@ -114,9 +115,6 @@ function travCalcDistanceTotal() {
   } //for
   return intTotalDistance;
 } //function
-
-
-
 
 function travGetNoOfDestinationsInCountryFromCountry(strCountry) {
   var intTemp = 0;

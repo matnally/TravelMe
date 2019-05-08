@@ -50,7 +50,7 @@ function guiUpdateHTMLPlayer() {
     strTemp = "Complete";
   defUpdateElement("spnMilestoneDestination", strTemp);
   if (JSONgame[0].milestoneCountryVisited != true)
-    strTemp = defRemoveDuplicatesArray(defGetCountriesVisited()).length + " / " + defRemoveDuplicatesArrayByPropertyName(JSONdestination, "country").length;
+    strTemp = defRemoveDuplicatesArray(defGetCountriesVisited()).length + " / " + defThousandsDelimiter(JSONgame[0].milestoneCountryVisited);
   else
     strTemp = "Complete";
   defUpdateElement("spnMilestoneCountryVisited", strTemp);
@@ -155,6 +155,7 @@ function guiCreateHTMLComboBoxMulti(tmpArray, strID) {
   strTemp += "</select>";
   return strTemp;
 } //function
+
 
 
 

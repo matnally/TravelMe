@@ -66,7 +66,6 @@ function wokCheckMaxDays(intDays) {
   return intDays;
 } //function
 
-
 $(function () { //TODO: Best way of doing this?
   $('#inpWorkDays').on('keyup keydown keypress onchange', function(e) {
     $(this).val(wokCheckMaxDays(parseInt($(this).val())));

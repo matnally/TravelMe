@@ -1,35 +1,4 @@
 
-function gameChooseTurn() {
-
-  var intTemp = 0;
-  intTemp = Math.floor(Math.random() * 3);
-
-  switch (intTemp) {
-    case 1:
-      //travel
-      intTemp = Math.random() * JSONdestination.length - 1;
-      travel(intTemp);
-    break;
-    case 2:
-      //work
-      intTemp = Math.random() * 10;
-      work(intTemp);
-    break;
-    case 3:
-      //luxury buy
-      intTemp = Math.random() * JSONluxury.length - 1;
-      luxuryBuy(intTemp);
-    break;
-    default:
-      guiDisplayMessage("gameChooseTurnERROR: intTemp " + intTemp);
-  } //switch
-
-} //function
-
-
-
-
-
 function gameInit() {
 
   //create options for choosing game defaults
@@ -83,6 +52,7 @@ function gameStart() {
 
   mapCreate("divDatamapGame"); //will only render if at the end
 
+  chartStatsUpdate(); //populates first value for chart
 } //function
 
 function gameEnd(strReason) {
@@ -140,9 +110,7 @@ function gameTurnEnd(strAction, intDays) {
 
   //do common functions for all
 
-  // for (var i=0;i<intDays;i++) {
-    chartStatsUpdate();
-  // } //for
+  chartStatsUpdate();
   milestoneCheck();
   guiUpdateAndReset();
   gamCheckEndGame();
@@ -151,9 +119,7 @@ function gameTurnEnd(strAction, intDays) {
 
 function gamCheckEndGame() {
   //check for any failing factors
-
   var strTemp = "";
-
   switch (true) { //if fail, send gameEnd appropiate factor
     case (JSONplayer[0].money <= 0):
       strTemp = "money";
@@ -171,10 +137,8 @@ function gamCheckEndGame() {
       // guiDisplayMessage("gamCheckEndGame-: Forced Game End?");
       // strTemp = "action"; //default fail
   } //switch
-
   if (!strTemp == "")
     gameEnd(strTemp);
-
 } //function
 
 
@@ -218,7 +182,7 @@ function gamApplyDefaults() {
 
 function gameSetDifficultyDefaults(intDifficulty) {
 
-  //GAME
+  //IMPORTANT
   JSONgame[0].difficultyOffset = parseInt(JSONconfig[0].difficultyOffset[intDifficulty]); // do first
   JSONgame[0].workHappiness = parseInt(JSONconfig[0].workHappiness / JSONgame[0].difficultyOffset);
 

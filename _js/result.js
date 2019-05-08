@@ -1,3 +1,5 @@
+//TODO: should this be here?
+
 function mapCreateResult() {
   mapCreate("divDatamapResult"); //will only render if at the end???
 } //function
@@ -164,7 +166,7 @@ function resShowResult() {
   defUpdateElement("spnPlayerLifeBalance", strWorkTravelPreference);
   defUpdateElement("spnPlayerTotalMoneySpent", JSONgame[0].currency + defThousandsDelimiter(intTravelTotalSpent + intLuxuryTotalSpend));
   defUpdateElement("spnPlayerTotalMoneyEarned", JSONgame[0].currency + defThousandsDelimiter(JSONplayer[0].moneyEarned));
-  defUpdateElement("spnPlayerTotalHappiness", defThousandsDelimiter((JSONplayer[0].daysWorked * JSONgame[0].workHappiness) + intLuxuryTotalHappiness));
+  defUpdateElement("spnPlayerTotalHappiness", defThousandsDelimiter(intTravelTotalHappiness + intLuxuryTotalHappiness));
 
   //PLAYER ENDING
   defUpdateElement("spnPlayerEndingMoney", JSONgame[0].currency + defThousandsDelimiter(JSONplayer[0].money));
@@ -173,6 +175,9 @@ function resShowResult() {
   defUpdateElement("spnPlayerEndingDaysTravelled", defThousandsDelimiter(JSONplayer[0].daysTravelled));
   defUpdateElement("spnPlayerEndingDistanceTravelled", defThousandsDelimiter(JSONplayer[0].distanceTravelled));
   defUpdateElement("spnPlayerEndingJob", JSONjob[JSONplayer[0].job].name);
+
+  //EVENTS
+  //TODO
 
   chartCreate(document.getElementById('selChart'));
 

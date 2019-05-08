@@ -9,7 +9,7 @@ var JSONconfig = [{
   ,"money"                : 10000 //starting value
   ,"happiness"            : 100 //starting value
   ,"days"                 : [365,730,1095,1460]
-  ,"startingDay"          : 0 //what day to begin with
+  ,"startingDay"          : 1 //what day to begin with
 
   //MAP
   ,"maps"                     : [ "World", "USA"]

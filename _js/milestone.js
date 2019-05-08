@@ -109,7 +109,4 @@ function milestoneCheck() {
     } //if
   } //if
 
-
-
-
 } //function
