@@ -10,7 +10,7 @@ function defUpdateElement(elemName, strTemp) {
 } //function
 
 function defCalcPercentage(intValue, intTotal) {
-   return Math.floor((100 * intValue) / intTotal); //TODO: toFixed ? Round up ?
+   return Math.floor((100 * intValue) / intTotal);
 } //function
 
 function defRemoveDuplicatesArray(arrTemp) {

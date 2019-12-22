@@ -75,7 +75,7 @@ function luxurySell(intLuxury) {
     if (boolAsk == true) {
       var intTotal = 0;
       //MONEY
-      intTotal = (JSONplayer[0].money + Math.round((JSONluxury[intLuxury].cost / JSONconfig[0].JSONluxurySellOffset))); //CALC TODO: resell offset
+      intTotal = (JSONplayer[0].money + Math.round((JSONluxury[intLuxury].cost / JSONconfig[0].JSONluxurySellOffset))); //CALC
       JSONplayer[0].money = intTotal; //UPDATE
       luxuryDiscard(intLuxury);
       gameTurnEnd("luxury", 0);

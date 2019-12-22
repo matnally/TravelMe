@@ -40,7 +40,7 @@ var JSONconfig = [{
   ,"mapArcColour"               : "#00F"
 
   //OFFSETS
-  ,"workHappiness"                      : -50 //happiness to take away
+  ,"workHappiness"                      : -25 //happiness to take away
   ,"luxuryBrokenCheckChancePercentage"  : 10 //% chance
   ,"eventCheckChancePercentage"         : 10 //% chance
   ,"eventGetEventTypeOffsetDestination" : 2 //if (player destinations > (destinations / THIS))

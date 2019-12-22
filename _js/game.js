@@ -105,7 +105,7 @@ function gameTurnEnd(strAction, intDays) {
       //do nothing
     break;
     default:
-      // guiDisplayMessage("gameTurnEnd-ERROR"); //TODO
+      guiDisplayMessage("gameTurnEnd-ERROR");
   } //switch
 
   //do common functions for all

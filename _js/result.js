@@ -1,5 +1,4 @@
-//TODO: should this be here?
-
+//MAP
 function mapCreateResult() {
   mapCreate("divDatamapResult"); //will only render if at the end???
 } //function
@@ -176,13 +175,11 @@ function resShowResult() {
   defUpdateElement("spnPlayerEndingDistanceTravelled", defThousandsDelimiter(JSONplayer[0].distanceTravelled));
   defUpdateElement("spnPlayerEndingJob", JSONjob[JSONplayer[0].job].name);
 
-  //EVENTS
-  //TODO
+  //EVENTS ?????
 
+  //ENDGAME
   chartCreate(document.getElementById('selChart'));
-
   guiSectionShow("#secGameEnd");
-
   mapCreateResult(); //at the end to render
 
 } //function
